@@ -1,0 +1,179 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>헬스 가이드 - 나만의 맞춤형 운동 루틴 추천</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-decor">
+        <div class="blur-circle circle-1"></div>
+        <div class="blur-circle circle-2"></div>
+    </div>
+    
+    <div class="container">
+        <header>
+            <div class="header-top">
+                <h1 class="logo">HEALTH <span>GUIDE</span></h1>
+                
+            </div>
+            <p class="subtitle">헬스장에서 무엇을 해야 할지 헤매는 당신을 위한 과학적 루틴 설계자</p>
+        </header>
+
+        <main>
+            <!-- STEP 1: 운동 가능한 횟수 선택 -->
+            <section class="setup-section" id="step-days">
+                <h2 class="section-title"><span>01</span> 일주일에 운동을 몇 일 하실 수 있나요?</h2>
+                <div class="days-selector">
+                    <button class="day-btn" data-days="3">
+                        <span class="day-num">3</span>
+                        <span class="day-label">주 3일</span>
+                    </button>
+                    <button class="day-btn" data-days="4">
+                        <span class="day-num">4</span>
+                        <span class="day-label">주 4일</span>
+                    </button>
+                    <button class="day-btn" data-days="5">
+                        <span class="day-num">5</span>
+                        <span class="day-label">주 5일</span>
+                    </button>
+                    <button class="day-btn" data-days="6">
+                        <span class="day-num">6</span>
+                        <span class="day-label">주 6일</span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- STEP 2: 운동 구력/체형 선택 -->
+            <section class="setup-section" id="step-experience">
+                <h2 class="section-title"><span>02</span> 본인의 체형과 가장 비슷한 이미지를 선택하세요</h2>
+                <p class="guide-notice">
+                    <span class="info-icon">💡</span> 
+                    <strong>중요:</strong> 몇 년 동안 운동했는지보다, 자신의 현재 몸 상태가 아래 세 이미지 중 <strong>어떤 수준과 가장 비슷한지</strong> 몸을 우선으로 보고 선택해 주세요.
+                </p>
+                
+                <div class="physique-selector">
+                    <!-- 헬린이 -->
+                    <div class="physique-card" data-level="beginner">
+                        <div class="image-container">
+                            <img src="beginner.png" alt="헬린이 체형">
+                            <div class="img-overlay"></div>
+                        </div>
+                        <div class="card-info">
+                            <h3>헬린이 <span class="sub-lvl">(초급자)</span></h3>
+                            <div class="divider"></div>
+                            <p class="exp-range">구력 2년 이하</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 헬소년 -->
+                    <div class="physique-card" data-level="intermediate">
+                        <div class="image-container">
+                            <img src="intermediate.png" alt="헬소년 체형">
+                            <div class="img-overlay"></div>
+                        </div>
+                        <div class="card-info">
+                            <h3>헬소년 <span class="sub-lvl">(중급자)</span></h3>
+                            <div class="divider"></div>
+                            <p class="exp-range">구력 5년 이하</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 헬른 -->
+                    <div class="physique-card" data-level="advanced">
+                        <div class="image-container">
+                            <img src="advanced.png" alt="헬른 체형">
+                            <div class="img-overlay"></div>
+                        </div>
+                        <div class="card-info">
+                            <h3>헬른 <span class="sub-lvl">(고급자)</span></h3>
+                            <div class="divider"></div>
+                            <p class="exp-range">구력 5년 초과</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- STEP 3: 헬른(고급자) 추가 옵션 및 설정 -->
+            <section class="setup-section hidden" id="step-advanced-options">
+                <h2 class="section-title"><span>03</span> 헬른(고급자) 맞춤 설정</h2>
+                
+                <div class="advanced-settings-box">
+                    <!-- 루틴 타입 선택 -->
+                    <div class="setting-group" id="routine-type-group">
+                        <label class="setting-label">선호하는 분할 방식</label>
+                        <div class="option-selectors" id="routine-options-container">
+                            <!-- JS를 통해 동적으로 옵션 생성 -->
+                        </div>
+                    </div>
+
+                    <!-- 약점 부위 입력 -->
+                    <div class="setting-group hidden" id="weakness-group">
+                        <label for="weakness-input" class="setting-label">본인의 약점 부위 (예: 어깨 후면, 팔, 삼두, 하체 뒤쪽 등)</label>
+                        <input type="text" id="weakness-input" class="text-input" placeholder="약점 부위를 입력해 주세요 (예: 어깨 후면)">
+                    </div>
+                </div>
+            </section>
+
+            <!-- 추천 결과 확인 버튼 -->
+            <div class="action-area">
+                <button class="generate-btn" id="btn-generate" disabled>나만의 운동 루틴 생성하기</button>
+            </div>
+
+            <!-- STEP 4: 운동 루틴 결과 출력 -->
+            <section class="result-section hidden" id="routine-result">
+                <div class="result-header">
+                    <h2>🔥 생성된 맞춤형 운동 프로그램</h2>
+                    <p class="result-meta" id="result-summary">주 0일 | 수준</p>
+                    <div class="sets-guide-box" id="sets-guide-box"></div>
+                </div>
+                
+                <div class="routine-grid" id="routine-cards-container">
+                    <!-- JS로 카드 생성 -->
+                </div>
+            </section>
+        </main>
+        
+        <footer>
+            <p>&copy; 2026 헬스 가이드 (Health Guide). All rights reserved.</p>
+        </footer>
+    </div>
+
+    <!-- 운동 상세 가이드 모달 -->
+    <div class="modal-backdrop hidden" id="modal-exercise-detail">
+        <div class="modal-card detail-modal-card">
+            <div class="modal-header">
+                <h3 id="detail-exercise-name">운동 이름</h3>
+                <button class="modal-close-btn" id="btn-close-detail-modal">&times;</button>
+            </div>
+            <div class="modal-body detail-modal-body">
+                <div class="detail-layout">
+                    <div class="detail-media">
+                        <div class="gif-wrapper">
+                            <img id="detail-exercise-gif" src="" alt="운동 동작 가이드">
+                            <div class="gif-loader hidden" id="gif-loader">로딩 중...</div>
+                        </div>
+                    </div>
+                    <div class="detail-info">
+                        <div class="info-badges">
+                            <span class="info-badge" id="detail-bodypart">신체 부위</span>
+                            <span class="info-badge" id="detail-target">주요 타겟</span>
+                            <span class="info-badge" id="detail-equipment">필요 도구</span>
+                        </div>
+                        <h4 class="guide-title">올바른 수행 방법</h4>
+                        <ol class="guide-steps" id="detail-instructions">
+                            <!-- JS로 가이드 단계 생성 -->
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <script src="app.js"></script>
+</body>
+</html>
