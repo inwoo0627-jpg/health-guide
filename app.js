@@ -548,7 +548,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const exercisesForDay = getExercisesForDay(dayRoutine, index);
             const exercisesJsonBase64 = btoa(unescape(encodeURIComponent(JSON.stringify(exercisesForDay))));
 
-            // 백슬래시 중첩 문제 차단: 바깥에서 list items HTML을 생성하여 집어넣음
+            // 백슬래시 중첩 리터럴 문제 완벽 제거
             const listItemsHtml = exercisesForDay.map(exName => {
                 const ex = exerciseDatabase[exName];
                 const setInfo = (state.level === 'beginner') ? '4세트' : '2~3세트';
@@ -576,7 +576,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 모달 호출 헬퍼
+    // 모달 호출 전역 헬퍼
     window.openExerciseDetailModalByName = function(exName) {
         const ex = exerciseDatabase[exName];
         if (ex && typeof openExerciseDetailModal === 'function') {
@@ -584,15 +584,46 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // 영상 미세 조정 연동
-    const originalOpenModal = openExerciseDetailModal;
-    openExerciseDetailModal = function(ex) {
-        originalOpenModal(ex);
-        if (!ex.exerciseId) {
+    // 정적 모달 오픈 정의 (덮어쓰기 대신 직접 로직 삽입)
+    function openExerciseDetailModal(ex) {
+        detailName.textContent = ex.name;
+        
+        detailGif.classList.add('hidden');
+        gifLoader.classList.remove('hidden');
+        
+        detailGif.onerror = () => {
+            detailGif.src = 'https://github.com/hasaneyldrm/exercises-dataset/raw/main/images/0088-1ZFqTDN.jpg';
+            gifLoader.classList.add('hidden');
+            detailGif.classList.remove('hidden');
+        };
+
+        // CDN에서 직접 운동 동작 GIF 로드
+        if (ex.exerciseId) {
+            detailGif.src = `https://static.exercisedb.dev/media/${ex.exerciseId}.gif`;
+            detailGif.onload = () => {
+                gifLoader.classList.add('hidden');
+                detailGif.classList.remove('hidden');
+            };
+        } else {
+            // 영상이 비어있는 경우 (장두 타겟 케이블 컬 등)
+            detailGif.src = '';
             detailGif.classList.add('hidden');
             gifLoader.classList.add('hidden');
         }
-    };
+
+        detailBodyPart.textContent = ex.bodyPart;
+        detailTarget.textContent = ex.target;
+        detailEquipment.textContent = ex.equipment;
+
+        detailInstructions.innerHTML = '';
+        ex.instructions.forEach(step => {
+            const li = document.createElement('li');
+            li.textContent = step;
+            detailInstructions.appendChild(li);
+        });
+
+        modalDetail.classList.remove('hidden');
+    }
 
     // 요일별/구력별/일수별 디테일 운동 매핑
     function getExercisesForDay(dayRoutine, cardIndex) {
@@ -605,17 +636,14 @@ document.addEventListener('DOMContentLoaded', () => {
             // 1. 헬린이 (초급자) 맞춤 루틴
             // ==========================================
             if (dayRoutine === '상체') {
-                // 상체 로테이션 (가슴, 등, 어깨 로테이션 및 팔 운동 마지막)
                 if (cardIndex === 0) {
-                    // DAY 1: 가슴 -> 등 -> 어깨 -> 이두 -> 삼두
                     selectedExercises = [
                         '플라이 머신', '로우 인클라인 덤벨 프레스', 
-                        '렛풀다운', '롱pull', // 롱풀로 아래서 매핑
+                        '렛풀다운', '롱풀', 
                         '덤벨 숄더 프레스', '덤벨 사이드 레터럴 레이즈', 
                         '덤벨 컬', '케이블 트라이셉스 푸시 다운'
                     ];
                 } else {
-                    // DAY 3: 등 -> 어깨 -> 가슴 -> 삼두 -> 이두
                     selectedExercises = [
                         '렛풀다운', '롱풀', 
                         '덤벨 숄더 프레스', '덤벨 사이드 레터럴 레이즈', 
@@ -625,7 +653,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             } 
             else if (dayRoutine === '하체') {
-                // 핵스쿼트 제외, 이너타이 제외
                 selectedExercises = [
                     '레그 익스텐션', '레그 프레스', '레그 컬', '바벨 루마니안 데드리프트'
                 ];
@@ -854,8 +881,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // 롱pull 오타 수정 매핑
-        return Array.from(new Set(selectedExercises)).map(x => x === '롱pull' ? '롱풀' : x).filter(Boolean);
+        return Array.from(new Set(selectedExercises)).filter(Boolean);
     }
 // 운동일지 (Workout Log) 기능 개발 로직
     // ==========================================
