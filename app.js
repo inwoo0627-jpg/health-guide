@@ -318,10 +318,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 2. 등급별(헬린이/중고급자) 추천 알고리즘 로직 및 루틴 설계
 
-    // 루틴 결과를 운동일지에 바로 추가하는 핸들러
+    // 루틴 결과를 운동일지에 바로 추가하는 핸들러 (한글 깨짐 해결 완료)
     window.addRoutineDayToLog = function(dayIndex, dayName, exercisesJsonBase64) {
         try {
-            const exercises = JSON.parse(atob(exercisesJsonBase64));
+            // 한글 깨짐 원인 차단: 디코딩 시 decodeURIComponent(escape(atob(...))) 사용
+            const exercises = JSON.parse(decodeURIComponent(escape(atob(exercisesJsonBase64))));
             const logDateInput = document.getElementById('log-date');
             const targetDate = logDateInput ? logDateInput.value : new Date().toISOString().split('T')[0];
 
@@ -329,7 +330,12 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // 각 운동을 오늘 날짜의 일지에 추가
             exercises.forEach(exName => {
-                const ex = exerciseDatabase[exName];
+                // 1. globalExercisePool에서 한국어 이름이 매칭되는 실제 DB 아이템을 탐색
+                let ex = globalExercisePool.find(item => item.nameKr.toLowerCase() === exName.toLowerCase());
+                if (!ex) {
+                    ex = exerciseDatabase[exName];
+                }
+                
                 const exerciseId = ex ? ex.exerciseId : `custom_${Date.now()}`;
                 
                 // 중복 등록 방지
@@ -341,7 +347,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         korName: exName,
                         exerciseId: exerciseId,
                         sets: [
-                            { setId: 1, weight: 40, reps: 10 } // 기본 1세트 기입
+                            { setId: 1, weight: 40, reps: 10 }
                         ]
                     });
                 }
@@ -546,19 +552,24 @@ document.addEventListener('DOMContentLoaded', () => {
             else if (dayRoutine.includes('팔')) icon = '🥊';
 
             const exercisesForDay = getExercisesForDay(dayRoutine, index);
+            // 한글 인코딩 시 btoa(unescape(encodeURIComponent(...)))를 안전하게 사용하여 넘김
             const exercisesJsonBase64 = btoa(unescape(encodeURIComponent(JSON.stringify(exercisesForDay))));
 
             // 백슬래시 중첩 리터럴 문제 완벽 제거
             const listItemsHtml = exercisesForDay.map(exName => {
-                const ex = exerciseDatabase[exName];
+                // globalExercisePool 에서 실제 번역명칭과 맞는 DB 상의 원본 아이템을 찾아서 매치
+                const poolItem = globalExercisePool.find(x => x.nameKr.toLowerCase() === exName.toLowerCase());
+                const ex = poolItem || exerciseDatabase[exName];
+                const displayName = ex ? ex.name : exName;
+                const bodyPartName = ex ? (ex.category || ex.bodyPart) : '전신';
+                
                 const setInfo = (state.level === 'beginner') ? '4세트' : '2~3세트';
-                if (!ex) return `<li><span class="exercise-name-text">${exName}</span></li>`;
                 return `
                     <li onclick="openExerciseDetailModalByName('${exName}')" style="cursor:pointer;">
-                        <span class="exercise-name-text">${ex.name}</span>
+                        <span class="exercise-name-text">${displayName}</span>
                         <div class="exercise-meta-info">
                             <span class="set-badge">${setInfo}</span>
-                            <span class="detail-part">${ex.bodyPart} ➜</span>
+                            <span class="detail-part">${bodyPartName} ➜</span>
                         </div>
                     </li>
                 `;
@@ -576,23 +587,29 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 모달 호출 전역 헬퍼
+    // 모달 호출 전역 헬퍼 (실제 exercises_db.json 데이터와 100% 매칭)
     window.openExerciseDetailModalByName = function(exName) {
-        const ex = exerciseDatabase[exName];
+        // globalExercisePool 에서 이름 매칭하여 진짜 정보를 가져옴
+        let ex = globalExercisePool.find(item => item.nameKr.toLowerCase() === exName.toLowerCase());
+        if (!ex) {
+            ex = exerciseDatabase[exName];
+        }
         if (ex && typeof openExerciseDetailModal === 'function') {
             openExerciseDetailModal(ex);
         }
     };
 
-    // 정적 모달 오픈 정의 (덮어쓰기 대신 직접 로직 삽입)
+    // 정적 모달 오픈 정의 (무한루프 에러 수정)
     function openExerciseDetailModal(ex) {
-        detailName.textContent = ex.name;
+        detailName.textContent = ex.nameKr || ex.name;
         
         detailGif.classList.add('hidden');
         gifLoader.classList.remove('hidden');
         
+        // 무한루프 원천 차단: onerror 실행 시 핸들러를 null로 초기화
         detailGif.onerror = () => {
-            detailGif.src = 'https://github.com/hasaneyldrm/exercises-dataset/raw/main/images/0088-1ZFqTDN.jpg';
+            detailGif.onerror = null;
+            detailGif.src = 'https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/images/0088-1ZFqTDN.jpg';
             gifLoader.classList.add('hidden');
             detailGif.classList.remove('hidden');
         };
@@ -611,12 +628,13 @@ document.addEventListener('DOMContentLoaded', () => {
             gifLoader.classList.add('hidden');
         }
 
-        detailBodyPart.textContent = ex.bodyPart;
-        detailTarget.textContent = ex.target;
-        detailEquipment.textContent = ex.equipment;
+        detailBodyPart.textContent = ex.category || ex.bodyPart;
+        detailTarget.textContent = ex.target || '전신';
+        detailEquipment.textContent = ex.equipment || '기구';
 
         detailInstructions.innerHTML = '';
-        ex.instructions.forEach(step => {
+        const instructions = ex.instructions || [];
+        instructions.forEach(step => {
             const li = document.createElement('li');
             li.textContent = step;
             detailInstructions.appendChild(li);
@@ -641,14 +659,14 @@ document.addEventListener('DOMContentLoaded', () => {
                         '플라이 머신', '로우 인클라인 덤벨 프레스', 
                         '렛풀다운', '롱풀', 
                         '덤벨 숄더 프레스', '덤벨 사이드 레터럴 레이즈', 
-                        '덤벨 컬', '케이블 트라이셉스 푸시 다운'
+                        '덤벨 컬', '케이블 푸시 다운'
                     ];
                 } else {
                     selectedExercises = [
                         '렛풀다운', '롱풀', 
                         '덤벨 숄더 프레스', '덤벨 사이드 레터럴 레이즈', 
                         '플라이 머신', '로우 인클라인 덤벨 프레스', 
-                        '케이블 트라이셉스 푸시 다운', '덤벨 컬'
+                        '케이블 푸시 다운', '덤벨 컬'
                     ];
                 }
             } 
@@ -658,7 +676,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 ];
             } 
             else if (dayRoutine === '전면') {
-                const upper = ['플라이 머신', '로우 인클라인 덤벨 프레스', '덤벨 숄더 프레스', '덤벨 사이드 레터럴 레이즈', '케이블 트라이셉스 푸시 다운'];
+                const upper = ['플라이 머신', '로우 인클라인 덤벨 프레스', '덤벨 숄더 프레스', '덤벨 사이드 레터럴 레이즈', '케이블 푸시 다운'];
                 const lower = ['레그 익스텐션', '레그 프레스'];
                 
                 if (cardIndex === 0) {
@@ -684,7 +702,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     '어시스트 딥스', 
                     '덤벨 숄더 프레스', 
                     '덤벨 사이드 레터럴 레이즈', 
-                    '케이블 트라이셉스 푸시 다운'
+                    '케이블 푸시 다운'
                 ];
             } 
             else if (dayRoutine === '당기기') {
@@ -877,11 +895,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 selectedExercises = ['덤벨 컬', '케이블 컬', '라잉 트라이셉스 익스텐션', '케이블 푸시 다운'];
             } 
             else if (dayRoutine.startsWith('약점 부위')) {
-                selectedExercises = ['바벨 벤치프레스', '렛풀다운', '롱풀', '덤벨 숄더 프레스'];
+                selectedExercises = ['바벨 벤치프레스', '렛풀다운', '롱pull', '덤벨 숄더 프레스'];
             }
         }
 
-        return Array.from(new Set(selectedExercises)).filter(Boolean);
+        return Array.from(new Set(selectedExercises)).map(x => x === '롱pull' ? '롱풀' : x).filter(Boolean);
     }
 // 운동일지 (Workout Log) 기능 개발 로직
     // ==========================================
