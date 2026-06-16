@@ -2493,7 +2493,7 @@
   {
     "exerciseId": "eYnzaCm",
     "name": "Cable Bar Lateral Pulldown",
-    "nameKr": "케이블 Bar 레터럴 풀다운",
+    "nameKr": "렛풀다운",
     "category": "등",
     "bodyPart": "Back",
     "target": "Lats",
@@ -7014,7 +7014,7 @@
   {
     "exerciseId": "8DiFDVA",
     "name": "Dumbbell Rear Fly",
-    "nameKr": "덤벨 Rear 플라이",
+    "nameKr": "덤벨 리어 델트 플라이",
     "category": "어깨",
     "bodyPart": "Shoulders",
     "target": "Delts",
@@ -9666,7 +9666,7 @@
   {
     "exerciseId": "T0yTjgW",
     "name": "Lever Chest Press",
-    "nameKr": "체스트 프레스",
+    "nameKr": "체스트 프레스 머신",
     "category": "가슴",
     "bodyPart": "Chest",
     "target": "Pectorals",
@@ -10315,7 +10315,7 @@
   {
     "exerciseId": "67n3r98",
     "name": "Lever Shoulder Press",
-    "nameKr": "숄더 프레스",
+    "nameKr": "숄더 프레스 머신",
     "category": "어깨",
     "bodyPart": "Shoulders",
     "target": "Delts",
@@ -12844,7 +12844,7 @@
   {
     "exerciseId": "LEprlgG",
     "name": "Cable Lat Pulldown",
-    "nameKr": "렛풀다운",
+    "nameKr": "케이블 Lat 풀다운 Full Range Of Motion",
     "category": "등",
     "bodyPart": "Back",
     "target": "Lats",
@@ -12952,7 +12952,7 @@
   {
     "exerciseId": "V07qpXy",
     "name": "Sled Leg Press",
-    "nameKr": "레그 프레스",
+    "nameKr": "머신(레버) 얼터네이트 레그 프레스",
     "category": "하체",
     "bodyPart": "Upper Legs",
     "target": "Quads",
@@ -13000,7 +13000,7 @@
   {
     "exerciseId": "BgljGjd",
     "name": "T-Bar Row",
-    "nameKr": "티바로우",
+    "nameKr": "머신(레버) 리버스 티바로우",
     "category": "등",
     "bodyPart": "Back",
     "target": "Lats",
@@ -13036,7 +13036,7 @@
   {
     "exerciseId": "mu5Guxt",
     "name": "Dumbbell Rear Delt Fly",
-    "nameKr": "덤벨 리어 델트 플라이",
+    "nameKr": "덤벨 후면 삼각근 레이즈",
     "category": "어께",
     "bodyPart": "Shoulders",
     "target": "Delts",
@@ -13085,7 +13085,7 @@
   {
     "exerciseId": "5VCj6iH",
     "name": "Sled Hack Squat",
-    "nameKr": "핵스쿼트",
+    "nameKr": "바벨 hack 스쿼트",
     "category": "하체",
     "bodyPart": "Upper Legs",
     "target": "Quads",
@@ -13106,6 +13106,57 @@
       "이너타이 머신에 앉아 무릎 패드 안쪽에 허벅지를 위치시킵니다.",
       "허벅지 안쪽(내전근)의 힘으로 패드를 안으로 끝까지 모아 줍니다.",
       "긴장을 서서히 늦추며 천천히 시작 자세로 돌아갑니다."
+    ]
+  },
+  {
+    "exerciseId": "aaXr7ld",
+    "name": "Lever T Bar Row",
+    "nameKr": "티바로우",
+    "bodyPart": "Back",
+    "target": "Upper Back",
+    "equipment": "Leverage Machine",
+    "instructions": [
+      "Adjust the seat height and footplate position to ensure proper alignment.",
+      "Sit on the machine with your chest against the pad and your feet flat on the footplate.",
+      "Grasp the handles with an overhand grip, slightly wider than shoulder-width apart.",
+      "Keep your back straight and engage your core.",
+      "Pull the handles towards your torso, squeezing your shoulder blades together.",
+      "Pause for a moment at the peak contraction, then slowly release the handles back to the starting position.",
+      "Repeat for the desired number of repetitions."
+    ]
+  },
+  {
+    "exerciseId": "10Z2DXU",
+    "name": "Sled 45В° Leg Press",
+    "nameKr": "레그 프레스",
+    "bodyPart": "Upper Legs",
+    "target": "Glutes",
+    "equipment": "Sled Machine",
+    "instructions": [
+      "Adjust the seat and footplate of the sled machine to a comfortable position.",
+      "Sit on the sled machine with your back against the backrest and your feet shoulder-width apart on the footplate.",
+      "Grip the handles on the sides of the seat for stability.",
+      "Push the footplate away from your body by extending your legs, keeping your heels on the footplate.",
+      "Continue pushing until your legs are almost fully extended, but without locking your knees.",
+      "Pause for a moment at the top of the movement, then slowly lower the footplate back towards your body by bending your knees.",
+      "Repeat for the desired number of repetitions."
+    ]
+  },
+  {
+    "exerciseId": "Qa55kX1",
+    "name": "Sled Hack Squat",
+    "nameKr": "핵스쿼트",
+    "bodyPart": "Upper Legs",
+    "target": "Glutes",
+    "equipment": "Sled Machine",
+    "instructions": [
+      "Adjust the sled machine to a comfortable position for your height.",
+      "Stand with your feet shoulder-width apart on the platform, toes slightly pointed outwards.",
+      "Hold onto the handles or bars for stability.",
+      "Lower your body by bending your knees and hips, keeping your back straight and chest up.",
+      "Continue lowering until your thighs are parallel to the ground or slightly below.",
+      "Pause for a moment, then push through your heels to raise your body back up to the starting position.",
+      "Repeat for the desired number of repetitions."
     ]
   }
 ]

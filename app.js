@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         '렛풀다운': {
             name: '렛풀다운 (Lat Pulldown)',
-            exerciseId: 'LEprlgG',
+            exerciseId: 'eYnzaCm',
             bodyPart: '등',
             target: '광배근',
             equipment: '케이블',
@@ -179,7 +179,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         '레그 프레스': {
             name: '레그 프레스 (Leg Press)',
-            exerciseId: 'V07qpXy',
+            exerciseId: '10Z2DXU',
             bodyPart: '하체',
             target: '대퇴사두근/둔근',
             equipment: '머신',
@@ -229,7 +229,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         '티바로우': {
             name: '티바로우 (T-Bar Row)',
-            exerciseId: 'BgljGjd',
+            exerciseId: 'aaXr7ld',
             bodyPart: '등',
             target: '등 상부',
             equipment: '머신',
@@ -259,7 +259,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         '덤벨 리어 델트 플라이': {
             name: '덤벨 리어 델트 플라이 (Dumbbell Rear Delt Fly)',
-            exerciseId: 'mu5Guxt',
+            exerciseId: '8DiFDVA',
             bodyPart: '어깨',
             target: '후면 삼각근',
             equipment: '덤벨',
@@ -300,7 +300,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         '핵스쿼트': {
             name: '핵스쿼트 (Hack Squat)',
-            exerciseId: '5VCj6iH',
+            exerciseId: 'Qa55kX1',
             bodyPart: '하체',
             target: '대퇴사두근',
             equipment: '머신',
@@ -318,6 +318,32 @@ document.addEventListener('DOMContentLoaded', () => {
                 '이너타이 머신에 앉아 무릎 패드 안쪽에 허벅지를 위치시킵니다.',
                 '허벅지 안쪽(내전근)의 힘으로 패드를 안으로 끝까지 모아 줍니다.',
                 '긴장을 서서히 늦추며 천천히 시작 자세로 돌아갑니다.'
+            ]
+        },
+        '체스트 프레스 머신': {
+            name: '체스트 프레스 머신 (Machine Chest Press)',
+            exerciseId: 'T0yTjgW',
+            bodyPart: '가슴',
+            target: '대흉근',
+            equipment: '머신',
+            instructions: [
+                '머신의 안장에 앉아 엉덩이와 등을 밀착하고 손잡이가 가슴 중앙 높이에 오도록 시트를 조절합니다.',
+                '양손으로 손잡이를 가슴 바깥쪽 너비로 잡고 가슴을 앞으로 넓게 펴 줍니다.',
+                '가슴 근육의 힘으로 손잡이를 앞으로 강하게 밀어냅니다.',
+                '팔꿈치가 완전히 다 펴지기 직전까지 밀었다가 가슴의 저항을 느끼며 천천히 되돌아옵니다.'
+            ]
+        },
+        '숄더 프레스 머신': {
+            name: '숄더 프레스 머신 (Machine Shoulder Press)',
+            exerciseId: '67n3r98',
+            bodyPart: '어깨',
+            target: '전면 삼각근',
+            equipment: '머신',
+            instructions: [
+                '머신 시트에 등을 기대고 앉아 엉덩이와 등을 패드에 고정합니다.',
+                '양손으로 손잡이를 잡고 팔꿈치의 각도가 약 90도가 되도록 합니다.',
+                '어깨 근육(삼각근)의 힘으로 손잡이를 수직 위로 끝까지 밀어 올립니다.',
+                '어깨의 긴장감을 유지하며 천천히 귀 옆 높이까지 내립니다.'
             ]
         }
     };
@@ -811,7 +837,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 selectedExercises = [
                     '바벨 벤치프레스', 
                     '인클라인 덤벨 프레스', 
-                    '로우 인클라인 덤벨 프레스', 
+                    '플라이 머신', 
                     '어시스트 딥스', 
                     '덤벨 숄더 프레스', 
                     '덤벨 사이드 레터럴 레이즈', 
@@ -834,7 +860,7 @@ document.addEventListener('DOMContentLoaded', () => {
             } 
             else if (dayRoutine === '가슴') {
                 // 가슴 루틴은 사레레 추가
-                selectedExercises = ['바벨 벤치프레스', '인클라인 덤벨 프레스', '플라이 머신', '어시스트 딥스', '딥스', '덤벨 사이드 레터럴 레이즈'];
+                selectedExercises = ['바벨 벤치프레스', '인클라인 덤벨 프레스', '플라이 머신', '체스트 프레스 머신', '딥스', '덤벨 사이드 레터럴 레이즈'];
             } 
             else if (dayRoutine === '등') {
                 // 등 루틴은 이두 추가
@@ -842,7 +868,7 @@ document.addEventListener('DOMContentLoaded', () => {
             } 
             else if (dayRoutine === '어깨') {
                 // 어깨 루틴은 삼두 추가
-                selectedExercises = ['덤벨 숄더 프레스', '덤벨 사이드 레터럴 레이즈', '덤벨 리어 델트 플라이', '리버스 펙덱플라이', '케이블 푸시 다운'];
+                selectedExercises = ['덤벨 숄더 프레스', '덤벨 사이드 레터럴 레이즈', '덤벨 리어 델트 플라이', '리버스 펙덱플라이', '숄더 프레스 머신', '케이블 푸시 다운'];
             } 
             else if (dayRoutine === '팔') {
                 selectedExercises = ['덤벨 컬', '케이블 컬', '라잉 트라이셉스 익스텐션', '케이블 푸시 다운'];
@@ -1129,20 +1155,20 @@ document.addEventListener('DOMContentLoaded', () => {
             const nameLower = name.toLowerCase();
             
             if (nameLower.includes("로우로우") || nameLower.includes("로우 로우") || nameLower.includes("row row") || (nameLower.includes("로우") && !nameLower.includes("하이"))) {
-                mappedGifId = "fUBheHs"; // cable seated row
+                mappedGifId = "fUBheHs"; // cable seated row (롱풀)
             } else if (nameLower.includes("하이로우") || nameLower.includes("하이 로우") || nameLower.includes("high row")) {
-                mappedGifId = "LEprlgG"; // cable lat pulldown
+                mappedGifId = "eYnzaCm"; // cable lat pulldown (렛풀다운)
             } else if (nameLower.includes("레그프레스") || nameLower.includes("leg press")) {
-                mappedGifId = "V07qpXy"; // sled leg press
+                mappedGifId = "10Z2DXU"; // sled leg press (레그 프레스)
             } else if (nameLower.includes("숄더프레스") || nameLower.includes("shoulder press") || nameLower.includes("오버헤드")) {
-                mappedGifId = "znQUdHY"; // dumbbell shoulder press
+                mappedGifId = "67n3r98"; // machine shoulder press (숄더 프레스 머신)
             } else if (nameLower.includes("벤치프레스") || nameLower.includes("chest press") || nameLower.includes("체스트 프레스")) {
-                mappedGifId = "EIeI8Vf"; // barbell bench press
+                mappedGifId = "T0yTjgW"; // machine chest press (체스트 프레스 머신)
             } else {
                 // 카테고리별 디폴트
-                if (category === "가슴") mappedGifId = "EIeI8Vf";
-                else if (category === "등") mappedGifId = "LEprlgG";
-                else if (category === "어깨") mappedGifId = "znQUdHY";
+                if (category === "가슴") mappedGifId = "T0yTjgW";
+                else if (category === "등") mappedGifId = "eYnzaCm";
+                else if (category === "어깨") mappedGifId = "67n3r98";
                 else if (category === "하체") mappedGifId = "qXTaZnJ";
                 else if (category === "팔") mappedGifId = "NbVPDMW"; // dumbbell bicep curl
                 else if (category === "복근") mappedGifId = "2gPfomN"; // 3/4 sit-up
