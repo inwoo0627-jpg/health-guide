@@ -10315,7 +10315,7 @@
   {
     "exerciseId": "67n3r98",
     "name": "Lever Shoulder Press",
-    "nameKr": "숄더 프레스 머신",
+    "nameKr": "머신(레버) 숄더 프레스",
     "category": "어깨",
     "bodyPart": "Shoulders",
     "target": "Delts",
@@ -10331,7 +10331,7 @@
   {
     "exerciseId": "vqsbmL0",
     "name": "Lever Shoulder Press V. 2",
-    "nameKr": "숄더 프레스 V. 2",
+    "nameKr": "숄더 프레스 머신",
     "category": "어깨",
     "bodyPart": "Shoulders",
     "target": "Delts",
@@ -13000,7 +13000,7 @@
   {
     "exerciseId": "BgljGjd",
     "name": "T-Bar Row",
-    "nameKr": "머신(레버) 리버스 티바로우",
+    "nameKr": "티바로우",
     "category": "등",
     "bodyPart": "Back",
     "target": "Lats",
@@ -13111,7 +13111,7 @@
   {
     "exerciseId": "aaXr7ld",
     "name": "Lever T Bar Row",
-    "nameKr": "티바로우",
+    "nameKr": "머신(레버) 티바로우",
     "bodyPart": "Back",
     "target": "Upper Back",
     "equipment": "Leverage Machine",

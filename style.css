@@ -1473,3 +1473,9 @@ footer {
         transform: translateY(0);
     }
 }
+
+
+/* Inline add exercise */
+.inline-autocomplete-item:hover {
+    background: rgba(0, 102, 255, 0.2) !important;
+}

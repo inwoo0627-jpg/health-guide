@@ -229,7 +229,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         '티바로우': {
             name: '티바로우 (T-Bar Row)',
-            exerciseId: 'aaXr7ld',
+            exerciseId: 'BgljGjd',
             bodyPart: '등',
             target: '등 상부',
             equipment: '머신',
@@ -335,7 +335,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         '숄더 프레스 머신': {
             name: '숄더 프레스 머신 (Machine Shoulder Press)',
-            exerciseId: '67n3r98',
+            exerciseId: 'vqsbmL0',
             bodyPart: '어깨',
             target: '전면 삼각근',
             equipment: '머신',
@@ -868,7 +868,7 @@ document.addEventListener('DOMContentLoaded', () => {
             } 
             else if (dayRoutine === '어깨') {
                 // 어깨 루틴은 삼두 추가
-                selectedExercises = ['덤벨 숄더 프레스', '덤벨 사이드 레터럴 레이즈', '덤벨 리어 델트 플라이', '리버스 펙덱플라이', '숄더 프레스 머신', '케이블 푸시 다운'];
+                selectedExercises = ['덤벨 숄더 프레스', '덤벨 사이드 레터럴 레이즈', '덤벨 리어 델트 플라이', '숄더 프레스 머신', '리버스 펙덱플라이', '케이블 푸시 다운'];
             } 
             else if (dayRoutine === '팔') {
                 selectedExercises = ['덤벨 컬', '케이블 컬', '라잉 트라이셉스 익스텐션', '케이블 푸시 다운'];
@@ -1117,6 +1117,11 @@ document.addEventListener('DOMContentLoaded', () => {
             if (e.target !== logSearchInput && e.target !== logAutocompleteList && !logAutocompleteList.contains(e.target)) {
                 logAutocompleteList.classList.add('hidden');
             }
+            
+            // Close inline autocomplete dropdowns
+            if (!e.target.classList.contains('inline-search-input') && !e.target.closest('.inline-autocomplete-results')) {
+                document.querySelectorAll('.inline-autocomplete-results').forEach(el => el.classList.add('hidden'));
+            }
         });
     }
 
@@ -1161,14 +1166,14 @@ document.addEventListener('DOMContentLoaded', () => {
             } else if (nameLower.includes("레그프레스") || nameLower.includes("leg press")) {
                 mappedGifId = "10Z2DXU"; // sled leg press (레그 프레스)
             } else if (nameLower.includes("숄더프레스") || nameLower.includes("shoulder press") || nameLower.includes("오버헤드")) {
-                mappedGifId = "67n3r98"; // machine shoulder press (숄더 프레스 머신)
+                mappedGifId = "vqsbmL0"; // machine shoulder press (숄더 프레스 머신)
             } else if (nameLower.includes("벤치프레스") || nameLower.includes("chest press") || nameLower.includes("체스트 프레스")) {
                 mappedGifId = "T0yTjgW"; // machine chest press (체스트 프레스 머신)
             } else {
                 // 카테고리별 디폴트
                 if (category === "가슴") mappedGifId = "T0yTjgW";
                 else if (category === "등") mappedGifId = "eYnzaCm";
-                else if (category === "어깨") mappedGifId = "67n3r98";
+                else if (category === "어깨") mappedGifId = "vqsbmL0";
                 else if (category === "하체") mappedGifId = "qXTaZnJ";
                 else if (category === "팔") mappedGifId = "NbVPDMW"; // dumbbell bicep curl
                 else if (category === "복근") mappedGifId = "2gPfomN"; // 3/4 sit-up
@@ -1280,14 +1285,30 @@ document.addEventListener('DOMContentLoaded', () => {
         sortedDates.forEach(date => {
             const dateGroup = document.createElement('div');
             dateGroup.className = 'log-day-group';
+            dateGroup.setAttribute('data-date', date);
 
             const header = document.createElement('div');
             header.className = 'log-date-header';
-            header.textContent = date;
+            header.style.display = 'flex';
+            header.style.justifyContent = 'space-between';
+            header.style.alignItems = 'center';
+            header.style.width = '100%';
+            header.style.marginBottom = '12px';
+            header.innerHTML = `
+                <span>📅 ${date}</span>
+                <button class="btn-day-add-exercise" data-date="${date}" style="background: rgba(0, 102, 255, 0.15); border: 1px solid var(--accent); color: #fff; border-radius: 4px; padding: 2px 8px; font-size: 0.75rem; font-weight: bold; cursor: pointer; transition: all 0.2s;">➕ 운동 추가</button>
+            `;
             dateGroup.appendChild(header);
+
+            // 인라인 운동 추가 폼 컨테이너
+            const inlineFormContainer = document.createElement('div');
+            inlineFormContainer.className = 'inline-form-container hidden';
+            inlineFormContainer.id = `inline-form-${date}`;
+            dateGroup.appendChild(inlineFormContainer);
 
             const list = document.createElement('div');
             list.className = 'log-items-list';
+            list.id = `log-list-${date}`;
 
             groupedByDate[date].forEach(entry => {
                 const card = document.createElement('div');
@@ -1344,7 +1365,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 card.addEventListener('dragover', (e) => {
                     e.preventDefault();
                     const targetCard = e.currentTarget;
-                    if (targetCard.dataset.date === date && parseInt(targetCard.dataset.id) !== draggedCardId) {
+                    if (targetCard.dataset.date === date && parseFloat(targetCard.dataset.id) !== draggedCardId) {
                         targetCard.classList.add('drag-over');
                     }
                 });
@@ -1358,8 +1379,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     const targetCard = e.currentTarget;
                     targetCard.classList.remove('drag-over');
                     
-                    const draggedId = parseInt(e.dataTransfer.getData('text/plain'));
-                    const targetId = parseInt(targetCard.dataset.id);
+                    const draggedId = parseFloat(e.dataTransfer.getData('text/plain'));
+                    const targetId = parseFloat(targetCard.dataset.id);
 
                     if (draggedId !== targetId && targetCard.dataset.date === date) {
                         const draggedIdx = workoutLogs.findIndex(item => item.id === draggedId);
@@ -1382,7 +1403,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // 개별 운동 카드 삭제
                 card.querySelector('.log-delete-btn').addEventListener('click', (e) => {
-                    const idToDelete = parseInt(e.target.dataset.id);
+                    const idToDelete = parseFloat(e.target.dataset.id);
                     workoutLogs = workoutLogs.filter(item => item.id !== idToDelete);
                     localStorage.setItem('workout_logs', JSON.stringify(workoutLogs));
                     renderLogsTimeline();
@@ -1401,7 +1422,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // 인풋 필드 값 변경 시 실시간 로컬 데이터 갱신 (리렌더링은 호출하지 않아 포커스 보존)
         logsTimeline.addEventListener('input', (e) => {
             if (e.target.classList.contains('log-set-input')) {
-                const logId = parseInt(e.target.dataset.logId);
+                const logId = parseFloat(e.target.dataset.logId);
                 const setId = parseInt(e.target.dataset.setId);
                 const value = parseFloat(e.target.value);
 
@@ -1418,13 +1439,52 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }
             }
+
+            // 인라인 운동 추가 검색 처리
+            if (e.target.classList.contains('inline-search-input')) {
+                const targetDate = e.target.dataset.date;
+                const searchVal = e.target.value.trim().toLowerCase();
+                const container = e.target.closest('.inline-add-box');
+                const resultsDiv = container.querySelector('.inline-autocomplete-results');
+                
+                if (!searchVal) {
+                    resultsDiv.classList.add('hidden');
+                    resultsDiv.innerHTML = '';
+                    return;
+                }
+                
+                const searchTerms = searchVal.split(/\s+/).filter(x => x);
+                const matches = globalExercisePool.filter(item => {
+                    if (!item) return false;
+                    const nameKrNorm = (item.nameKr || '').toLowerCase().replace(/\s+/g, '');
+                    const nameNorm = (item.name || '').toLowerCase().replace(/\s+/g, '');
+                    return searchTerms.every(term => {
+                        const termNorm = term.replace(/\s+/g, '');
+                        return nameKrNorm.includes(termNorm) || nameNorm.includes(termNorm);
+                    });
+                });
+                
+                if (matches.length === 0) {
+                    resultsDiv.classList.add('hidden');
+                    resultsDiv.innerHTML = '';
+                    return;
+                }
+                
+                resultsDiv.innerHTML = matches.slice(0, 10).map(item => `
+                    <div class="inline-autocomplete-item" data-date="${targetDate}" data-ex-id="${item.exerciseId}" data-ex-name="${item.nameKr}" style="padding: 8px 12px; font-size: 0.85rem; color: #fff; cursor: pointer; transition: all 0.2s; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: space-between;">
+                        <span style="font-weight: 600;">${item.nameKr}</span>
+                        <span style="color: var(--accent); font-size: 0.7rem; font-weight: bold;">${item.category}</span>
+                    </div>
+                `).join('');
+                resultsDiv.classList.remove('hidden');
+            }
         });
 
         // 세트 추가 / 삭제 버튼 클릭 핸들링 (이벤트 위임)
         logsTimeline.addEventListener('click', (e) => {
             // 세트 추가 버튼
             if (e.target.classList.contains('btn-add-set')) {
-                const logId = parseInt(e.target.dataset.logId);
+                const logId = parseFloat(e.target.dataset.logId);
                 const logIdx = workoutLogs.findIndex(item => item.id === logId);
                 if (logIdx !== -1) {
                     const sets = workoutLogs[logIdx].sets;
@@ -1440,7 +1500,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // 세트 삭제 버튼
             if (e.target.classList.contains('btn-delete-set')) {
-                const logId = parseInt(e.target.dataset.logId);
+                const logId = parseFloat(e.target.dataset.logId);
                 const setId = parseInt(e.target.dataset.setId);
                 const logIdx = workoutLogs.findIndex(item => item.id === logId);
                 
@@ -1453,6 +1513,61 @@ document.addEventListener('DOMContentLoaded', () => {
                     } else {
                         alert("최소 1세트는 유지되어야 합니다. 카드를 삭제하려면 오른쪽 위의 '✕' 버튼을 눌러주세요.");
                     }
+                }
+            }
+
+            // 하루 그룹 운동 추가 버튼 토글
+            if (e.target.classList.contains('btn-day-add-exercise')) {
+                const targetDate = e.target.dataset.date;
+                const container = document.getElementById(`inline-form-${targetDate}`);
+                if (container) {
+                    if (container.classList.contains('hidden')) {
+                        container.innerHTML = `
+                            <div class="inline-add-box" style="padding: 12px; background: rgba(255, 255, 255, 0.03); border: 1px dashed var(--accent); border-radius: 8px; margin-bottom: 12px; display: flex; flex-direction: column; gap: 8px; position: relative;">
+                                <div style="display: flex; gap: 6px; align-items: center;">
+                                    <input type="text" class="inline-search-input" data-date="${targetDate}" placeholder="추가할 운동 검색 (예: 벤치, 스쿼트...)" style="flex: 1; padding: 6px 10px; background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; color: #fff; font-size: 0.85rem;">
+                                    <button class="btn-inline-add-close" data-date="${targetDate}" style="background: none; border: none; color: #ff4d4d; font-size: 0.85rem; font-weight: bold; cursor: pointer; padding: 4px;">취소</button>
+                                </div>
+                                <div class="inline-autocomplete-results hidden" style="position: absolute; top: 100%; left: 0; width: 100%; background: #161f30; border: 1px solid var(--accent); border-radius: 6px; max-height: 150px; overflow-y: auto; z-index: 1000; box-shadow: 0 10px 25px rgba(0,0,0,0.5);"></div>
+                            </div>
+                        `;
+                        container.classList.remove('hidden');
+                        const input = container.querySelector('.inline-search-input');
+                        if (input) input.focus();
+                    } else {
+                        container.classList.add('hidden');
+                        container.innerHTML = '';
+                    }
+                }
+            }
+            
+            // 인라인 운동 클릭 등록
+            if (e.target.closest('.inline-autocomplete-item')) {
+                const itemEl = e.target.closest('.inline-autocomplete-item');
+                const targetDate = itemEl.dataset.date;
+                const exId = itemEl.dataset.exId;
+                const exName = itemEl.dataset.exName;
+                
+                workoutLogs.push({
+                    id: Date.now() + Math.floor(Math.random() * 100000),
+                    date: targetDate,
+                    korName: exName,
+                    exerciseId: exId,
+                    sets: [
+                        { setId: 1, weight: 40, reps: 10 }
+                    ]
+                });
+                localStorage.setItem('workout_logs', JSON.stringify(workoutLogs));
+                renderLogsTimeline();
+            }
+            
+            // 인라인 운동 취소
+            if (e.target.classList.contains('btn-inline-add-close')) {
+                const targetDate = e.target.dataset.date;
+                const container = document.getElementById(`inline-form-${targetDate}`);
+                if (container) {
+                    container.classList.add('hidden');
+                    container.innerHTML = '';
                 }
             }
         });
