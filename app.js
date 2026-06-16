@@ -853,29 +853,33 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         return Array.from(new Set(selectedExercises)).map(x => x === '롱pull' ? '롱풀' : x).filter(Boolean);
-    }\n\n// 운동일지 (Workout Log) 기능 개발 로직
+    }
+
+// 운동일지 (Workout Log) 기능 개발 로직
     // ==========================================
 
-    // 1. 로컬 스토리지 로그 리스트 로드 및 마이그레이션
+    // 1. 로컬 스토리지 로그 리스트 로드 및 마이그레이션 (극도로 안전한 방어 모듈 적용)
     let workoutLogs = JSON.parse(localStorage.getItem('workout_logs')) || [];
     workoutLogs = workoutLogs.map(entry => {
-        // 이전 구조(단일 무게/세트/횟수)가 존재하면 세트 배열로 변환
-        if (entry.weight !== undefined && entry.sets !== undefined && !Array.isArray(entry.sets)) {
+        if (!entry) return null;
+        if (!entry.id) entry.id = Date.now() + Math.random();
+        if (!entry.date) entry.date = new Date().toISOString().split('T')[0];
+        if (!entry.korName) entry.korName = "알 수 없는 운동";
+        if (!entry.exerciseId) entry.exerciseId = `custom_${Date.now()}`;
+        
+        // 이전 구조(단일 무게/세트/횟수) 또는 sets 가 미비한 예전 스키마 복구
+        if (!entry.sets || !Array.isArray(entry.sets)) {
             const setsArray = [];
-            const setNum = entry.sets || 4;
+            const setNum = (entry.sets && typeof entry.sets === 'number') ? entry.sets : 4;
+            const weight = (entry.weight !== undefined) ? entry.weight : 40;
+            const reps = (entry.reps !== undefined) ? entry.reps : 10;
             for (let i = 1; i <= setNum; i++) {
-                setsArray.push({ setId: i, weight: entry.weight, reps: entry.reps || 10 });
+                setsArray.push({ setId: i, weight: weight, reps: reps });
             }
-            return {
-                id: entry.id,
-                date: entry.date,
-                korName: entry.korName,
-                exerciseId: entry.exerciseId,
-                sets: setsArray
-            };
+            entry.sets = setsArray;
         }
         return entry;
-    });
+    }).filter(Boolean);
     localStorage.setItem('workout_logs', JSON.stringify(workoutLogs));
     
     // 로컬 스토리지 커스텀 운동 리스트 로드
@@ -1001,14 +1005,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const searchTerms = searchVal.toLowerCase().split(/\s+/).filter(x => x);
 
         const matches = globalExercisePool.filter(item => {
+            if (!item) return false;
             // 카테고리 매칭
             if (activeCategory && item.category !== activeCategory) {
                 return false;
             }
             // 검색어 매칭
             if (searchTerms.length > 0) {
-                const nameKrNorm = item.nameKr.toLowerCase().replace(/\s+/g, '');
-                const nameNorm = item.name.toLowerCase().replace(/\s+/g, '');
+                const nameKrNorm = (item.nameKr || '').toLowerCase().replace(/\s+/g, '');
+                const nameNorm = (item.name || '').toLowerCase().replace(/\s+/g, '');
                 return searchTerms.every(term => {
                     const termNorm = term.replace(/\s+/g, '');
                     return nameKrNorm.includes(termNorm) || nameNorm.includes(termNorm);
@@ -1113,7 +1118,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             
             // 중복 검사
-            const isDuplicate = globalExercisePool.some(item => item.nameKr.toLowerCase() === name.toLowerCase());
+            const isDuplicate = globalExercisePool.some(item => (item.nameKr || '').toLowerCase() === name.toLowerCase());
             if (isDuplicate) {
                 alert("이미 존재하는 운동 이름입니다!");
                 return;
@@ -1265,9 +1270,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 card.setAttribute('data-id', entry.id);
                 card.setAttribute('data-date', date);
                 
-                const gifSrc = entry.exerciseId.startsWith('custom_') 
-                    ? (globalExercisePool.find(ex => ex.exerciseId === entry.exerciseId)?.gifUrl || 'https://github.com/hasaneyldrm/exercises-dataset/raw/main/images/0088-1ZFqTDN.jpg')
-                    : `https://static.exercisedb.dev/media/${entry.exerciseId}.gif`;
+                const entryId = entry.exerciseId || `custom_${Date.now()}`;
+                const gifSrc = (entryId.startsWith('custom_')) 
+                    ? (globalExercisePool.find(ex => ex.exerciseId === entryId)?.gifUrl || 'https://github.com/hasaneyldrm/exercises-dataset/raw/main/images/0088-1ZFqTDN.jpg')
+                    : `https://static.exercisedb.dev/media/${entryId}.gif`;
 
                 card.innerHTML = `
                     <div class="drag-handle">⋮⋮</div>
