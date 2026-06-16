@@ -275,7 +275,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         '케이블 컬': {
             name: '케이블 컬 (Behind-the-Back Cable Curl) - 장두 타겟',
-            exerciseId: '', // 장두 타겟 케이블 컬의 영상이 어긋나므로 빈 문자열 처리하여 숨김
+            exerciseId: '', 
             bodyPart: '팔',
             target: '상완이두근 장두',
             equipment: '케이블',
@@ -548,26 +548,29 @@ document.addEventListener('DOMContentLoaded', () => {
             const exercisesForDay = getExercisesForDay(dayRoutine, index);
             const exercisesJsonBase64 = btoa(unescape(encodeURIComponent(JSON.stringify(exercisesForDay))));
 
+            // 백슬래시 중첩 문제 차단: 바깥에서 list items HTML을 생성하여 집어넣음
+            const listItemsHtml = exercisesForDay.map(exName => {
+                const ex = exerciseDatabase[exName];
+                const setInfo = (state.level === 'beginner') ? '4세트' : '2~3세트';
+                if (!ex) return `<li><span class="exercise-name-text">${exName}</span></li>`;
+                return `
+                    <li onclick="openExerciseDetailModalByName('${exName}')" style="cursor:pointer;">
+                        <span class="exercise-name-text">${ex.name}</span>
+                        <div class="exercise-meta-info">
+                            <span class="set-badge">${setInfo}</span>
+                            <span class="detail-part">${ex.bodyPart} ➜</span>
+                        </div>
+                    </li>
+                `;
+            }).join('');
+
             card.innerHTML = `
                 <div class="day-badge">DAY ${index + 1}</div>
                 <h4>${icon} ${dayRoutine}</h4>
                 <ul class="routine-details" id="details-day-${index}">
-                    \${exercisesForDay.map(exName => {
-                        const ex = exerciseDatabase[exName];
-                        const setInfo = (state.level === 'beginner') ? '4세트' : '2~3세트';
-                        if (!ex) return `<li><span class="exercise-name-text">\${exName}</span></li>`;
-                        return `
-                            <li onclick="openExerciseDetailModalByName('\${exName}')" style="cursor:pointer;">
-                                <span class="exercise-name-text">\${ex.name}</span>
-                                <div class="exercise-meta-info">
-                                    <span class="set-badge">\${setInfo}</span>
-                                    <span class="detail-part">\${ex.bodyPart} ➜</span>
-                                </div>
-                            </li>
-                        `;
-                    }).join('')}
+                    ${listItemsHtml}
                 </ul>
-                <button class="btn-add-day-to-log" onclick="addRoutineDayToLog(\${index + 1}, '\${dayRoutine}', '\${exercisesJsonBase64}')" style="width: 100%; margin-top: 15px; background: rgba(0, 102, 255, 0.15); border: 1px solid var(--accent); color: #fff; border-radius: 6px; padding: 8px; font-size: 0.8rem; font-weight: bold; cursor: pointer; transition: all 0.2s;">📅 이 날의 운동을 오늘 일지에 등록</button>
+                <button class="btn-add-day-to-log" onclick="addRoutineDayToLog(${index + 1}, '${dayRoutine}', '${exercisesJsonBase64}')" style="width: 100%; margin-top: 15px; background: rgba(0, 102, 255, 0.15); border: 1px solid var(--accent); color: #fff; border-radius: 6px; padding: 8px; font-size: 0.8rem; font-weight: bold; cursor: pointer; transition: all 0.2s;">📅 이 날의 운동을 오늘 일지에 등록</button>
             `;
             routineCardsContainer.appendChild(card);
         });
@@ -607,7 +610,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     // DAY 1: 가슴 -> 등 -> 어깨 -> 이두 -> 삼두
                     selectedExercises = [
                         '플라이 머신', '로우 인클라인 덤벨 프레스', 
-                        '렛풀다운', '롱풀', 
+                        '렛풀다운', '롱pull', // 롱풀로 아래서 매핑
                         '덤벨 숄더 프레스', '덤벨 사이드 레터럴 레이즈', 
                         '덤벨 컬', '케이블 트라이셉스 푸시 다운'
                     ];
@@ -622,13 +625,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             } 
             else if (dayRoutine === '하체') {
-                // 핵스쿼트 제외, 이너타이 제외 (레그 익스텐션, 레그 프레스, 레그 컬, 바벨 루마니안 데드리프트)
+                // 핵스쿼트 제외, 이너타이 제외
                 selectedExercises = [
                     '레그 익스텐션', '레그 프레스', '레그 컬', '바벨 루마니안 데드리프트'
                 ];
             } 
             else if (dayRoutine === '전면') {
-                // 전면: 상체(가슴/어깨/삼두)와 하체(대퇴사두) 로테이션, 핵스쿼트 제외
                 const upper = ['플라이 머신', '로우 인클라인 덤벨 프레스', '덤벨 숄더 프레스', '덤벨 사이드 레터럴 레이즈', '케이블 트라이셉스 푸시 다운'];
                 const lower = ['레그 익스텐션', '레그 프레스'];
                 
@@ -639,7 +641,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             } 
             else if (dayRoutine === '후면') {
-                // 후면: 상체(등/이두)와 하체(대퇴이두) 로테이션, 이너타이 빼고 원암덤벨로우 롱풀 뒤 배치
                 const upper = ['렛풀다운', '롱풀', '원암덤벨로우', '덤벨 컬'];
                 const lower = ['레그 컬', '바벨 루마니안 데드리프트'];
                 
@@ -650,7 +651,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             } 
             else if (dayRoutine === '밀기') {
-                // 밀기: 어시스트 딥스 추가 (로우 인클라인 덤벨 프레스 뒤)
                 selectedExercises = [
                     '플라이 머신', 
                     '로우 인클라인 덤벨 프레스', 
@@ -661,8 +661,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 ];
             } 
             else if (dayRoutine === '당기기') {
-                // 당기기: 티바로우 추가, 순서 강제 고정
-                // 순서: 렛풀다운, 티바로우, 원암덤벨로우, 롱풀, 어시스트 풀업, 덤벨 컬
                 selectedExercises = [
                     '렛풀다운', 
                     '티바로우', 
@@ -678,12 +676,6 @@ document.addEventListener('DOMContentLoaded', () => {
             // 2. 헬소년 (중급자) 맞춤 루틴
             // ==========================================
             if (dayRoutine === '상체') {
-                // 가슴: 벤치, 인클라인 고정 + 딥스/플라이 로테이션
-                // 등: 렛풀다운, 원암덤벨로우 고정 + 롱풀/티바로우 로테이션
-                // 어깨: 숄더프레스, 사레레 고정 + 로테이션
-                // 이두: 덤벨컬, 케이블컬 고정 + 로테이션
-                // 삼두: 라잉 삼두, 케이블 푸시다운 고정 + 로테이션
-                
                 const chest = cardIndex === 0
                     ? ['바벨 벤치프레스', '인클라인 덤벨 프레스', '딥스']
                     : ['바벨 벤치프레스', '인클라인 덤벨 프레스', '플라이 머신'];
@@ -707,13 +699,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 selectedExercises = [...chest, ...back, ...shoulders, ...biceps, ...triceps];
             } 
             else if (dayRoutine === '하체') {
-                // 헬린이 하체와 똑같이 하되 핵스쿼트와 레그프레스 순서 스왑
                 selectedExercises = [
                     '레그 익스텐션', '레그 컬', '핵스쿼트', '레그 프레스', '바벨 루마니안 데드리프트'
                 ];
             } 
             else if (dayRoutine === '전면') {
-                // 전면: 가슴/어깨/삼두는 주 3회 헬소년과 동일, 대퇴사두: 익스텐션 처음 고정, 핵스쿼트 & 레그프레스 로테이션, 상하체 로테이션
                 const chest = cardIndex === 0 
                     ? ['바벨 벤치프레스', '인클라인 덤벨 프레스', '딥스']
                     : ['바벨 벤치프레스', '인클라인 덤벨 프레스', '플라이 머신'];
@@ -739,11 +729,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             } 
             else if (dayRoutine === '후면') {
-                // 등: 암풀다운, 티바로우, 렛풀다운, 롱풀, 원암덤벨로우 고정
-                // 대퇴이두: 레그 컬, 바벨 루마니안 데드리프트 고정
-                // 이두: 덤벨 컬, 케이블 컬 로테이션
-                // 후면어깨: 덤벨 리어 델트 플라이, 리버스 펙덱플라이 하루에 하나씩 로테이션
-                // 대부위 로테이션: 등/대퇴이두는 후면어깨/이두보다 앞에 위치
                 const back = ['암풀다운', '티바로우', '렛풀다운', '롱풀', '원암덤벨로우'];
                 const hams = ['레그 컬', '바벨 루마니안 데드리프트'];
                 
@@ -762,7 +747,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             } 
             else if (dayRoutine === '밀기') {
-                // 밀기: 5,6회형 딥스 추가 및 10~15도 권장
                 selectedExercises = [
                     '바벨 벤치프레스', 
                     '인클라인 덤벨 프레스', 
@@ -775,7 +759,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 ];
             } 
             else if (dayRoutine === '당기기') {
-                // 당기기: 5,6회형 등 + 이두 로테이션
                 const back = ['렛풀다운', '티바로우', '원암덤벨로우', '롱풀', '어시스트 풀업'];
                 const biceps = cardIndex % 2 === 1 ? ['덤벨 컬', '케이블 컬'] : ['케이블 컬', '덤벨 컬'];
                 const rearDelt = cardIndex % 2 === 1 ? ['덤벨 리어 델트 플라이'] : ['리버스 펙덱플라이'];
@@ -786,7 +769,6 @@ document.addEventListener('DOMContentLoaded', () => {
             // ==========================================
             // 3. 헬른 (고급자) 맞춤 루틴
             // ==========================================
-            // 헬소년 맞춤형과 유사하며 볼륨 및 강도를 고려한 매핑
             if (dayRoutine === '상체') {
                 const chest = cardIndex === 0
                     ? ['바벨 벤치프레스', '인클라인 덤벨 프레스', '딥스']
@@ -872,7 +854,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        return Array.from(new Set(selectedExercises)).filter(Boolean);
+        // 롱pull 오타 수정 매핑
+        return Array.from(new Set(selectedExercises)).map(x => x === '롱pull' ? '롱풀' : x).filter(Boolean);
     }
 // 운동일지 (Workout Log) 기능 개발 로직
     // ==========================================
