@@ -134,7 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         '덤벨 컬': {
             name: '덤벨 컬 (Dumbbell Curl)',
-            exerciseId: 'qXTaZnJ',
+            exerciseId: 'NbVPDMW',
             bodyPart: '팔',
             target: '상완이두근',
             equipment: '덤벨',
@@ -330,10 +330,11 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // 각 운동을 오늘 날짜의 일지에 추가
             exercises.forEach(exName => {
-                // 1. globalExercisePool에서 한국어 이름이 매칭되는 실제 DB 아이템을 탐색
-                let ex = globalExercisePool.find(item => item.nameKr.toLowerCase() === exName.toLowerCase());
+                // 1. exerciseDatabase에서 우선 조회
+                let ex = exerciseDatabase[exName];
+                // 2. 없는 경우 globalExercisePool에서 한국어 매칭 탐색
                 if (!ex) {
-                    ex = exerciseDatabase[exName];
+                    ex = globalExercisePool.find(item => item.nameKr && item.nameKr.toLowerCase() === exName.toLowerCase());
                 }
                 
                 const exerciseId = ex ? ex.exerciseId : `custom_${Date.now()}`;
@@ -557,10 +558,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // 백슬래시 중첩 리터럴 문제 완벽 제거
             const listItemsHtml = exercisesForDay.map(exName => {
-                // globalExercisePool 에서 실제 번역명칭과 맞는 DB 상의 원본 아이템을 찾아서 매치
-                const poolItem = globalExercisePool.find(x => x.nameKr.toLowerCase() === exName.toLowerCase());
-                const ex = poolItem || exerciseDatabase[exName];
-                const displayName = ex ? ex.name : exName;
+                // 1. exerciseDatabase에서 우선 조회
+                const ex = exerciseDatabase[exName] || globalExercisePool.find(x => x.nameKr && x.nameKr.toLowerCase() === exName.toLowerCase());
+                const displayName = ex ? (ex.nameKr || ex.name) : exName;
                 const bodyPartName = ex ? (ex.category || ex.bodyPart) : '전신';
                 
                 const setInfo = (state.level === 'beginner') ? '4세트' : '2~3세트';
@@ -589,10 +589,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 모달 호출 전역 헬퍼 (실제 exercises_db.json 데이터와 100% 매칭)
     window.openExerciseDetailModalByName = function(exName) {
-        // globalExercisePool 에서 이름 매칭하여 진짜 정보를 가져옴
-        let ex = globalExercisePool.find(item => item.nameKr.toLowerCase() === exName.toLowerCase());
+        // 1. exerciseDatabase에서 우선 조회
+        let ex = exerciseDatabase[exName];
+        // 2. 없는 경우 globalExercisePool에서 한국어 매칭 탐색
         if (!ex) {
-            ex = exerciseDatabase[exName];
+            ex = globalExercisePool.find(item => item.nameKr && item.nameKr.toLowerCase() === exName.toLowerCase());
         }
         if (ex && typeof openExerciseDetailModal === 'function') {
             openExerciseDetailModal(ex);
@@ -642,6 +643,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
         modalDetail.classList.remove('hidden');
     }
+
+    // 상세 모달 닫기 버튼 이벤트 바인딩
+    if (btnCloseDetailModal) {
+        btnCloseDetailModal.addEventListener('click', () => {
+            modalDetail.classList.add('hidden');
+        });
+    }
+
+    // 모달 외부 영역 클릭 시 닫기
+    window.addEventListener('click', (e) => {
+        if (e.target === modalDetail) {
+            modalDetail.classList.add('hidden');
+        }
+    });
 
     // 요일별/구력별/일수별 디테일 운동 매핑
     function getExercisesForDay(dayRoutine, cardIndex) {

@@ -5474,7 +5474,7 @@
     {
         "exerciseId": "1VpF8db",
         "name": "Dumbbell Bicep Curl Lunge With Bowling Motion",
-        "nameKr": "덤벨 컬",
+        "nameKr": "덤벨 컬 런지 볼링 모션",
         "category": "팔",
         "bodyPart": "Upper Arms",
         "target": "Biceps",
@@ -5492,7 +5492,7 @@
     {
         "exerciseId": "NbVPDMW",
         "name": "Dumbbell Biceps Curl",
-        "nameKr": "덤벨 이두근 컬",
+        "nameKr": "덤벨 컬",
         "category": "팔",
         "bodyPart": "Upper Arms",
         "target": "Biceps",
