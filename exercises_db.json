@@ -150,24 +150,6 @@
         ]
     },
     {
-        "exerciseId": "kiJ4Z2K",
-        "name": "Assisted Pull-Up",
-        "nameKr": "어시스트 풀업",
-        "category": "등",
-        "bodyPart": "Back",
-        "target": "Lats",
-        "equipment": "Leverage Machine",
-        "instructions": [
-            "Adjust the machine to your desired weight and height settings.",
-            "Grasp the handles with an overhand grip, slightly wider than shoulder-width apart.",
-            "Hang with your arms fully extended and your feet off the ground.",
-            "Engage your back muscles and pull your body up towards the handles, keeping your elbows close to your body.",
-            "Continue pulling until your chin is above the handles.",
-            "Pause for a moment at the top, then slowly lower your body back down to the starting position.",
-            "Repeat for the desired number of repetitions."
-        ]
-    },
-    {
         "exerciseId": "aumB2IV",
         "name": "Assisted Sit-Up",
         "nameKr": "어시스트 Sit Up",
@@ -298,24 +280,6 @@
             "Hold the barbell with an overhand grip, keeping your elbows up and your upper arms parallel to the ground.",
             "Lower your body down into a squat position by bending at the knees and hips, keeping your back straight and your chest up.",
             "Pause for a moment at the bottom of the squat, then push through your heels to return to the starting position.",
-            "Repeat for the desired number of repetitions."
-        ]
-    },
-    {
-        "exerciseId": "EIeI8Vf",
-        "name": "Barbell Bench Press",
-        "nameKr": "바벨 벤치프레스",
-        "category": "가슴",
-        "bodyPart": "Chest",
-        "target": "Pectorals",
-        "equipment": "Barbell",
-        "instructions": [
-            "Lie flat on a bench with your feet flat on the ground and your back pressed against the bench.",
-            "Grasp the barbell with an overhand grip slightly wider than shoulder-width apart.",
-            "Lift the barbell off the rack and hold it directly above your chest with your arms fully extended.",
-            "Lower the barbell slowly towards your chest, keeping your elbows tucked in.",
-            "Pause for a moment when the barbell touches your chest.",
-            "Push the barbell back up to the starting position by extending your arms.",
             "Repeat for the desired number of repetitions."
         ]
     },
@@ -698,23 +662,6 @@
         ]
     },
     {
-        "exerciseId": "5VCj6iH",
-        "name": "Barbell Hack Squat",
-        "nameKr": "핵스쿼트",
-        "category": "하체",
-        "bodyPart": "Upper Legs",
-        "target": "Glutes",
-        "equipment": "Barbell",
-        "instructions": [
-            "Start by standing with your feet shoulder-width apart and your toes slightly turned out.",
-            "Hold the barbell behind your legs, resting it on your upper thighs.",
-            "Lower your body by bending at the knees and hips, keeping your back straight and your chest up.",
-            "Continue lowering until your thighs are parallel to the ground, or as low as you can comfortably go.",
-            "Pause for a moment, then push through your heels to return to the starting position.",
-            "Repeat for the desired number of repetitions."
-        ]
-    },
-    {
         "exerciseId": "Gnfo4FM",
         "name": "Barbell High Bar Squat",
         "nameKr": "바벨 High Bar 스쿼트",
@@ -995,39 +942,6 @@
             "Continue to raise the bar until your biceps are fully contracted and the bar is at shoulder level.",
             "Hold the contracted position for a brief pause as you squeeze your biceps.",
             "Inhale and slowly begin to lower the barbell back to the starting position.",
-            "Repeat for the desired number of repetitions."
-        ]
-    },
-    {
-        "exerciseId": "iZop9xO",
-        "name": "Barbell Lying Triceps Extension",
-        "nameKr": "라잉 트라이셉스 익스텐션",
-        "category": "팔",
-        "bodyPart": "Upper Arms",
-        "target": "Triceps",
-        "equipment": "Barbell",
-        "instructions": [
-            "Lie flat on a bench with your feet flat on the ground and your head at the end of the bench.",
-            "Hold the barbell with an overhand grip, hands shoulder-width apart, and extend your arms straight up over your chest.",
-            "Keeping your upper arms stationary, slowly lower the barbell towards your forehead by bending your elbows.",
-            "Pause for a moment at the bottom, then extend your arms back up to the starting position.",
-            "Repeat for the desired number of repetitions."
-        ]
-    },
-    {
-        "exerciseId": "elhhVgj",
-        "name": "Barbell Narrow Stance Squat",
-        "nameKr": "바벨 Narrow Stance 스쿼트",
-        "category": "하체",
-        "bodyPart": "Upper Legs",
-        "target": "Glutes",
-        "equipment": "Barbell",
-        "instructions": [
-            "Stand with your feet shoulder-width apart and toes pointing slightly outward.",
-            "Hold the barbell across your upper back, resting it on your traps or rear delts.",
-            "Engage your core and keep your chest up as you slowly lower your body by bending your knees and pushing your hips back.",
-            "Continue lowering until your thighs are parallel to the ground or slightly below.",
-            "Pause for a moment, then push through your heels to return to the starting position.",
             "Repeat for the desired number of repetitions."
         ]
     },
@@ -1467,25 +1381,6 @@
             "Slowly curl your wrists upward, bringing the barbell towards your body.",
             "Pause for a moment at the top, then slowly lower the barbell back down to the starting position.",
             "Repeat for the desired number of repetitions."
-        ]
-    },
-    {
-        "exerciseId": "wQ2c4XD",
-        "name": "Barbell Romanian Deadlift",
-        "nameKr": "바벨 루마니안 데드리프트",
-        "category": "하체",
-        "bodyPart": "Upper Legs",
-        "target": "Glutes",
-        "equipment": "Barbell",
-        "instructions": [
-            "Stand with your feet shoulder-width apart and your toes pointing forward.",
-            "Hold the barbell with an overhand grip, hands slightly wider than shoulder-width apart.",
-            "Bend at the hips, keeping your back straight and your knees slightly bent.",
-            "Lower the barbell towards the ground, keeping it close to your body.",
-            "Feel the stretch in your hamstrings as you lower the barbell.",
-            "Once you feel a stretch in your hamstrings, push your hips forward and stand up straight.",
-            "Squeeze your glutes at the top of the movement.",
-            "Lower the barbell back down to the starting position and repeat for the desired number of repetitions."
         ]
     },
     {
@@ -2408,38 +2303,6 @@
         ]
     },
     {
-        "exerciseId": "3xK09Sk",
-        "name": "Bodyweight Squatting Row",
-        "nameKr": "Squatting 로우",
-        "category": "등",
-        "bodyPart": "Back",
-        "target": "Upper Back",
-        "equipment": "Body Weight",
-        "instructions": [
-            "Stand with your feet shoulder-width apart, holding onto a sturdy object or suspension trainer with your arms extended.",
-            "Lower your body into a squat position, keeping your back straight and your knees behind your toes.",
-            "From the squat position, pull your body up towards the object or suspension trainer, squeezing your shoulder blades together.",
-            "Pause for a moment at the top, then slowly lower your body back down to the starting position.",
-            "Repeat for the desired number of repetitions."
-        ]
-    },
-    {
-        "exerciseId": "BReCuOn",
-        "name": "Bodyweight Squatting Row (With Towel)",
-        "nameKr": "Squatting 로우 With Towel",
-        "category": "등",
-        "bodyPart": "Back",
-        "target": "Upper Back",
-        "equipment": "Body Weight",
-        "instructions": [
-            "Stand with your feet shoulder-width apart, holding a towel in front of you with your palms facing down.",
-            "Bend your knees and lower your body into a squat position, keeping your back straight and your chest up.",
-            "As you lower into the squat, simultaneously pull the towel towards your chest, squeezing your shoulder blades together.",
-            "Pause for a moment at the bottom of the squat, then slowly return to the starting position while extending your arms.",
-            "Repeat for the desired number of repetitions."
-        ]
-    },
-    {
         "exerciseId": "bJYHBIN",
         "name": "Bodyweight Standing Calf Raise",
         "nameKr": "스탠딩 종아리 레이즈",
@@ -2751,24 +2614,6 @@
         ]
     },
     {
-        "exerciseId": "G08RZcQ",
-        "name": "Cable Curl",
-        "nameKr": "케이블 컬",
-        "category": "팔",
-        "bodyPart": "Upper Arms",
-        "target": "Biceps",
-        "equipment": "Cable",
-        "instructions": [
-            "Stand facing the cable machine with your feet shoulder-width apart.",
-            "Grasp the cable attachment with an underhand grip, palms facing up.",
-            "Keep your elbows close to your sides and your upper arms stationary.",
-            "Exhale and curl the cable attachment towards your shoulders, contracting your biceps.",
-            "Pause for a moment at the top of the movement, squeezing your biceps.",
-            "Inhale and slowly lower the cable attachment back to the starting position.",
-            "Repeat for the desired number of repetitions."
-        ]
-    },
-    {
         "exerciseId": "eGDudUV",
         "name": "Cable Deadlift",
         "nameKr": "케이블 데드리프트",
@@ -3042,26 +2887,6 @@
             "Grasp the handles with an overhand grip and extend your arms straight out in front of you.",
             "Keeping a slight bend in your elbows, open your arms out to the sides in a controlled motion.",
             "Pause for a moment at the fully extended position, then slowly return to the starting position.",
-            "Repeat for the desired number of repetitions."
-        ]
-    },
-    {
-        "exerciseId": "27NNGFr",
-        "name": "Cable Incline Fly (On Stability Ball)",
-        "nameKr": "케이블 인클라인 플라이 On Stability Ball",
-        "category": "가슴",
-        "bodyPart": "Chest",
-        "target": "Pectorals",
-        "equipment": "Cable",
-        "instructions": [
-            "Set up a stability ball at an incline angle.",
-            "Attach the cable handles to the high pulleys of a cable machine.",
-            "Sit on the stability ball facing away from the machine, with your feet firmly planted on the ground.",
-            "Grasp the cable handles with an overhand grip, palms facing forward.",
-            "Lean forward slightly, keeping your back straight and core engaged.",
-            "With a controlled motion, bring your arms out to the sides, keeping a slight bend in your elbows.",
-            "Continue the motion until your arms are parallel to the ground.",
-            "Pause for a moment, then slowly return to the starting position.",
             "Repeat for the desired number of repetitions."
         ]
     },
@@ -3414,39 +3239,6 @@
         ]
     },
     {
-        "exerciseId": "hHy8tQG",
-        "name": "Cable One Arm Fly On Exercise Ball",
-        "nameKr": "케이블 원암 플라이 On Exercise Ball",
-        "category": "가슴",
-        "bodyPart": "Chest",
-        "target": "Pectorals",
-        "equipment": "Cable",
-        "instructions": [
-            "Sit on an exercise ball with your feet flat on the ground and your back straight.",
-            "Hold a cable handle in one hand and extend your arm out to the side, parallel to the ground.",
-            "Keep your elbow slightly bent and your palm facing forward.",
-            "Slowly bring your arm across your body, squeezing your chest muscles.",
-            "Pause for a moment at the end of the movement, then slowly return to the starting position.",
-            "Repeat for the desired number of repetitions, then switch sides."
-        ]
-    },
-    {
-        "exerciseId": "P14Dz9D",
-        "name": "Cable One Arm Incline Fly On Exercise Ball",
-        "nameKr": "케이블 원암 인클라인 플라이 On Exercise Ball",
-        "category": "가슴",
-        "bodyPart": "Chest",
-        "target": "Pectorals",
-        "equipment": "Cable",
-        "instructions": [
-            "Sit on an exercise ball with your feet flat on the ground and your back against an incline bench.",
-            "Hold a cable handle in one hand with your arm extended and palm facing inward.",
-            "Keeping a slight bend in your elbow, slowly lower your arm out to the side until your hand is in line with your shoulder.",
-            "Pause for a moment, then squeeze your chest muscles to bring your arm back to the starting position.",
-            "Repeat for the desired number of repetitions, then switch arms."
-        ]
-    },
-    {
         "exerciseId": "GKEH6jj",
         "name": "Cable One Arm Incline Press",
         "nameKr": "케이블 원암 인클라인 프레스",
@@ -3462,22 +3254,6 @@
             "Press the handle forward and upward, extending your arm fully.",
             "Pause for a moment at the top, then slowly lower the handle back to the starting position.",
             "Repeat for the desired number of repetitions, then switch sides."
-        ]
-    },
-    {
-        "exerciseId": "6t00BsF",
-        "name": "Cable One Arm Incline Press On Exercise Ball",
-        "nameKr": "케이블 원암 인클라인 프레스 On Exercise Ball",
-        "category": "가슴",
-        "bodyPart": "Chest",
-        "target": "Pectorals",
-        "equipment": "Cable",
-        "instructions": [
-            "Sit on an exercise ball with your feet flat on the ground and your back resting against an incline bench.",
-            "Hold a cable handle in one hand and position your arm at a 90-degree angle with your elbow bent.",
-            "Press the cable handle forward and upward, extending your arm fully.",
-            "Pause for a moment at the top, then slowly lower the cable handle back to the starting position.",
-            "Repeat for the desired number of repetitions, then switch to the other arm."
         ]
     },
     {
@@ -3514,23 +3290,6 @@
             "Slowly lower the cable handle back to the starting position.",
             "Repeat for the desired number of repetitions.",
             "Switch arms and repeat the exercise."
-        ]
-    },
-    {
-        "exerciseId": "MKIelrR",
-        "name": "Cable One Arm Press On Exercise Ball",
-        "nameKr": "케이블 원암 프레스 On Exercise Ball",
-        "category": "가슴",
-        "bodyPart": "Chest",
-        "target": "Pectorals",
-        "equipment": "Cable",
-        "instructions": [
-            "Sit on an exercise ball with your feet flat on the ground and your back straight.",
-            "Hold a cable handle in one hand and position your arm at chest height, elbow bent.",
-            "Place your other hand on your hip for stability.",
-            "Press the cable handle forward, extending your arm fully.",
-            "Pause for a moment, then slowly return to the starting position.",
-            "Repeat for the desired number of repetitions, then switch arms."
         ]
     },
     {
@@ -3631,22 +3390,6 @@
         ]
     },
     {
-        "exerciseId": "ioTf098",
-        "name": "Cable Overhead Curl On Exercise Ball",
-        "nameKr": "케이블 Overhead 컬 On Exercise Ball",
-        "category": "팔",
-        "bodyPart": "Upper Arms",
-        "target": "Biceps",
-        "equipment": "Cable",
-        "instructions": [
-            "Sit on an exercise ball and hold the cable handle with an underhand grip.",
-            "Extend your arms fully overhead, keeping your elbows close to your ears.",
-            "Slowly curl the cable down towards your forehead, keeping your upper arms stationary.",
-            "Pause for a moment at the bottom of the movement, then slowly return to the starting position.",
-            "Repeat for the desired number of repetitions."
-        ]
-    },
-    {
         "exerciseId": "2IxROQ1",
         "name": "Cable Overhead Triceps Extension (Rope Attachment)",
         "nameKr": "케이블 Overhead 삼두근 익스텐션 Rope Attachment",
@@ -3697,22 +3440,6 @@
             "Keep your back straight and your elbows tucked in at your sides.",
             "Slowly curl the cable attachment up towards your shoulders, squeezing your biceps at the top of the movement.",
             "Pause for a moment, then slowly lower the cable attachment back down to the starting position.",
-            "Repeat for the desired number of repetitions."
-        ]
-    },
-    {
-        "exerciseId": "vAwm6rK",
-        "name": "Cable Press On Exercise Ball",
-        "nameKr": "케이블 프레스 On Exercise Ball",
-        "category": "가슴",
-        "bodyPart": "Chest",
-        "target": "Pectorals",
-        "equipment": "Cable",
-        "instructions": [
-            "Sit on an exercise ball with your feet flat on the ground and your knees at a 90-degree angle.",
-            "Hold the cable handles at chest height with your palms facing down and your elbows bent.",
-            "Engage your core and press the cable handles forward until your arms are fully extended.",
-            "Pause for a moment, then slowly release the tension and bring the cable handles back to the starting position.",
             "Repeat for the desired number of repetitions."
         ]
     },
@@ -4315,22 +4042,6 @@
         ]
     },
     {
-        "exerciseId": "fUBheHs",
-        "name": "Cable Seated Row",
-        "nameKr": "롱풀",
-        "category": "등",
-        "bodyPart": "Back",
-        "target": "Upper Back",
-        "equipment": "Cable",
-        "instructions": [
-            "Sit on the cable row machine with your feet flat on the footrests and your knees slightly bent.",
-            "Grasp the handles with an overhand grip, keeping your back straight and your shoulders relaxed.",
-            "Pull the handles towards your body, squeezing your shoulder blades together.",
-            "Pause for a moment at the peak of the movement, then slowly release the handles back to the starting position.",
-            "Repeat for the desired number of repetitions."
-        ]
-    },
-    {
         "exerciseId": "qcY50ZD",
         "name": "Cable Seated Wide-Grip Row",
         "nameKr": "케이블 시티드 와이드 그립 로우",
@@ -4382,22 +4093,6 @@
         ]
     },
     {
-        "exerciseId": "qatbkEd",
-        "name": "Cable Side Bend Crunch (Bosu Ball)",
-        "nameKr": "케이블 Side Bend Crunch Bosu Ball",
-        "category": "복근",
-        "bodyPart": "Waist",
-        "target": "Abs",
-        "equipment": "Cable",
-        "instructions": [
-            "Stand with your feet shoulder-width apart, holding a cable handle in one hand.",
-            "Place the other hand on your hip.",
-            "Engage your core and slowly bend sideways towards the hand holding the cable, keeping your back straight.",
-            "Pause for a moment at the bottom of the movement, then slowly return to the starting position.",
-            "Repeat for the desired number of repetitions, then switch sides."
-        ]
-    },
-    {
         "exerciseId": "q2ADGqV",
         "name": "Cable Side Crunch",
         "nameKr": "케이블 Side Crunch",
@@ -4412,44 +4107,6 @@
             "With your abs engaged, bend sideways at the waist, bringing your elbow down towards your hip.",
             "Pause for a moment at the bottom, then slowly return to the starting position.",
             "Repeat for the desired number of repetitions, then switch sides."
-        ]
-    },
-    {
-        "exerciseId": "f7fnAIB",
-        "name": "Cable Squat Row (With Rope Attachment)",
-        "nameKr": "케이블 스쿼트 로우 With Rope Attachment",
-        "category": "등",
-        "bodyPart": "Back",
-        "target": "Lats",
-        "equipment": "Cable",
-        "instructions": [
-            "Attach a rope to a cable machine at waist height.",
-            "Stand facing the cable machine with your feet shoulder-width apart.",
-            "Bend your knees and lower your body into a squat position, keeping your back straight and chest up.",
-            "Grasp the rope with an overhand grip, with your hands shoulder-width apart.",
-            "Engage your core and pull the rope towards your body, squeezing your shoulder blades together.",
-            "Keep your elbows close to your body and continue pulling until your hands reach your chest.",
-            "Pause for a moment at the top of the movement, then slowly release the rope and extend your arms back to the starting position.",
-            "Repeat for the desired number of repetitions."
-        ]
-    },
-    {
-        "exerciseId": "3XFdb1Z",
-        "name": "Cable Squatting Curl",
-        "nameKr": "케이블 Squatting 컬",
-        "category": "팔",
-        "bodyPart": "Upper Arms",
-        "target": "Biceps",
-        "equipment": "Cable",
-        "instructions": [
-            "Attach a cable handle to the lowest setting on a cable machine.",
-            "Stand facing the machine with your feet shoulder-width apart.",
-            "Hold the cable handle with an underhand grip, palms facing up, and arms fully extended.",
-            "Lower your body into a squat position, keeping your back straight and knees behind your toes.",
-            "As you squat down, curl the cable handle towards your shoulders, keeping your elbows close to your sides.",
-            "Pause for a moment at the top of the curl, squeezing your biceps.",
-            "Slowly lower the cable handle back to the starting position, fully extending your arms.",
-            "Repeat for the desired number of repetitions."
         ]
     },
     {
@@ -4733,23 +4390,6 @@
         ]
     },
     {
-        "exerciseId": "x69MAlq",
-        "name": "Cable Straight Arm Pulldown",
-        "nameKr": "암풀다운",
-        "category": "등",
-        "bodyPart": "Back",
-        "target": "Lats",
-        "equipment": "Cable",
-        "instructions": [
-            "Attach a straight bar to the high pulley of a cable machine.",
-            "Stand facing the machine with your feet shoulder-width apart.",
-            "Grasp the bar with an overhand grip, keeping your arms straight and your palms facing down.",
-            "Engage your lats and pull the bar down towards your thighs, keeping your arms straight throughout the movement.",
-            "Pause for a moment at the bottom, then slowly return the bar to the starting position.",
-            "Repeat for the desired number of repetitions."
-        ]
-    },
-    {
         "exerciseId": "Tq6gbK6",
         "name": "Cable Straight Back Seated Row",
         "nameKr": "케이블 Straight Back 시티드 로우",
@@ -4797,25 +4437,6 @@
             "Pull the handle towards your torso by retracting your shoulder blade and bending your elbow, keeping your arm close to your body.",
             "Squeeze your back muscles at the top of the movement, then slowly return to the starting position.",
             "Repeat for the desired number of repetitions, then switch sides and perform with your left arm."
-        ]
-    },
-    {
-        "exerciseId": "gAwDzB3",
-        "name": "Cable Triceps Pushdown (V-Bar)",
-        "nameKr": "케이블 푸시 다운",
-        "category": "팔",
-        "bodyPart": "Upper Arms",
-        "target": "Triceps",
-        "equipment": "Cable",
-        "instructions": [
-            "Attach a v-bar attachment to the cable machine at the highest setting.",
-            "Stand facing the cable machine with your feet shoulder-width apart.",
-            "Grasp the v-bar with an overhand grip, palms facing down, and your hands shoulder-width apart.",
-            "Keep your elbows close to your sides and your upper arms stationary throughout the exercise.",
-            "Engage your triceps and exhale as you push the v-bar down until your arms are fully extended.",
-            "Pause for a moment at the bottom of the movement, squeezing your triceps.",
-            "Inhale as you slowly return the v-bar to the starting position, maintaining control.",
-            "Repeat for the desired number of repetitions."
         ]
     },
     {
@@ -5342,39 +4963,6 @@
         ]
     },
     {
-        "exerciseId": "Zwiw7XR",
-        "name": "Dumbbell Alternating Bicep Curl With Leg Raised On Exercise Ball",
-        "nameKr": "덤벨 얼터네이트 Bicep 컬 With 레그 Raised On Exercise Ball",
-        "category": "팔",
-        "bodyPart": "Upper Arms",
-        "target": "Biceps",
-        "equipment": "Dumbbell",
-        "instructions": [
-            "Stand with your feet shoulder-width apart and hold a dumbbell in each hand, palms facing forward.",
-            "Place an exercise ball behind you and position one foot on top of it, keeping your balance.",
-            "With your arms fully extended and elbows close to your sides, curl one dumbbell towards your shoulder while keeping your upper arm stationary.",
-            "Lower the dumbbell back down to the starting position and repeat with the other arm.",
-            "Continue alternating arms for the desired number of repetitions."
-        ]
-    },
-    {
-        "exerciseId": "J74XlNf",
-        "name": "Dumbbell Alternating Seated Bicep Curl On Exercise Ball",
-        "nameKr": "덤벨 얼터네이트 시티드 Bicep 컬 On Exercise Ball",
-        "category": "팔",
-        "bodyPart": "Upper Arms",
-        "target": "Biceps",
-        "equipment": "Dumbbell",
-        "instructions": [
-            "Sit on an exercise ball with your feet flat on the ground and your back straight.",
-            "Hold a dumbbell in each hand with your palms facing forward and your arms fully extended.",
-            "Keeping your upper arms stationary, exhale and curl one dumbbell while rotating your forearm until your palm is facing your shoulder.",
-            "Inhale and slowly lower the dumbbell back to the starting position.",
-            "Repeat the curl with the other arm.",
-            "Continue alternating curls for the desired number of repetitions."
-        ]
-    },
-    {
         "exerciseId": "Xy4jlWA",
         "name": "Dumbbell Arnold Press",
         "nameKr": "덤벨 Arnold 프레스",
@@ -5472,41 +5060,6 @@
         ]
     },
     {
-        "exerciseId": "1VpF8db",
-        "name": "Dumbbell Bicep Curl Lunge With Bowling Motion",
-        "nameKr": "덤벨 컬 런지 볼링 모션",
-        "category": "팔",
-        "bodyPart": "Upper Arms",
-        "target": "Biceps",
-        "equipment": "Dumbbell",
-        "instructions": [
-            "Stand with your feet shoulder-width apart, holding a dumbbell in each hand with your palms facing forward.",
-            "Take a step forward with your right foot, bending your right knee and lowering your body into a lunge position.",
-            "As you lunge forward, curl the dumbbells up towards your shoulders, keeping your elbows close to your body.",
-            "At the bottom of the lunge, rotate your torso to the right, as if you were bowling a ball.",
-            "Reverse the motion, stepping back with your right foot and returning to the starting position while lowering the dumbbells back down.",
-            "Repeat the lunge and curl motion, this time rotating your torso to the left.",
-            "Continue alternating sides for the desired number of repetitions."
-        ]
-    },
-    {
-        "exerciseId": "NbVPDMW",
-        "name": "Dumbbell Biceps Curl",
-        "nameKr": "덤벨 컬",
-        "category": "팔",
-        "bodyPart": "Upper Arms",
-        "target": "Biceps",
-        "equipment": "Dumbbell",
-        "instructions": [
-            "Stand up straight with a dumbbell in each hand, palms facing forward and arms fully extended.",
-            "Keeping your upper arms stationary, exhale and curl the weights while contracting your biceps.",
-            "Continue to raise the weights until your biceps are fully contracted and the dumbbells are at shoulder level.",
-            "Hold the contracted position for a brief pause as you squeeze your biceps.",
-            "Inhale and slowly begin to lower the dumbbells back to the starting position.",
-            "Repeat for the desired number of repetitions."
-        ]
-    },
-    {
         "exerciseId": "nlJsbkW",
         "name": "Dumbbell Biceps Curl (With Arm Blaster)",
         "nameKr": "덤벨 이두근 컬 With 암 Blaster",
@@ -5534,40 +5087,6 @@
         "equipment": "Dumbbell",
         "instructions": [
             "Stand up straight with a dumbbell in each hand, palms facing down and arms fully extended.",
-            "Keeping your upper arms stationary, exhale and curl the weights while contracting your biceps.",
-            "Continue to raise the dumbbells until your biceps are fully contracted and the dumbbells are at shoulder level.",
-            "Hold the contracted position for a brief pause as you squeeze your biceps.",
-            "Inhale and slowly begin to lower the dumbbells back to the starting position.",
-            "Repeat for the desired number of repetitions."
-        ]
-    },
-    {
-        "exerciseId": "niXESDw",
-        "name": "Dumbbell Biceps Curl Squat",
-        "nameKr": "덤벨 이두근 컬 스쿼트",
-        "category": "팔",
-        "bodyPart": "Upper Arms",
-        "target": "Biceps",
-        "equipment": "Dumbbell",
-        "instructions": [
-            "Stand with your feet shoulder-width apart, holding a dumbbell in each hand with your palms facing forward.",
-            "Keeping your back straight and your elbows close to your sides, exhale and curl the dumbbells up towards your shoulders.",
-            "Pause for a moment at the top, squeezing your biceps.",
-            "Inhale and slowly lower the dumbbells back down to the starting position.",
-            "Repeat for the desired number of repetitions."
-        ]
-    },
-    {
-        "exerciseId": "H1XAdpk",
-        "name": "Dumbbell Biceps Curl V Sit On Bosu Ball",
-        "nameKr": "덤벨 이두근 컬 V Sit On Bosu Ball",
-        "category": "팔",
-        "bodyPart": "Upper Arms",
-        "target": "Biceps",
-        "equipment": "Dumbbell",
-        "instructions": [
-            "Sit on a bosu ball with your feet flat on the ground and your knees bent at a 90-degree angle.",
-            "Hold a dumbbell in each hand with your palms facing forward and your arms fully extended down by your sides.",
             "Keeping your upper arms stationary, exhale and curl the weights while contracting your biceps.",
             "Continue to raise the dumbbells until your biceps are fully contracted and the dumbbells are at shoulder level.",
             "Hold the contracted position for a brief pause as you squeeze your biceps.",
@@ -5890,23 +5409,6 @@
         ]
     },
     {
-        "exerciseId": "Lt3iWnf",
-        "name": "Dumbbell Fly On Exercise Ball",
-        "nameKr": "덤벨 플라이 On Exercise Ball",
-        "category": "가슴",
-        "bodyPart": "Chest",
-        "target": "Pectorals",
-        "equipment": "Dumbbell",
-        "instructions": [
-            "Sit on an exercise ball and hold a dumbbell in each hand.",
-            "Walk your feet forward and roll your body down until your head, neck, and upper back are supported by the ball.",
-            "Extend your arms straight up above your chest, palms facing each other.",
-            "Bend your elbows slightly and lower your arms out to the sides in a wide arc until you feel a stretch in your chest.",
-            "Pause for a moment, then reverse the movement and squeeze your chest muscles as you bring the dumbbells back to the starting position.",
-            "Repeat for the desired number of repetitions."
-        ]
-    },
-    {
         "exerciseId": "XalXcvM",
         "name": "Dumbbell Forward Lunge Triceps Extension",
         "nameKr": "덤벨 Forward 런지 삼두근 익스텐션",
@@ -6004,24 +5506,6 @@
             "Hold the contracted position for a brief pause as you squeeze your biceps.",
             "Then, inhale and slowly begin to lower the dumbbells back to the starting position.",
             "Repeat for the recommended amount of repetitions."
-        ]
-    },
-    {
-        "exerciseId": "fY68AyX",
-        "name": "Dumbbell Hammer Curl On Exercise Ball",
-        "nameKr": "덤벨 Hammer 컬 On Exercise Ball",
-        "category": "팔",
-        "bodyPart": "Upper Arms",
-        "target": "Biceps",
-        "equipment": "Dumbbell",
-        "instructions": [
-            "Sit on an exercise ball with your feet flat on the ground and your back straight.",
-            "Hold a dumbbell in each hand with your palms facing your body and your arms fully extended.",
-            "Keeping your upper arms stationary, exhale and curl the dumbbells while contracting your biceps.",
-            "Continue to raise the dumbbells until your biceps are fully contracted and the dumbbells are at shoulder level.",
-            "Hold the contracted position for a brief pause as you squeeze your biceps.",
-            "Inhale and slowly begin to lower the dumbbells back to the starting position.",
-            "Repeat for the desired number of repetitions."
         ]
     },
     {
@@ -6181,23 +5665,6 @@
         ]
     },
     {
-        "exerciseId": "HYe1ZqR",
-        "name": "Dumbbell Incline Fly On Exercise Ball",
-        "nameKr": "덤벨 인클라인 플라이 On Exercise Ball",
-        "category": "가슴",
-        "bodyPart": "Chest",
-        "target": "Pectorals",
-        "equipment": "Dumbbell",
-        "instructions": [
-            "Set up an incline bench at a 45-degree angle.",
-            "Sit on an exercise ball and roll forward until your upper back is resting on the incline bench.",
-            "Hold a dumbbell in each hand with your palms facing each other and your arms extended above your chest.",
-            "Lower the dumbbells out to the sides in a wide arc until you feel a stretch in your chest.",
-            "Pause for a moment, then squeeze your chest muscles to bring the dumbbells back to the starting position.",
-            "Repeat for the desired number of repetitions."
-        ]
-    },
-    {
         "exerciseId": "ByX0WxV",
         "name": "Dumbbell Incline Hammer Curl",
         "nameKr": "덤벨 인클라인 Hammer 컬",
@@ -6228,24 +5695,6 @@
             "Lie back on the bench and position the dumbbells at shoulder level with your palms facing each other.",
             "Press the dumbbells up and away from your body until your arms are fully extended.",
             "Pause for a moment at the top, then slowly lower the dumbbells back down to the starting position.",
-            "Repeat for the desired number of repetitions."
-        ]
-    },
-    {
-        "exerciseId": "wkgnGfb",
-        "name": "Dumbbell Incline Hammer Press On Exercise Ball",
-        "nameKr": "덤벨 인클라인 Hammer 프레스 On Exercise Ball",
-        "category": "팔",
-        "bodyPart": "Upper Arms",
-        "target": "Triceps",
-        "equipment": "Dumbbell",
-        "instructions": [
-            "Sit on an exercise ball with a dumbbell in each hand, palms facing each other.",
-            "Walk your feet forward and roll your body down the ball until your head, neck, and upper back are supported on the ball.",
-            "Hold the dumbbells at shoulder level, elbows bent and pointing out to the sides.",
-            "Press the dumbbells up and slightly inward, keeping your palms facing each other.",
-            "Extend your arms fully, squeezing your triceps at the top of the movement.",
-            "Slowly lower the dumbbells back to the starting position.",
             "Repeat for the desired number of repetitions."
         ]
     },
@@ -6286,24 +5735,6 @@
         ]
     },
     {
-        "exerciseId": "LLNh6q5",
-        "name": "Dumbbell Incline One Arm Fly On Exercise Ball",
-        "nameKr": "덤벨 인클라인 원암 플라이 On Exercise Ball",
-        "category": "가슴",
-        "bodyPart": "Chest",
-        "target": "Pectorals",
-        "equipment": "Dumbbell",
-        "instructions": [
-            "Sit on an exercise ball with a dumbbell in one hand.",
-            "Walk your feet forward and roll your body down until your head, neck, and upper back are supported on the ball.",
-            "Hold the dumbbell with your arm extended straight up over your chest, palm facing inwards.",
-            "Slowly lower the dumbbell out to the side, keeping a slight bend in your elbow.",
-            "Pause for a moment when your arm is parallel to the ground.",
-            "Engage your chest muscles to bring the dumbbell back up to the starting position.",
-            "Repeat for the desired number of repetitions, then switch arms."
-        ]
-    },
-    {
         "exerciseId": "LL1UiTX",
         "name": "Dumbbell Incline One Arm Hammer Press",
         "nameKr": "덤벨 인클라인 원암 Hammer 프레스",
@@ -6317,23 +5748,6 @@
             "Rotate your wrist so that your palm is facing inward, towards your body.",
             "Press the dumbbell up and away from your body, extending your arm fully.",
             "Pause for a moment at the top, then slowly lower the dumbbell back down to the starting position.",
-            "Repeat for the desired number of repetitions, then switch arms."
-        ]
-    },
-    {
-        "exerciseId": "jDnrkar",
-        "name": "Dumbbell Incline One Arm Hammer Press On Exercise Ball",
-        "nameKr": "덤벨 인클라인 원암 Hammer 프레스 On Exercise Ball",
-        "category": "팔",
-        "bodyPart": "Upper Arms",
-        "target": "Triceps",
-        "equipment": "Dumbbell",
-        "instructions": [
-            "Sit on an exercise ball with a dumbbell in one hand.",
-            "Walk your feet forward and roll your body down until your head, neck, and upper back are supported on the ball.",
-            "Hold the dumbbell with your palm facing inward and your elbow bent at a 90-degree angle.",
-            "Press the dumbbell up towards the ceiling, straightening your arm.",
-            "Lower the dumbbell back down to the starting position.",
             "Repeat for the desired number of repetitions, then switch arms."
         ]
     },
@@ -6371,23 +5785,6 @@
         ]
     },
     {
-        "exerciseId": "Bg5JKSH",
-        "name": "Dumbbell Incline One Arm Press On Exercise Ball",
-        "nameKr": "덤벨 인클라인 원암 프레스 On Exercise Ball",
-        "category": "가슴",
-        "bodyPart": "Chest",
-        "target": "Pectorals",
-        "equipment": "Dumbbell",
-        "instructions": [
-            "Sit on an exercise ball with a dumbbell in one hand, feet flat on the ground.",
-            "Slowly walk your feet forward, rolling the ball until your head, neck, and upper back are supported on the ball.",
-            "Hold the dumbbell at shoulder height with your palm facing forward.",
-            "Press the dumbbell upward until your arm is fully extended.",
-            "Pause for a moment at the top, then slowly lower the dumbbell back to the starting position.",
-            "Repeat for the desired number of repetitions, then switch to the other arm."
-        ]
-    },
-    {
         "exerciseId": "OVLmUuL",
         "name": "Dumbbell Incline Palm-In Press",
         "nameKr": "덤벨 인클라인 Palm In 프레스",
@@ -6401,23 +5798,6 @@
             "Plant your feet firmly on the ground and keep your back straight against the bench.",
             "Start with the dumbbells at shoulder level, elbows bent and palms facing each other.",
             "Press the dumbbells up and away from your body, extending your arms fully.",
-            "Pause for a moment at the top, then slowly lower the dumbbells back to the starting position.",
-            "Repeat for the desired number of repetitions."
-        ]
-    },
-    {
-        "exerciseId": "bfiHMpI",
-        "name": "Dumbbell Incline Press On Exercise Ball",
-        "nameKr": "덤벨 인클라인 프레스 On Exercise Ball",
-        "category": "가슴",
-        "bodyPart": "Chest",
-        "target": "Pectorals",
-        "equipment": "Dumbbell",
-        "instructions": [
-            "Sit on an exercise ball with a dumbbell in each hand, palms facing forward.",
-            "Slowly walk your feet forward, rolling your body down the ball until your head, neck, and upper back are supported on the ball.",
-            "Hold the dumbbells at shoulder level, elbows bent and pointing out to the sides.",
-            "Press the dumbbells upward, extending your arms fully.",
             "Pause for a moment at the top, then slowly lower the dumbbells back to the starting position.",
             "Repeat for the desired number of repetitions."
         ]
@@ -6604,56 +5984,6 @@
         ]
     },
     {
-        "exerciseId": "cAvTaSg",
-        "name": "Dumbbell Kickbacks On Exercise Ball",
-        "nameKr": "덤벨 Kickbacks On Exercise Ball",
-        "category": "팔",
-        "bodyPart": "Upper Arms",
-        "target": "Triceps",
-        "equipment": "Dumbbell",
-        "instructions": [
-            "Sit on an exercise ball with your feet flat on the ground and your back straight.",
-            "Hold a dumbbell in each hand with your palms facing inwards and your arms bent at a 90-degree angle.",
-            "Extend your arms straight back, squeezing your triceps at the top of the movement.",
-            "Pause for a moment, then slowly lower the dumbbells back to the starting position.",
-            "Repeat for the desired number of repetitions."
-        ]
-    },
-    {
-        "exerciseId": "2JCuFTU",
-        "name": "Dumbbell Kneeling Bicep Curl Exercise Ball",
-        "nameKr": "덤벨 Kneeling Bicep 컬 Exercise Ball",
-        "category": "팔",
-        "bodyPart": "Upper Arms",
-        "target": "Biceps",
-        "equipment": "Dumbbell",
-        "instructions": [
-            "Kneel on the floor with an exercise ball in front of you.",
-            "Place your elbows on top of the exercise ball, holding a dumbbell in each hand with your palms facing up.",
-            "Keeping your upper arms stationary, exhale and curl the dumbbells while contracting your biceps.",
-            "Continue to raise the dumbbells until your biceps are fully contracted and the dumbbells are at shoulder level.",
-            "Hold the contracted position for a brief pause as you squeeze your biceps.",
-            "Inhale and slowly begin to lower the dumbbells back to the starting position.",
-            "Repeat for the desired number of repetitions."
-        ]
-    },
-    {
-        "exerciseId": "DsgkuIt",
-        "name": "Dumbbell Lateral Raise",
-        "nameKr": "덤벨 사이드 레터럴 레이즈",
-        "category": "어깨",
-        "bodyPart": "Shoulders",
-        "target": "Delts",
-        "equipment": "Dumbbell",
-        "instructions": [
-            "Stand with your feet shoulder-width apart and hold a dumbbell in each hand, palms facing your body.",
-            "Keep your back straight and engage your core.",
-            "Raise your arms out to the sides until they are parallel to the floor, keeping a slight bend in your elbows.",
-            "Pause for a moment at the top, then slowly lower your arms back down to the starting position.",
-            "Repeat for the desired number of repetitions."
-        ]
-    },
-    {
         "exerciseId": "xMjBKwn",
         "name": "Dumbbell Lateral To Front Raise",
         "nameKr": "덤벨 레터럴 To Front 레이즈",
@@ -6686,23 +6016,6 @@
             "Push through your right heel to return to the starting position.",
             "Repeat with your left leg.",
             "Alternate legs for the desired number of repetitions."
-        ]
-    },
-    {
-        "exerciseId": "Mz6lLcW",
-        "name": "Dumbbell Lunge With Bicep Curl",
-        "nameKr": "덤벨 런지 With Bicep 컬",
-        "category": "팔",
-        "bodyPart": "Upper Arms",
-        "target": "Biceps",
-        "equipment": "Dumbbell",
-        "instructions": [
-            "Stand with your feet shoulder-width apart, holding a dumbbell in each hand with your palms facing forward.",
-            "Take a step forward with your right foot, lowering your body into a lunge position. Your right knee should be bent at a 90-degree angle and your left knee should be hovering just above the ground.",
-            "As you lunge forward, simultaneously curl the dumbbells towards your shoulders, keeping your elbows close to your body.",
-            "Pause for a moment at the bottom of the lunge, then push through your right heel to return to the starting position, lowering the dumbbells back down to your sides.",
-            "Repeat the lunge and bicep curl on the opposite side, stepping forward with your left foot.",
-            "Continue alternating sides for the desired number of repetitions."
         ]
     },
     {
@@ -7014,41 +6327,6 @@
         ]
     },
     {
-        "exerciseId": "Bpkf41o",
-        "name": "Dumbbell One Arm Chest Fly On Exercise Ball",
-        "nameKr": "덤벨 원암 체스트 플라이 On Exercise Ball",
-        "category": "가슴",
-        "bodyPart": "Chest",
-        "target": "Pectorals",
-        "equipment": "Dumbbell",
-        "instructions": [
-            "Sit on an exercise ball with a dumbbell in one hand and your feet flat on the ground.",
-            "Walk your feet forward, rolling the ball until your upper back is supported on the ball and your head, neck, and shoulders are off the ball.",
-            "Extend your arm with the dumbbell straight up above your chest, palm facing inward.",
-            "Slowly lower the dumbbell out to the side, keeping a slight bend in your elbow.",
-            "Pause for a moment when your arm is parallel to the ground.",
-            "Engage your chest muscles to bring the dumbbell back up to the starting position.",
-            "Repeat for the desired number of repetitions, then switch arms."
-        ]
-    },
-    {
-        "exerciseId": "k5IpyHg",
-        "name": "Dumbbell One Arm Concentration Curl (On Stability Ball)",
-        "nameKr": "덤벨 원암 Concentration 컬 On Stability Ball",
-        "category": "팔",
-        "bodyPart": "Upper Arms",
-        "target": "Biceps",
-        "equipment": "Dumbbell",
-        "instructions": [
-            "Sit on a stability ball with your feet flat on the ground and your knees bent at a 90-degree angle.",
-            "Hold a dumbbell in one hand with your palm facing up and your arm extended down towards the floor.",
-            "Rest your elbow on the inside of your thigh, just above the knee.",
-            "Keeping your upper arm stationary, exhale and curl the dumbbell up towards your shoulder while contracting your biceps.",
-            "Pause for a moment at the top of the movement, then inhale and slowly lower the dumbbell back down to the starting position.",
-            "Repeat for the desired number of repetitions, then switch arms and repeat."
-        ]
-    },
-    {
         "exerciseId": "REGM1dE",
         "name": "Dumbbell One Arm Decline Chest Press",
         "nameKr": "덤벨 원암 디클라인 체스트 프레스",
@@ -7065,39 +6343,6 @@
         ]
     },
     {
-        "exerciseId": "Am02iPd",
-        "name": "Dumbbell One Arm Fly On Exercise Ball",
-        "nameKr": "덤벨 원암 플라이 On Exercise Ball",
-        "category": "가슴",
-        "bodyPart": "Chest",
-        "target": "Pectorals",
-        "equipment": "Dumbbell",
-        "instructions": [
-            "Sit on an exercise ball with a dumbbell in one hand and your feet flat on the ground.",
-            "Walk your feet forward and roll your body down until your upper back is resting on the exercise ball.",
-            "Extend your arm with the dumbbell straight up above your chest, palm facing inwards.",
-            "Slowly lower the dumbbell out to the side, keeping a slight bend in your elbow.",
-            "Pause for a moment, then squeeze your chest muscles to bring the dumbbell back to the starting position.",
-            "Repeat for the desired number of repetitions, then switch arms."
-        ]
-    },
-    {
-        "exerciseId": "ziFKQXP",
-        "name": "Dumbbell One Arm French Press On Exercise Ball",
-        "nameKr": "덤벨 원암 French 프레스 On Exercise Ball",
-        "category": "팔",
-        "bodyPart": "Upper Arms",
-        "target": "Triceps",
-        "equipment": "Dumbbell",
-        "instructions": [
-            "Sit on an exercise ball with your feet flat on the ground and your back straight.",
-            "Hold a dumbbell in one hand with your palm facing up and your elbow bent at a 90-degree angle.",
-            "Extend your arm straight up towards the ceiling, keeping your elbow stationary.",
-            "Slowly lower the dumbbell back down to the starting position.",
-            "Repeat for the desired number of repetitions, then switch arms."
-        ]
-    },
-    {
         "exerciseId": "4dF3maG",
         "name": "Dumbbell One Arm Hammer Preacher Curl",
         "nameKr": "덤벨 원암 Hammer Preacher 컬",
@@ -7111,23 +6356,6 @@
             "Keeping your upper arm stationary, exhale and curl the dumbbell up towards your shoulder.",
             "Pause for a moment at the top, squeezing your biceps.",
             "Inhale and slowly lower the dumbbell back to the starting position.",
-            "Repeat for the desired number of repetitions, then switch arms."
-        ]
-    },
-    {
-        "exerciseId": "VYmYxK5",
-        "name": "Dumbbell One Arm Hammer Press On Exercise Ball",
-        "nameKr": "덤벨 원암 Hammer 프레스 On Exercise Ball",
-        "category": "팔",
-        "bodyPart": "Upper Arms",
-        "target": "Triceps",
-        "equipment": "Dumbbell",
-        "instructions": [
-            "Sit on an exercise ball with your feet flat on the ground and your back straight.",
-            "Hold a dumbbell in one hand with your palm facing inwards and your elbow bent at a 90-degree angle.",
-            "Place your other hand on your hip for stability.",
-            "Press the dumbbell upwards, extending your arm fully.",
-            "Pause for a moment at the top, then slowly lower the dumbbell back to the starting position.",
             "Repeat for the desired number of repetitions, then switch arms."
         ]
     },
@@ -7198,22 +6426,6 @@
             "Continue lifting until your arm is parallel to the ground.",
             "Pause for a moment at the top, then slowly lower the dumbbell back down to the starting position.",
             "Repeat for the desired number of repetitions, then switch sides."
-        ]
-    },
-    {
-        "exerciseId": "QZFv5ui",
-        "name": "Dumbbell One Arm Press On Exercise Ball",
-        "nameKr": "덤벨 원암 프레스 On Exercise Ball",
-        "category": "가슴",
-        "bodyPart": "Chest",
-        "target": "Pectorals",
-        "equipment": "Dumbbell",
-        "instructions": [
-            "Sit on an exercise ball with your feet flat on the ground and your knees bent at a 90-degree angle.",
-            "Hold a dumbbell in one hand and position it at shoulder height, with your elbow bent and palm facing forward.",
-            "Slowly press the dumbbell upward until your arm is fully extended, while keeping your core engaged and maintaining balance on the exercise ball.",
-            "Pause for a moment at the top, then slowly lower the dumbbell back to the starting position.",
-            "Repeat for the desired number of repetitions, then switch to the other arm."
         ]
     },
     {
@@ -7325,22 +6537,6 @@
         "instructions": [
             "Stand up straight with a dumbbell in one hand, palm facing down and arm fully extended.",
             "Keeping your upper arm stationary, curl the dumbbell towards your shoulder by flexing your elbow.",
-            "Pause for a moment at the top, then slowly lower the dumbbell back to the starting position.",
-            "Repeat for the desired number of repetitions, then switch arms."
-        ]
-    },
-    {
-        "exerciseId": "s999Hdo",
-        "name": "Dumbbell One Arm Seated Bicep Curl On Exercise Ball",
-        "nameKr": "덤벨 원암 시티드 Bicep 컬 On Exercise Ball",
-        "category": "팔",
-        "bodyPart": "Upper Arms",
-        "target": "Biceps",
-        "equipment": "Dumbbell",
-        "instructions": [
-            "Sit on an exercise ball with your feet flat on the ground and your back straight.",
-            "Hold a dumbbell in one hand with your palm facing up and your arm fully extended.",
-            "Keeping your upper arm stationary, curl the dumbbell towards your shoulder by contracting your biceps.",
             "Pause for a moment at the top, then slowly lower the dumbbell back to the starting position.",
             "Repeat for the desired number of repetitions, then switch arms."
         ]
@@ -7508,23 +6704,6 @@
             "At the top of the curl, rotate your wrist so that your palm faces up.",
             "Slowly lower the dumbbell back down to the starting position, rotating your wrist back to the starting position.",
             "Repeat for the desired number of repetitions, then switch arms."
-        ]
-    },
-    {
-        "exerciseId": "pH2x2jj",
-        "name": "Dumbbell One Leg Fly On Exercise Ball",
-        "nameKr": "덤벨 One 레그 플라이 On Exercise Ball",
-        "category": "가슴",
-        "bodyPart": "Chest",
-        "target": "Pectorals",
-        "equipment": "Dumbbell",
-        "instructions": [
-            "Sit on an exercise ball with a dumbbell in each hand, palms facing each other.",
-            "Place one foot on the ground and extend the other leg straight out in front of you.",
-            "Lean forward slightly and bring your arms out to the sides, keeping a slight bend in your elbows.",
-            "Slowly lower the dumbbells down and out to the sides, feeling a stretch in your chest.",
-            "Pause for a moment at the bottom, then squeeze your chest muscles to bring the dumbbells back up to the starting position.",
-            "Repeat for the desired number of repetitions, then switch legs and repeat."
         ]
     },
     {
@@ -7714,39 +6893,6 @@
         ]
     },
     {
-        "exerciseId": "hwygydB",
-        "name": "Dumbbell Preacher Curl Over Exercise Ball",
-        "nameKr": "덤벨 Preacher 컬 Over Exercise Ball",
-        "category": "팔",
-        "bodyPart": "Upper Arms",
-        "target": "Biceps",
-        "equipment": "Dumbbell",
-        "instructions": [
-            "Sit on an exercise ball with your feet flat on the ground and your back straight.",
-            "Hold a dumbbell in one hand with an underhand grip, resting your elbow on the exercise ball.",
-            "Keeping your upper arm stationary, exhale and curl the dumbbell up towards your shoulder.",
-            "Pause for a moment at the top, then inhale and slowly lower the dumbbell back to the starting position.",
-            "Repeat for the desired number of repetitions, then switch arms."
-        ]
-    },
-    {
-        "exerciseId": "O8o7q4d",
-        "name": "Dumbbell Press On Exercise Ball",
-        "nameKr": "덤벨 프레스 On Exercise Ball",
-        "category": "가슴",
-        "bodyPart": "Chest",
-        "target": "Pectorals",
-        "equipment": "Dumbbell",
-        "instructions": [
-            "Sit on an exercise ball with your feet flat on the ground and dumbbells in each hand, resting on your thighs.",
-            "Slowly walk your feet forward, rolling the exercise ball until your lower back is supported on the ball and your knees are at a 90-degree angle.",
-            "Raise the dumbbells to shoulder height, palms facing forward.",
-            "Press the dumbbells upward until your arms are fully extended.",
-            "Pause for a moment at the top, then slowly lower the dumbbells back to the starting position.",
-            "Repeat for the desired number of repetitions."
-        ]
-    },
-    {
         "exerciseId": "bpJL2Qs",
         "name": "Dumbbell Pronate-Grip Triceps Extension",
         "nameKr": "덤벨 Pronate Grip 삼두근 익스텐션",
@@ -7797,25 +6943,6 @@
             "Continue to raise the dumbbells until your biceps are fully contracted and the dumbbells are at shoulder level.",
             "Hold the contracted position for a brief pause as you squeeze your biceps.",
             "Inhale and slowly begin to lower the dumbbells back to the starting position.",
-            "Repeat for the desired number of repetitions."
-        ]
-    },
-    {
-        "exerciseId": "lI7easp",
-        "name": "Dumbbell Pullover Hip Extension On Exercise Ball",
-        "nameKr": "덤벨 Pullover 힙 익스텐션 On Exercise Ball",
-        "category": "가슴",
-        "bodyPart": "Chest",
-        "target": "Pectorals",
-        "equipment": "Dumbbell",
-        "instructions": [
-            "Sit on an exercise ball with your feet flat on the ground and the dumbbell resting on your thighs.",
-            "Slowly walk your feet forward, rolling the exercise ball down your back until your head, neck, and upper back are supported on the ball.",
-            "Hold the dumbbell with both hands and extend your arms straight up over your chest, keeping a slight bend in your elbows.",
-            "Lower the dumbbell behind your head, keeping your arms straight and maintaining control.",
-            "Pause for a moment, then raise the dumbbell back to the starting position.",
-            "While keeping your arms extended, lift your hips off the ground, squeezing your glutes and engaging your core.",
-            "Lower your hips back down to the starting position.",
             "Repeat for the desired number of repetitions."
         ]
     },
@@ -8161,25 +7288,6 @@
         ]
     },
     {
-        "exerciseId": "QLRmNeT",
-        "name": "Dumbbell Seated Alternate Hammer Curl On Exercise Ball",
-        "nameKr": "덤벨 시티드 얼터네이트 Hammer 컬 On Exercise Ball",
-        "category": "팔",
-        "bodyPart": "Upper Arms",
-        "target": "Biceps",
-        "equipment": "Dumbbell",
-        "instructions": [
-            "Sit on an exercise ball with your feet flat on the ground and your back straight.",
-            "Hold a dumbbell in each hand with your palms facing your body and your arms fully extended.",
-            "Keeping your upper arms stationary, exhale and curl one dumbbell up towards your shoulder while keeping your palm facing your body.",
-            "Continue to raise the dumbbell until your biceps are fully contracted and the dumbbell is at shoulder level.",
-            "Hold the contracted position for a brief pause as you squeeze your biceps.",
-            "Inhale and slowly lower the dumbbell back to the starting position.",
-            "Repeat the movement with the opposite arm.",
-            "Continue alternating arms for the desired number of repetitions."
-        ]
-    },
-    {
         "exerciseId": "QT5Q0nK",
         "name": "Dumbbell Seated Alternate Press",
         "nameKr": "덤벨 시티드 얼터네이트 프레스",
@@ -8274,24 +7382,6 @@
             "Keep your back straight and your elbows close to your torso.",
             "Exhale and curl the dumbbells up towards your shoulders, contracting your biceps.",
             "Pause for a moment at the top, then inhale and slowly lower the dumbbells back down to the starting position.",
-            "Repeat for the desired number of repetitions."
-        ]
-    },
-    {
-        "exerciseId": "WgJnBH5",
-        "name": "Dumbbell Seated Biceps Curl (On Stability Ball)",
-        "nameKr": "덤벨 시티드 이두근 컬 On Stability Ball",
-        "category": "팔",
-        "bodyPart": "Upper Arms",
-        "target": "Biceps",
-        "equipment": "Dumbbell",
-        "instructions": [
-            "Sit on a stability ball with your feet flat on the ground and your back straight.",
-            "Hold a dumbbell in each hand with your palms facing forward and your arms fully extended.",
-            "Keeping your upper arms stationary, exhale and curl the dumbbells while contracting your biceps.",
-            "Continue to raise the dumbbells until your biceps are fully contracted and the dumbbells are at shoulder level.",
-            "Hold the contracted position for a brief pause as you squeeze your biceps.",
-            "Inhale and slowly begin to lower the dumbbells back to the starting position.",
             "Repeat for the desired number of repetitions."
         ]
     },
@@ -8458,25 +7548,6 @@
             "Keeping your wrists in a neutral position, curl the dumbbells up towards your shoulders.",
             "Pause for a moment at the top, then slowly lower the dumbbells back down to the starting position.",
             "Repeat for the desired number of repetitions."
-        ]
-    },
-    {
-        "exerciseId": "84sESNy",
-        "name": "Dumbbell Seated One Arm Bicep Curl On Exercise Ball With Leg Raised",
-        "nameKr": "덤벨 시티드 원암 Bicep 컬 On Exercise Ball With 레그 Raised",
-        "category": "팔",
-        "bodyPart": "Upper Arms",
-        "target": "Biceps",
-        "equipment": "Dumbbell",
-        "instructions": [
-            "Sit on an exercise ball with your feet flat on the ground and your back straight.",
-            "Hold a dumbbell in one hand with your palm facing up and your arm fully extended.",
-            "Place your other hand on your hip for stability.",
-            "Slowly curl the dumbbell towards your shoulder, keeping your upper arm stationary.",
-            "Pause for a moment at the top of the movement, squeezing your bicep.",
-            "Slowly lower the dumbbell back to the starting position.",
-            "Repeat for the desired number of repetitions.",
-            "Switch arms and repeat the exercise."
         ]
     },
     {
@@ -9454,107 +8525,6 @@
             "Hold a dumbbell in both hands with an overhand grip, and raise it above your head.",
             "Bend your elbows and lower the dumbbell behind your head, keeping your upper arms close to your ears.",
             "Extend your arms and raise the dumbbell back to the starting position.",
-            "Repeat for the desired number of repetitions."
-        ]
-    },
-    {
-        "exerciseId": "LkoAWAE",
-        "name": "Elbow Dips",
-        "nameKr": "딥스",
-        "category": "팔",
-        "bodyPart": "Upper Arms",
-        "target": "Triceps",
-        "equipment": "Body Weight",
-        "instructions": [
-            "Sit on the edge of a bench or chair with your hands gripping the edge next to your hips.",
-            "Slide your hips forward off the bench and straighten your legs, keeping your heels on the ground.",
-            "Bend your elbows and lower your body towards the ground, keeping your back close to the bench.",
-            "Pause for a moment at the bottom, then push through your hands to straighten your arms and lift your body back up to the starting position.",
-            "Repeat for the desired number of repetitions."
-        ]
-    },
-    {
-        "exerciseId": "xo6sENf",
-        "name": "Exercise Ball On The Wall Calf Raise",
-        "nameKr": "Exercise Ball On The Wall 종아리 레이즈",
-        "category": "하체",
-        "bodyPart": "Lower Legs",
-        "target": "Calves",
-        "equipment": "Dumbbell",
-        "instructions": [
-            "Stand with your back against a wall and place an exercise ball between your lower back and the wall.",
-            "Position your feet shoulder-width apart, with your toes pointing forward.",
-            "Hold a dumbbell in each hand, with your arms extended by your sides.",
-            "Raise your heels off the ground, lifting your body weight onto the balls of your feet.",
-            "Pause for a moment at the top, then slowly lower your heels back down to the starting position.",
-            "Repeat for the desired number of repetitions."
-        ]
-    },
-    {
-        "exerciseId": "FY3UdNT",
-        "name": "Exercise Ball On The Wall Calf Raise (Tennis Ball Between Ankles)",
-        "nameKr": "Exercise Ball On The Wall 종아리 레이즈 Tennis Ball Between Ankles",
-        "category": "하체",
-        "bodyPart": "Lower Legs",
-        "target": "Calves",
-        "equipment": "Dumbbell",
-        "instructions": [
-            "Stand facing a wall with your feet shoulder-width apart.",
-            "Place an exercise ball between the wall and your lower back.",
-            "Hold a dumbbell in each hand, with your arms extended by your sides.",
-            "Place a tennis ball between your ankles.",
-            "Raise your heels off the ground, lifting your body up onto your toes.",
-            "Pause for a moment at the top, then slowly lower your heels back down to the starting position.",
-            "Repeat for the desired number of repetitions."
-        ]
-    },
-    {
-        "exerciseId": "j74M6Zn",
-        "name": "Exercise Ball On The Wall Calf Raise (Tennis Ball Between Knees)",
-        "nameKr": "Exercise Ball On The Wall 종아리 레이즈 Tennis Ball Between Knees",
-        "category": "하체",
-        "bodyPart": "Lower Legs",
-        "target": "Calves",
-        "equipment": "Dumbbell",
-        "instructions": [
-            "Stand with your back against a wall and place an exercise ball between your lower back and the wall.",
-            "Position your feet shoulder-width apart and slightly in front of you.",
-            "Hold a dumbbell in each hand, with your arms extended by your sides.",
-            "Place a tennis ball between your knees.",
-            "Raise your heels off the ground, lifting your body up onto your toes.",
-            "Pause for a moment at the top, then slowly lower your heels back down to the starting position.",
-            "Repeat for the desired number of repetitions."
-        ]
-    },
-    {
-        "exerciseId": "Gm2Uv1z",
-        "name": "Exercise Ball Supine Triceps Extension",
-        "nameKr": "Exercise Ball Supine 삼두근 익스텐션",
-        "category": "팔",
-        "bodyPart": "Upper Arms",
-        "target": "Triceps",
-        "equipment": "Dumbbell",
-        "instructions": [
-            "Sit on an exercise ball with your feet flat on the ground and your knees bent at a 90-degree angle.",
-            "Hold a dumbbell with both hands and extend your arms straight up towards the ceiling.",
-            "Slowly lower the dumbbell behind your head, keeping your elbows close to your ears.",
-            "Pause for a moment, then raise the dumbbell back up to the starting position.",
-            "Repeat for the desired number of repetitions."
-        ]
-    },
-    {
-        "exerciseId": "CFN9P8G",
-        "name": "Ez Bar French Press On Exercise Ball",
-        "nameKr": "Ez Bar French 프레스 On Exercise Ball",
-        "category": "팔",
-        "bodyPart": "Upper Arms",
-        "target": "Triceps",
-        "equipment": "Ez Barbell",
-        "instructions": [
-            "Sit on an exercise ball and hold an EZ barbell with an overhand grip.",
-            "Extend your arms straight up, keeping your elbows close to your head.",
-            "Slowly lower the barbell behind your head by bending your elbows.",
-            "Pause for a moment, then extend your arms back up to the starting position.",
             "Repeat for the desired number of repetitions."
         ]
     },
@@ -10571,24 +9541,6 @@
         ]
     },
     {
-        "exerciseId": "V07qpXy",
-        "name": "Lever Alternate Leg Press",
-        "nameKr": "레그 프레스",
-        "category": "하체",
-        "bodyPart": "Upper Legs",
-        "target": "Quads",
-        "equipment": "Leverage Machine",
-        "instructions": [
-            "Adjust the seat and foot platform of the leverage machine to your desired position.",
-            "Sit on the machine with your back against the backrest and your feet on the foot platform.",
-            "Place your hands on the handles or sides of the machine for stability.",
-            "Push one foot against the foot platform, extending your leg until it is almost fully straight.",
-            "Pause for a moment, then slowly bend your leg and return to the starting position.",
-            "Repeat with the other leg.",
-            "Continue alternating legs for the desired number of repetitions."
-        ]
-    },
-    {
         "exerciseId": "w2oRpuH",
         "name": "Lever Alternating Narrow Grip Seated Row",
         "nameKr": "얼터네이트 Narrow Grip 시티드 로우",
@@ -10934,41 +9886,6 @@
         ]
     },
     {
-        "exerciseId": "my33uHU",
-        "name": "Lever Leg Extension",
-        "nameKr": "레그 익스텐션",
-        "category": "하체",
-        "bodyPart": "Upper Legs",
-        "target": "Quads",
-        "equipment": "Leverage Machine",
-        "instructions": [
-            "Adjust the seat height and backrest of the machine to fit your body.",
-            "Sit on the machine with your back against the backrest and your feet on the footpad.",
-            "Grasp the handles or sidebars for stability.",
-            "Extend your legs forward by straightening your knees, lifting the weight.",
-            "Pause for a moment at the top, then slowly lower the weight back to the starting position.",
-            "Repeat for the desired number of repetitions."
-        ]
-    },
-    {
-        "exerciseId": "17lJ1kr",
-        "name": "Lever Lying Leg Curl",
-        "nameKr": "레그 컬",
-        "category": "하체",
-        "bodyPart": "Upper Legs",
-        "target": "Hamstrings",
-        "equipment": "Leverage Machine",
-        "instructions": [
-            "Adjust the machine to fit your body and select the desired weight.",
-            "Lie face down on the machine with your legs straight and your heels against the padded lever.",
-            "Grasp the handles or the sides of the machine for stability.",
-            "Keeping your upper body stationary, exhale and curl your legs up as far as possible without lifting your hips off the pad.",
-            "Hold the contracted position for a brief pause as you squeeze your hamstrings.",
-            "Inhale and slowly lower the lever back to the starting position.",
-            "Repeat for the desired number of repetitions."
-        ]
-    },
-    {
         "exerciseId": "UXpKJoq",
         "name": "Lever Lying Two-One Leg Curl",
         "nameKr": "라잉 Two One 레그 컬",
@@ -11206,24 +10123,6 @@
             "Cross your arms over your chest or place them behind your head.",
             "Engage your glutes and hamstrings to lift your legs upward until they are parallel to the ground.",
             "Pause for a moment at the top, then slowly lower your legs back down to the starting position.",
-            "Repeat for the desired number of repetitions."
-        ]
-    },
-    {
-        "exerciseId": "BgljGjd",
-        "name": "Lever Reverse T-Bar Row",
-        "nameKr": "티바로우",
-        "category": "등",
-        "bodyPart": "Back",
-        "target": "Upper Back",
-        "equipment": "Leverage Machine",
-        "instructions": [
-            "Adjust the seat height and footplate position on the leverage machine.",
-            "Sit on the machine with your chest against the pad and your feet flat on the footplate.",
-            "Grasp the handles with an overhand grip, slightly wider than shoulder-width apart.",
-            "Keep your back straight and engage your core.",
-            "Pull the handles towards your chest, squeezing your shoulder blades together.",
-            "Pause for a moment at the top of the movement, then slowly release and extend your arms back to the starting position.",
             "Repeat for the desired number of repetitions."
         ]
     },
@@ -13692,22 +12591,6 @@
         ]
     },
     {
-        "exerciseId": "8urJS9b",
-        "name": "Weighted Hyperextension (On Stability Ball)",
-        "nameKr": "중량 Hyperextension On Stability Ball",
-        "category": "등",
-        "bodyPart": "Back",
-        "target": "Spine",
-        "equipment": "Weighted",
-        "instructions": [
-            "Position yourself face down on a stability ball with your hips resting on the ball and your feet against a wall for stability.",
-            "Place your hands behind your head or cross them over your chest.",
-            "Engage your core and slowly lift your upper body off the ball, extending your back until your body forms a straight line.",
-            "Pause for a moment at the top, then slowly lower your upper body back down to the starting position.",
-            "Repeat for the desired number of repetitions."
-        ]
-    },
-    {
         "exerciseId": "5WiFcYk",
         "name": "Weighted Lunge With Swing",
         "nameKr": "중량 런지 With Swing",
@@ -13721,22 +12604,6 @@
             "As you lunge forward, swing the weights forward and upward, keeping your arms straight.",
             "Push off with your right foot and return to the starting position, swinging the weights back down.",
             "Repeat with your left foot and continue alternating legs for the desired number of repetitions."
-        ]
-    },
-    {
-        "exerciseId": "xmM75XG",
-        "name": "Weighted Overhead Crunch (On Stability Ball)",
-        "nameKr": "중량 Overhead Crunch On Stability Ball",
-        "category": "복근",
-        "bodyPart": "Waist",
-        "target": "Abs",
-        "equipment": "Weighted",
-        "instructions": [
-            "Sit on a stability ball with your feet flat on the ground and your knees bent at a 90-degree angle.",
-            "Hold a weight plate or dumbbell with both hands and extend your arms overhead.",
-            "Engage your abs and slowly curl your torso forward, bringing your chest towards your knees.",
-            "Pause for a moment at the top, then slowly lower your torso back to the starting position.",
-            "Repeat for the desired number of repetitions."
         ]
     },
     {
@@ -13914,6 +12781,331 @@
             "Lean forward slightly and lower your body by bending your elbows until your chest is just above the bars.",
             "Pause for a moment, then push yourself back up to the starting position by straightening your arms.",
             "Repeat for the desired number of repetitions."
+        ]
+    },
+    {
+        "exerciseId": "0170",
+        "name": "Pec Deck Fly",
+        "nameKr": "플라이 머신",
+        "category": "가슴",
+        "bodyPart": "Chest",
+        "target": "Pectorals",
+        "equipment": "Machine",
+        "instructions": [
+            "머신 안쪽에 엉덩이와 등을 등받이에 완벽히 밀착해 앉습니다.",
+            "패드를 양손으로 감싸 쥐고 팔꿈치를 살짝 굽혀 고정합니다.",
+            "가슴 근육(겨드랑이 안쪽)에 힘을 주며 원을 그리듯 패드를 안쪽으로 모아줍니다.",
+            "가슴 근육의 팽팽한 저항을 느끼며 천천히 시작 자세로 돌려보냅니다."
+        ]
+    },
+    {
+        "exerciseId": "0314",
+        "name": "Dumbbell Low Incline Bench Press",
+        "nameKr": "로우 인클라인 덤벨 프레스",
+        "category": "가슴",
+        "bodyPart": "Chest",
+        "target": "Pectorals",
+        "equipment": "Dumbbell",
+        "instructions": [
+            "벤치 각도를 약 10~15도 정도로 낮게 설정한 뒤 눕습니다.",
+            "덤벨을 쇄골 아랫부분 수직선상에 두고 팔꿈치를 가슴 옆에 둡니다.",
+            "가슴 상부의 수축을 느끼며 덤벨을 천장 방향으로 수직으로 밀어 올립니다.",
+            "덤벨이 흔들리지 않게 주의하며 천천히 저항을 느끼며 가슴 옆으로 내립니다."
+        ]
+    },
+    {
+        "exerciseId": "0009",
+        "name": "Assisted Chest Dip (Kneeling)",
+        "nameKr": "어시스트 딥스",
+        "category": "가슴",
+        "bodyPart": "Chest",
+        "target": "Pectorals",
+        "equipment": "Machine",
+        "instructions": [
+            "어시스트 딥스 머신 무릎 패드에 무릎을 거치하고 핸들을 잡습니다.",
+            "상체를 약간 앞으로 숙이고 팔꿈치를 굽혀 하부 가슴의 이완을 느끼며 내립니다.",
+            "가슴 하부와 삼두의 힘으로 몸을 위로 강하게 밀어 올려줍니다."
+        ]
+    },
+    {
+        "exerciseId": "0208",
+        "name": "Chest Dip",
+        "nameKr": "딥스",
+        "category": "가슴",
+        "bodyPart": "Chest",
+        "target": "Pectorals",
+        "equipment": "Body Weight",
+        "instructions": [
+            "평행봉을 쥐고 상체를 약간 앞으로 숙여 몸을 띄웁니다.",
+            "팔꿈치를 굽혀 가슴 하부가 이완될 때까지 몸을 내립니다.",
+            "가슴 하부의 힘을 사용하여 밀어 올려 시작 자세로 돌아옵니다."
+        ]
+    },
+    {
+        "exerciseId": "0172",
+        "name": "Cable Lat Pulldown",
+        "nameKr": "렛풀다운",
+        "category": "등",
+        "bodyPart": "Back",
+        "target": "Lats",
+        "equipment": "Cable",
+        "instructions": [
+            "바를 어깨너비보다 넓게 잡고 허벅지를 패드에 단단히 고정하여 앉습니다.",
+            "쇄골 윗부분 방향으로 바를 강하게 당겨주며 광배근을 수축합니다.",
+            "긴장을 유지하면서 천천히 팔을 펴주며 이완합니다."
+        ]
+    },
+    {
+        "exerciseId": "0237",
+        "name": "Cable Seated Row",
+        "nameKr": "롱풀",
+        "category": "등",
+        "bodyPart": "Back",
+        "target": "Lats",
+        "equipment": "Cable",
+        "instructions": [
+            "발 지지대에 발을 대고 일자 바 또는 그립을 잡습니다.",
+            "가슴을 열고 척추를 곧게 세운 채 배꼽 방향으로 당깁니다.",
+            "날개뼈를 접어 수축을 유도하고 천천히 이완합니다."
+        ]
+    },
+    {
+        "exerciseId": "0015",
+        "name": "Assisted Pull-up",
+        "nameKr": "어시스트 풀업",
+        "category": "등",
+        "bodyPart": "Back",
+        "target": "Lats",
+        "equipment": "Machine",
+        "instructions": [
+            "패드에 무릎을 대고 가슴을 연 채 바를 넓게 잡습니다.",
+            "날개뼈를 내리며 광배근 힘으로 몸을 올려줍니다.",
+            "천천히 긴장을 느끼며 원래 자세로 내려옵니다."
+        ]
+    },
+    {
+        "exerciseId": "0347",
+        "name": "Dumbbell Seated Shoulder Press",
+        "nameKr": "덤벨 숄더 프레스",
+        "category": "어께",
+        "bodyPart": "Shoulders",
+        "target": "Delts",
+        "equipment": "Dumbbell",
+        "instructions": [
+            "벤치 각도를 세우고 앉아 덤벨을 귀 옆 높이에 둡니다.",
+            "어깨 힘으로 덤벨을 천장 방향으로 밀어 올립니다.",
+            "천천히 자극을 느끼며 귀 옆으로 내립니다."
+        ]
+    },
+    {
+        "exerciseId": "0334",
+        "name": "Dumbbell Lateral Raise",
+        "nameKr": "덤벨 사이드 레터럴 레이즈",
+        "category": "어께",
+        "bodyPart": "Shoulders",
+        "target": "Delts",
+        "equipment": "Dumbbell",
+        "instructions": [
+            "가슴을 펴고 똑바로 서서 어깨 관절 힘으로 덤벨을 옆으로 들어 올립니다.",
+            "어깨 높이까지 올렸다가 긴장을 느끼며 서서히 내립니다."
+        ]
+    },
+    {
+        "exerciseId": "0294",
+        "name": "Dumbbell Biceps Curl",
+        "nameKr": "덤벨 컬",
+        "category": "팔",
+        "bodyPart": "Upper Arms",
+        "target": "Biceps",
+        "equipment": "Dumbbell",
+        "instructions": [
+            "서서 덤벨을 양손에 쥐고 손바닥이 앞을 향하게 합니다.",
+            "팔꿈치를옆구리에 단단히 고정하고 이두근의 힘으로 덤벨을 들어 올립니다.",
+            "정점에서 수축을 느낀 후 서서히 저항을 느끼며 덤벨을 내립니다."
+        ]
+    },
+    {
+        "exerciseId": "0200",
+        "name": "Cable Pushdown",
+        "nameKr": "케이블 푸시 다운",
+        "category": "팔",
+        "bodyPart": "Upper Arms",
+        "target": "Triceps",
+        "equipment": "Cable",
+        "instructions": [
+            "케이블 머신 로프를 잡고 상체를 약간 숙여 팔꿈치를 옆구리에 고정합니다.",
+            "아래로 강하게 펴주며 삼두근을 수축합니다."
+        ]
+    },
+    {
+        "exerciseId": "0584",
+        "name": "Lever Leg Extension",
+        "nameKr": "레그 익스텐션",
+        "category": "하체",
+        "bodyPart": "Upper Legs",
+        "target": "Quads",
+        "equipment": "Machine",
+        "instructions": [
+            "머신에 앉아 발목 패드를 걸치고 무릎을 펴 허벅지를 수축합니다."
+        ]
+    },
+    {
+        "exerciseId": "0585",
+        "name": "Sled Leg Press",
+        "nameKr": "레그 프레스",
+        "category": "하체",
+        "bodyPart": "Upper Legs",
+        "target": "Quads",
+        "equipment": "Machine",
+        "instructions": [
+            "발판에 발을 대고 무릎을 굽혔다가 뒤꿈치 힘으로 밀어냅니다."
+        ]
+    },
+    {
+        "exerciseId": "0586",
+        "name": "Lever Lying Leg Curl",
+        "nameKr": "레그 컬",
+        "category": "하체",
+        "bodyPart": "Upper Legs",
+        "target": "Hamstrings",
+        "equipment": "Machine",
+        "instructions": [
+            "누워 발목 패드를 걸치고 무릎을 굽혀 햄스트링을 수축합니다."
+        ]
+    },
+    {
+        "exerciseId": "0032",
+        "name": "Barbell Romanian Deadlift",
+        "nameKr": "바벨 루마니안 데드리프트",
+        "category": "하체",
+        "bodyPart": "Upper Legs",
+        "target": "Hamstrings",
+        "equipment": "Barbell",
+        "instructions": [
+            "바벨을 들고 고관절을 접어 엉덩이를 뒤로 빼며 바를 무릎 아래까지 내립니다."
+        ]
+    },
+    {
+        "exerciseId": "0025",
+        "name": "Barbell Bench Press",
+        "nameKr": "바벨 벤치프레스",
+        "category": "가슴",
+        "bodyPart": "Chest",
+        "target": "Pectorals",
+        "equipment": "Barbell",
+        "instructions": [
+            "벤치에 누워 바벨을 내렸다가 수직 위로 밀어 올립니다."
+        ]
+    },
+    {
+        "exerciseId": "0803",
+        "name": "T-Bar Row",
+        "nameKr": "티바로우",
+        "category": "등",
+        "bodyPart": "Back",
+        "target": "Lats",
+        "equipment": "Machine",
+        "instructions": [
+            "지지대 손잡이를 잡고 상체를 숙인 뒤 배꼽 방향으로 당겨 올립니다."
+        ]
+    },
+    {
+        "exerciseId": "0292",
+        "name": "Dumbbell One Arm Row",
+        "nameKr": "원암덤벨로우",
+        "category": "등",
+        "bodyPart": "Back",
+        "target": "Lats",
+        "equipment": "Dumbbell",
+        "instructions": [
+            "한 손으로 덤벨을 들고 상체를 숙여 옆구리 방향으로 끌어 올립니다."
+        ]
+    },
+    {
+        "exerciseId": "0193",
+        "name": "Cable Straight Arm Pulldown",
+        "nameKr": "암풀다운",
+        "category": "등",
+        "bodyPart": "Back",
+        "target": "Lats",
+        "equipment": "Cable",
+        "instructions": [
+            "팔을 편 채로 케이블 바를 골반 방향으로 아치를 그리며 내립니다."
+        ]
+    },
+    {
+        "exerciseId": "0380",
+        "name": "Dumbbell Rear Delt Fly",
+        "nameKr": "덤벨 리어 델트 플라이",
+        "category": "어께",
+        "bodyPart": "Shoulders",
+        "target": "Delts",
+        "equipment": "Dumbbell",
+        "instructions": [
+            "상체를 숙이고 덤벨을 양옆으로 들어 올려 후면 삼각근을 수축합니다."
+        ]
+    },
+    {
+        "exerciseId": "0592",
+        "name": "Lever Seated Reverse Fly",
+        "nameKr": "리버스 펙덱플라이",
+        "category": "어께",
+        "bodyPart": "Shoulders",
+        "target": "Delts",
+        "equipment": "Machine",
+        "instructions": [
+            "거꾸로 머신에 앉아 패드를 양옆 뒤로 밀어내 후면 삼각근을 수축합니다."
+        ]
+    },
+    {
+        "exerciseId": "0218",
+        "name": "Cable Biceps Curl",
+        "nameKr": "케이블 컬",
+        "category": "팔",
+        "bodyPart": "Upper Arms",
+        "target": "Biceps",
+        "equipment": "Cable",
+        "instructions": [
+            "케이블 머신 손잡이를 등 뒤로 쥔 채 한 걸음 앞으로 나와 팔을 뒤로 보냅니다.",
+            "이두의 장두 긴장을 유지하면서 앞으로 감아 올려 수축합니다."
+        ]
+    },
+    {
+        "exerciseId": "0063",
+        "name": "Barbell Lying Triceps Extension",
+        "nameKr": "라잉 트라이셉스 익스텐션",
+        "category": "팔",
+        "bodyPart": "Upper Arms",
+        "target": "Triceps",
+        "equipment": "Barbell",
+        "instructions": [
+            "벤치에 누워 이마나 정수리 뒤 방향으로 바를 내렸다가 밀어 올립니다."
+        ]
+    },
+    {
+        "exerciseId": "0738",
+        "name": "Sled Hack Squat",
+        "nameKr": "핵스쿼트",
+        "category": "하체",
+        "bodyPart": "Upper Legs",
+        "target": "Quads",
+        "equipment": "Machine",
+        "instructions": [
+            "핵스쿼트 머신에 어깨를 대고 쪼그려 앉았다가 뒤꿈치로 밀어 일어섭니다."
+        ]
+    },
+    {
+        "exerciseId": "0589",
+        "name": "Lever Seated Hip Adduction",
+        "nameKr": "이너타이",
+        "category": "하체",
+        "bodyPart": "Upper Legs",
+        "target": "Adductors",
+        "equipment": "Machine",
+        "instructions": [
+            "이너타이 머신에 앉아 무릎 패드 안쪽에 허벅지를 위치시킵니다.",
+            "허벅지 안쪽(내전근)의 힘으로 패드를 안으로 끝까지 모아 줍니다.",
+            "긴장을 서서히 늦추며 천천히 시작 자세로 돌아갑니다."
         ]
     }
 ]

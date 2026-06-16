@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const exerciseDatabase = {
         '플라이 머신': {
             name: '플라이 머신 (Pec Deck Fly)',
-            exerciseId: 'v3xmPAR',
+            exerciseId: '0170',
             bodyPart: '가슴',
             target: '대흉근',
             equipment: '머신',
@@ -50,20 +50,32 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         '로우 인클라인 덤벨 프레스': {
             name: '로우 인클라인 덤벨 프레스 (Low Incline Dumbbell Press) - 10~15도 권장',
-            exerciseId: 'ns0SIbU',
+            exerciseId: '0314',
             bodyPart: '가슴',
             target: '쇄골부 대흉근',
             equipment: '덤벨',
             instructions: [
-                '인클라인 벤치 각도를 약 10~15도(낮은 각도, 권장 피드백 반영)로 조절한 뒤 눕습니다.',
+                '인클라인 벤치 각도를 약 10~15도(낮은 각도)로 조절한 뒤 눕습니다.',
                 '덤벨을 쇄골 아랫부분 수직선상에 두고 팔꿈치를 가슴 옆에 둡니다.',
                 '가슴 상부의 수축을 느끼며 덤벨을 천장 방향으로 수직으로 밀어 올립니다.',
                 '덤벨이 흔들리지 않게 주의하며 천천히 저항을 느끼며 가슴 옆으로 내립니다.'
             ]
         },
+        '인클라인 덤벨 프레스': {
+            name: '인클라인 덤벨 프레스 (Incline Dumbbell Press)',
+            exerciseId: '0314',
+            bodyPart: '가슴',
+            target: '상부 대흉근',
+            equipment: '덤벨',
+            instructions: [
+                '각도를 높인 벤치(약 30~45도)에 누워 덤벨을 쇄골 윗부분 수직선상에 둡니다.',
+                '가슴 상부의 수축을 느끼며 덤벨을 천장 방향으로 수직으로 밀어 올립니다.',
+                '덤벨이 흔들리지 않게 주의하며 천천히 저항을 느끼며 내립니다.'
+            ]
+        },
         '어시스트 딥스': {
             name: '어시스트 딥스 (Assisted Dips)',
-            exerciseId: 'PAgTVaK',
+            exerciseId: '0009',
             bodyPart: '가슴',
             target: '하부 대흉근/삼두',
             equipment: '머신',
@@ -75,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         '렛풀다운': {
             name: '렛풀다운 (Lat Pulldown)',
-            exerciseId: '4c9BhzB',
+            exerciseId: '0172',
             bodyPart: '등',
             target: '광배근',
             equipment: '케이블',
@@ -87,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         '롱풀': {
             name: '롱풀 (Seated Cable Row)',
-            exerciseId: 'qcY50ZD',
+            exerciseId: '0237',
             bodyPart: '등',
             target: '등 상부/광배근',
             equipment: '케이블',
@@ -99,7 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         '어시스트 풀업': {
             name: '어시스트 풀업 (Assisted Pull-up)',
-            exerciseId: 'kiJ4Z2K',
+            exerciseId: '0015',
             bodyPart: '등',
             target: '광배근',
             equipment: '머신',
@@ -111,7 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         '덤벨 숄더 프레스': {
             name: '덤벨 숄더 프레스 (Dumbbell Shoulder Press)',
-            exerciseId: 'znQUdHY',
+            exerciseId: '0347',
             bodyPart: '어깨',
             target: '전면 삼각근',
             equipment: '덤벨',
@@ -123,7 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         '덤벨 사이드 레터럴 레이즈': {
             name: '덤벨 사이드 레터럴 레이즈 (Dumbbell Side Lateral Raise)',
-            exerciseId: 'DsgkuIt',
+            exerciseId: '0334',
             bodyPart: '어깨',
             target: '측면 삼각근',
             equipment: '덤벨',
@@ -134,17 +146,19 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         '덤벨 컬': {
             name: '덤벨 컬 (Dumbbell Curl)',
-            exerciseId: 'NbVPDMW',
+            exerciseId: '0294',
             bodyPart: '팔',
             target: '상완이두근',
             equipment: '덤벨',
             instructions: [
-                '덤벨을 쥔 하고 팔꿈치를 옆구리에 고정한 채 들어 올립니다.'
+                '서서 덤벨을 양손에 쥐고 손바닥이 앞을 향하게 합니다.',
+                '팔꿈치를 옆구리에 단단히 고정하고 이두근의 힘으로 덤벨을 들어 올립니다.',
+                '정점에서 수축을 느낀 후 서서히 저항을 느끼며 덤벨을 내립니다.'
             ]
         },
-        '케이블 트라이셉스 푸시 다운': {
+        '케이블 푸시 다운': {
             name: '케이블 푸시 다운 (Cable Push Down)',
-            exerciseId: '2IxROQ1',
+            exerciseId: '0200',
             bodyPart: '팔',
             target: '상완삼두근',
             equipment: '케이블',
@@ -155,7 +169,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         '레그 익스텐션': {
             name: '레그 익스텐션 (Leg Extension)',
-            exerciseId: 'qx4fgX7',
+            exerciseId: '0584',
             bodyPart: '하체',
             target: '대퇴사두근',
             equipment: '머신',
@@ -165,7 +179,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         '레그 프레스': {
             name: '레그 프레스 (Leg Press)',
-            exerciseId: 'rR0LJzx',
+            exerciseId: '0585',
             bodyPart: '하체',
             target: '대퇴사두근/둔근',
             equipment: '머신',
@@ -175,7 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         '레그 컬': {
             name: '레그 컬 (Leg Curl)',
-            exerciseId: 'iZop9xO',
+            exerciseId: '0586',
             bodyPart: '하체',
             target: '대퇴이두근 (햄스트링)',
             equipment: '머신',
@@ -185,7 +199,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         '바벨 루마니안 데드리프트': {
             name: '바벨 루마니안 데드리프트 (Barbell Romanian Deadlift)',
-            exerciseId: 'J6Dx1Mu',
+            exerciseId: '0032',
             bodyPart: '등/하체',
             target: '척추기립근/햄스트링',
             equipment: '바벨',
@@ -195,7 +209,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         '바벨 벤치프레스': {
             name: '바벨 벤치프레스 (Barbell Bench Press)',
-            exerciseId: 'v3xmPAR',
+            exerciseId: '0025',
             bodyPart: '가슴',
             target: '대흉근',
             equipment: '바벨',
@@ -203,19 +217,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 '벤치에 누워 바벨을 내렸다가 수직 위로 밀어 올립니다.'
             ]
         },
-        '인클라인 덤벨 프레스': {
-            name: '인클라인 덤벨 프레스 (Incline Dumbbell Press)',
-            exerciseId: 'ns0SIbU',
-            bodyPart: '가슴',
-            target: '상부 대흉근',
-            equipment: '덤벨',
-            instructions: [
-                '각도를 높인 벤치에 누워 덤벨을 수직으로 밀어 올립니다.'
-            ]
-        },
         '딥스': {
             name: '딥스 (Dips)',
-            exerciseId: 'PAgTVaK',
+            exerciseId: '0208',
             bodyPart: '가슴/삼두',
             target: '하부 대흉근',
             equipment: '맨몸',
@@ -225,7 +229,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         '티바로우': {
             name: '티바로우 (T-Bar Row)',
-            exerciseId: 'qcY50ZD',
+            exerciseId: '0803',
             bodyPart: '등',
             target: '등 상부',
             equipment: '머신',
@@ -235,7 +239,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         '원암덤벨로우': {
             name: '원암덤벨로우 (One Arm Dumbbell Row)',
-            exerciseId: 'kiJ4Z2K',
+            exerciseId: '0292',
             bodyPart: '등',
             target: '광배근',
             equipment: '덤벨',
@@ -245,7 +249,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         '암풀다운': {
             name: '암풀다운 (Straight Arm Pulldown)',
-            exerciseId: '4c9BhzB',
+            exerciseId: '0193',
             bodyPart: '등',
             target: '광배근',
             equipment: '케이블',
@@ -255,7 +259,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         '덤벨 리어 델트 플라이': {
             name: '덤벨 리어 델트 플라이 (Dumbbell Rear Delt Fly)',
-            exerciseId: 'znQUdHY',
+            exerciseId: '0380',
             bodyPart: '어깨',
             target: '후면 삼각근',
             equipment: '덤벨',
@@ -265,7 +269,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         '리버스 펙덱플라이': {
             name: '리버스 펙덱플라이 (Reverse Pec Deck Fly)',
-            exerciseId: 'DsgkuIt',
+            exerciseId: '0592',
             bodyPart: '어깨',
             target: '후면 삼각근',
             equipment: '머신',
@@ -275,7 +279,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         '케이블 컬': {
             name: '케이블 컬 (Behind-the-Back Cable Curl) - 장두 타겟',
-            exerciseId: '', 
+            exerciseId: '0218',
             bodyPart: '팔',
             target: '상완이두근 장두',
             equipment: '케이블',
@@ -286,7 +290,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         '라잉 트라이셉스 익스텐션': {
             name: '라잉 트라이셉스 익스텐션 (Lying Triceps Extension)',
-            exerciseId: 'iZop9xO',
+            exerciseId: '0063',
             bodyPart: '팔',
             target: '상완삼두근',
             equipment: '바벨/이지바',
@@ -294,24 +298,26 @@ document.addEventListener('DOMContentLoaded', () => {
                 '벤치에 누워 이마나 정수리 뒤 방향으로 바를 내렸다가 밀어 올립니다.'
             ]
         },
-        '케이블 푸시 다운': {
-            name: '케이블 푸시 다운 (Cable Push Down)',
-            exerciseId: '2IxROQ1',
-            bodyPart: '팔',
-            target: '상완삼두근',
-            equipment: '케이블',
-            instructions: [
-                '케이블 도르래를 잡고 팔꿈치를 고정한 뒤 아래로 곧게 펴 줍니다.'
-            ]
-        },
         '핵스쿼트': {
             name: '핵스쿼트 (Hack Squat)',
-            exerciseId: 'qx4fgX7',
+            exerciseId: '0738',
             bodyPart: '하체',
             target: '대퇴사두근',
             equipment: '머신',
             instructions: [
                 '핵스쿼트 머신에 어깨를 대고 쪼그려 앉았다가 뒤꿈치로 밀어 일어섭니다.'
+            ]
+        },
+        '이너타이': {
+            name: '이너타이 (Inner Thigh / Adductor)',
+            exerciseId: '0589',
+            bodyPart: '하체',
+            target: '내전근',
+            equipment: '머신',
+            instructions: [
+                '이너타이 머신에 앉아 무릎 패드 안쪽에 허벅지를 위치시킵니다.',
+                '허벅지 안쪽(내전근)의 힘으로 패드를 안으로 끝까지 모아 줍니다.',
+                '긴장을 서서히 늦추며 천천히 시작 자세로 돌아갑니다.'
             ]
         }
     };
@@ -664,6 +670,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const level = state.level;
         const days = state.days;
 
+        // 전체적으로 모든 "하체" 루틴은 고정된 구성으로 처리 (사용자 피드백 수렴)
+        if (dayRoutine === '하체') {
+            return ['이너타이', '레그 익스텐션', '레그 컬', '핵스쿼트', '바벨 루마니안 데드리프트', '레그 프레스'];
+        }
+
         if (level === 'beginner') {
             // ==========================================
             // 1. 헬린이 (초급자) 맞춤 루틴
@@ -684,11 +695,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         '케이블 푸시 다운', '덤벨 컬'
                     ];
                 }
-            } 
-            else if (dayRoutine === '하체') {
-                selectedExercises = [
-                    '레그 익스텐션', '레그 프레스', '레그 컬', '바벨 루마니안 데드리프트'
-                ];
             } 
             else if (dayRoutine === '전면') {
                 const upper = ['플라이 머신', '로우 인클라인 덤벨 프레스', '덤벨 숄더 프레스', '덤벨 사이드 레터럴 레이즈', '케이블 푸시 다운'];
@@ -731,9 +737,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 ];
             }
         } 
-        else if (level === 'intermediate') {
+        else if (level === 'intermediate' || level === 'advanced') {
             // ==========================================
-            // 2. 헬소년 (중급자) 맞춤 루틴
+            // 2. 헬소년(중급자) 및 헬른(고급자) 맞춤 루틴
             // ==========================================
             if (dayRoutine === '상체') {
                 const chest = cardIndex === 0
@@ -757,11 +763,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     : ['케이블 푸시 다운', '라잉 트라이셉스 익스텐션'];
 
                 selectedExercises = [...chest, ...back, ...shoulders, ...biceps, ...triceps];
-            } 
-            else if (dayRoutine === '하체') {
-                selectedExercises = [
-                    '레그 익스텐션', '레그 컬', '핵스쿼트', '레그 프레스', '바벨 루마니안 데드리프트'
-                ];
             } 
             else if (dayRoutine === '전면') {
                 const chest = cardIndex === 0 
@@ -819,92 +820,29 @@ document.addEventListener('DOMContentLoaded', () => {
                 ];
             } 
             else if (dayRoutine === '당기기') {
-                const back = ['렛풀다운', '티바로우', '원암덤벨로우', '롱풀', '어시스트 풀업'];
-                const biceps = cardIndex % 2 === 1 ? ['덤벨 컬', '케이블 컬'] : ['케이블 컬', '덤벨 컬'];
-                const rearDelt = cardIndex % 2 === 1 ? ['덤벨 리어 델트 플라이'] : ['리버스 펙덱플라이'];
-                selectedExercises = [...back, ...biceps, ...rearDelt];
-            }
-        } 
-        else if (level === 'advanced') {
-            // ==========================================
-            // 3. 헬른 (고급자) 맞춤 루틴
-            // ==========================================
-            if (dayRoutine === '상체') {
-                const chest = cardIndex === 0
-                    ? ['바벨 벤치프레스', '인클라인 덤벨 프레스', '딥스']
-                    : ['바벨 벤치프레스', '인클라인 덤벨 프레스', '플라이 머신'];
-                    
-                const back = cardIndex === 0
-                    ? ['렛풀다운', '롱풀', '원암덤벨로우']
-                    : ['렛풀다운', '티바로우', '원암덤벨로우'];
-                    
-                const shoulders = cardIndex === 0
-                    ? ['덤벨 숄더 프레스', '덤벨 사이드 레터럴 레이즈']
-                    : ['덤벨 사이드 레터럴 레이즈', '덤벨 숄더 프레스'];
-                    
-                const biceps = cardIndex === 0 ? ['덤벨 컬', '케이블 컬'] : ['케이블 컬', '덤벨 컬'];
-                const triceps = cardIndex === 0 ? ['라잉 트라이셉스 익스텐션', '케이블 푸시 다운'] : ['케이블 푸시 다운', '라잉 트라이셉스 익스텐션'];
-                
-                selectedExercises = [...chest, ...back, ...shoulders, ...biceps, ...triceps];
-            } 
-            else if (dayRoutine === '하체') {
-                selectedExercises = [
-                    '레그 익스텐션', '레그 컬', '핵스쿼트', '레그 프레스', '바벨 루마니안 데드리프트'
-                ];
-            } 
-            else if (dayRoutine === '전면') {
-                const chest = cardIndex === 0 
-                    ? ['바벨 벤치프레스', '인클라인 덤벨 프레스', '딥스']
-                    : ['바벨 벤치프레스', '인클라인 덤벨 프레스', '플라이 머신'];
-                const shoulders = cardIndex === 0 ? ['덤벨 숄더 프레스', '덤벨 사이드 레터럴 레이즈'] : ['덤벨 사이드 레터럴 레이즈', '덤벨 숄더 프레스'];
-                const triceps = cardIndex === 0 ? ['라잉 트라이셉스 익스텐션', '케이블 푸시 다운'] : ['케이블 푸시 다운', '라잉 트라이셉스 익스텐션'];
-                const lower = cardIndex === 0 ? ['레그 익스텐션', '핵스쿼트'] : ['레그 익스텐션', '레그 프레스'];
-                
-                const upper = [...chest, ...shoulders, ...triceps];
-                if (cardIndex === 0) {
-                    selectedExercises = [...upper, ...lower];
-                } else {
-                    selectedExercises = [...lower, ...upper];
-                }
-            } 
-            else if (dayRoutine === '후면') {
+                // 등 루틴: 암풀다운, 티바로우, 렛풀다운, 롱풀, 원암덤벨로우
                 const back = ['암풀다운', '티바로우', '렛풀다운', '롱풀', '원암덤벨로우'];
-                const hams = ['레그 컬', '바벨 루마니안 데드리프트'];
-                const biceps = cardIndex === 1 ? ['덤벨 컬', '케이블 컬'] : ['케이블 컬', '덤벨 컬'];
-                const rearDelt = cardIndex === 1 ? ['덤벨 리어 델트 플라이'] : ['리버스 펙덱플라이'];
-                
-                if (cardIndex === 1) {
-                    selectedExercises = [...back, ...hams, ...rearDelt, ...biceps];
-                } else {
-                    selectedExercises = [...hams, ...back, ...biceps, ...rearDelt];
-                }
-            } 
-            else if (dayRoutine === '밀기') {
-                selectedExercises = [
-                    '바벨 벤치프레스', 
-                    '인클라인 덤벨 프레스', 
-                    '로우 인클라인 덤벨 프레스', 
-                    '어시스트 딥스', 
-                    '덤벨 숄더 프레스', 
-                    '덤벨 사이드 레터럴 레이즈', 
-                    '라잉 트라이셉스 익스텐션', 
-                    '케이블 푸시 다운'
-                ];
-            } 
-            else if (dayRoutine === '당기기') {
-                const back = ['렛풀다운', '티바로우', '원암덤벨로우', '롱풀', '어시스트 풀업'];
                 const biceps = cardIndex % 2 === 1 ? ['덤벨 컬', '케이블 컬'] : ['케이블 컬', '덤벨 컬'];
                 const rearDelt = cardIndex % 2 === 1 ? ['덤벨 리어 델트 플라이'] : ['리버스 펙덱플라이'];
-                selectedExercises = [...back, ...biceps, ...rearDelt];
+                
+                // 후면어깨랑 이두 자체의 순서 로테이션 (cardIndex 홀짝에 따름)
+                if (cardIndex % 2 === 1) {
+                    selectedExercises = [...back, ...biceps, ...rearDelt];
+                } else {
+                    selectedExercises = [...back, ...rearDelt, ...biceps];
+                }
             } 
             else if (dayRoutine === '가슴') {
-                selectedExercises = ['바벨 벤치프레스', '인클라인 덤벨 프레스', '플라이 머신', '어시스트 딥스', '딥스'];
+                // 가슴 루틴은 사레레 추가
+                selectedExercises = ['바벨 벤치프레스', '인클라인 덤벨 프레스', '플라이 머신', '어시스트 딥스', '딥스', '덤벨 사이드 레터럴 레이즈'];
             } 
             else if (dayRoutine === '등') {
-                selectedExercises = ['암풀다운', '티바로우', '렛풀다운', '롱풀', '원암덤벨로우'];
+                // 등 루틴은 이두 추가
+                selectedExercises = ['암풀다운', '티바로우', '렛풀다운', '롱풀', '원암덤벨로우', '덤벨 컬'];
             } 
             else if (dayRoutine === '어깨') {
-                selectedExercises = ['덤벨 숄더 프레스', '덤벨 사이드 레터럴 레이즈', '덤벨 리어 델트 플라이', '리버스 펙덱플라이'];
+                // 어깨 루틴은 삼두 추가
+                selectedExercises = ['덤벨 숄더 프레스', '덤벨 사이드 레터럴 레이즈', '덤벨 리어 델트 플라이', '리버스 펙덱플라이', '케이블 푸시 다운'];
             } 
             else if (dayRoutine === '팔') {
                 selectedExercises = ['덤벨 컬', '케이블 컬', '라잉 트라이셉스 익스텐션', '케이블 푸시 다운'];
@@ -915,8 +853,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         return Array.from(new Set(selectedExercises)).map(x => x === '롱pull' ? '롱풀' : x).filter(Boolean);
-    }
-// 운동일지 (Workout Log) 기능 개발 로직
+    }\n\n// 운동일지 (Workout Log) 기능 개발 로직
     // ==========================================
 
     // 1. 로컬 스토리지 로그 리스트 로드 및 마이그레이션
