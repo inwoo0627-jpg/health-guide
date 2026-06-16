@@ -1037,9 +1037,31 @@ document.addEventListener('DOMContentLoaded', () => {
     // 운동일지 (Workout Log) 기능 개발 로직
     // ==========================================
 
-    // 로컬 스토리지 로그 리스트 로드
+    // 1. 로컬 스토리지 로그 리스트 로드 및 마이그레이션
     let workoutLogs = JSON.parse(localStorage.getItem('workout_logs')) || [];
+    workoutLogs = workoutLogs.map(entry => {
+        // 이전 구조(단일 무게/세트/횟수)가 존재하면 세트 배열로 변환
+        if (entry.weight !== undefined && entry.sets !== undefined && !Array.isArray(entry.sets)) {
+            const setsArray = [];
+            const setNum = entry.sets || 4;
+            for (let i = 1; i <= setNum; i++) {
+                setsArray.push({ setId: i, weight: entry.weight, reps: entry.reps || 10 });
+            }
+            return {
+                id: entry.id,
+                date: entry.date,
+                korName: entry.korName,
+                exerciseId: entry.exerciseId,
+                sets: setsArray
+            };
+        }
+        return entry;
+    });
+    localStorage.setItem('workout_logs', JSON.stringify(workoutLogs));
     
+    // 로컬 스토리지 커스텀 운동 리스트 로드
+    let customExercises = JSON.parse(localStorage.getItem('custom_exercises')) || [];
+
     // 1,300+ 운동 풀 전역 객체
     let globalExercisePool = [];
 
@@ -1050,27 +1072,39 @@ document.addEventListener('DOMContentLoaded', () => {
             return response.json();
         })
         .then(data => {
-            globalExercisePool = data;
-            console.log(`[전체 운동 DB 로드 완료] 총 ${globalExercisePool.length}개 운동 탑재 완료.`);
+            // 커스텀 운동과 병합
+            globalExercisePool = [...customExercises, ...data];
+            console.log(`[전체 운동 DB 로드 완료] 총 ${globalExercisePool.length}개 운동 탑재 완료 (커스텀 ${customExercises.length}개).`);
         })
         .catch(err => {
             console.error("운동 데이터베이스 로드 실패. 내장 41개 데이터셋으로 검색을 보완합니다.", err);
             // Fallback: 내장 DB를 검색용으로 변환
-            globalExercisePool = Object.keys(exerciseDatabase).map(key => {
+            const fallbackList = Object.keys(exerciseDatabase).map(key => {
                 const ex = exerciseDatabase[key];
+                // 카테고리 매핑
+                let cat = "가슴";
+                const bp = (ex.bodyPart || "").toLowerCase();
+                if (bp.includes("back")) cat = "등";
+                else if (bp.includes("shoulder")) cat = "어깨";
+                else if (bp.includes("leg")) cat = "하체";
+                else if (bp.includes("arm")) cat = "팔";
+                else if (bp.includes("waist") || bp.includes("abs")) cat = "복근";
+                
                 return {
                     exerciseId: ex.exerciseId,
                     name: ex.name,
                     nameKr: key,
+                    category: cat,
                     bodyPart: ex.bodyPart,
                     target: ex.target,
                     equipment: ex.equipment,
                     instructions: ex.instructions
                 };
             });
+            globalExercisePool = [...customExercises, ...fallbackList];
         });
 
-    // 1. 날짜 설정 기본값 (오늘 날짜 YYYY-MM-DD)
+    // 날짜 설정 기본값 (오늘 날짜 YYYY-MM-DD)
     const logDateInput = document.getElementById('log-date');
     if (logDateInput) {
         const today = new Date();
@@ -1080,7 +1114,7 @@ document.addEventListener('DOMContentLoaded', () => {
         logDateInput.value = `${yyyy}-${mm}-${dd}`;
     }
 
-    // 2. 탭 전환 처리
+    // 탭 전환 처리
     const tabButtons = document.querySelectorAll('.tab-btn');
     const tabContents = document.querySelectorAll('.tab-content');
 
@@ -1100,7 +1134,28 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 3. 자동완성 검색 기능
+    // 2. 부위 선택 카테고리 필터링 제어
+    const catButtons = document.querySelectorAll('.log-cat-btn');
+    let activeCategory = null;
+
+    catButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const wasActive = btn.classList.contains('active');
+            catButtons.forEach(b => b.classList.remove('active'));
+            
+            if (wasActive) {
+                activeCategory = null;
+            } else {
+                btn.classList.add('active');
+                activeCategory = btn.dataset.category;
+            }
+            
+            // 카테고리 선택/해제 시 자동완성/추천 영역 갱신
+            updateAutocompleteList();
+        });
+    });
+
+    // 3. 자동완성 검색 및 연관 추천 로직
     const logSearchInput = document.getElementById('log-search-input');
     const logAutocompleteList = document.getElementById('log-autocomplete-list');
     const previewCard = document.getElementById('selected-exercise-preview');
@@ -1111,94 +1166,220 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnAddLog = document.getElementById('btn-add-log');
     let selectedExerciseForLog = null;
 
-    if (logSearchInput) {
-        logSearchInput.addEventListener('input', (e) => {
-            const val = e.target.value.toLowerCase().trim();
-            logAutocompleteList.innerHTML = '';
-            
-            if (!val) {
-                logAutocompleteList.classList.add('hidden');
-                return;
+    function updateAutocompleteList() {
+        if (!logAutocompleteList) return;
+        logAutocompleteList.innerHTML = '';
+
+        const searchVal = logSearchInput ? logSearchInput.value.trim() : '';
+        
+        // 검색어도 없고 카테고리도 선택 안 된 경우 닫음
+        if (!searchVal && !activeCategory) {
+            logAutocompleteList.classList.add('hidden');
+            return;
+        }
+
+        // 연관 검색 매칭 (공백 분할 검색)
+        const searchTerms = searchVal.toLowerCase().split(/\s+/).filter(x => x);
+
+        const matches = globalExercisePool.filter(item => {
+            // 카테고리 매칭
+            if (activeCategory && item.category !== activeCategory) {
+                return false;
             }
-
-            // 1,300+ 전체 운동 풀에서 한글 이름 및 영어 이름 매칭 검색
-            const matches = [];
-            globalExercisePool.forEach(item => {
-                if (item.nameKr.toLowerCase().includes(val) || item.name.toLowerCase().includes(val)) {
-                    matches.push(item);
-                }
-            });
-
-            if (matches.length === 0) {
-                logAutocompleteList.classList.add('hidden');
-                return;
-            }
-
-            logAutocompleteList.classList.remove('hidden');
-            matches.slice(0, 6).forEach(item => {
-                const div = document.createElement('div');
-                div.className = 'autocomplete-item';
-                div.innerHTML = `
-                    <div style="display: flex; flex-direction: column; text-align: left;">
-                        <span style="font-weight: 600; color: #fff;">${item.nameKr}</span>
-                        <span style="font-size: 0.75rem; color: var(--text-secondary);">${item.name}</span>
-                    </div>
-                    <span class="autocomplete-item-part">${item.bodyPart.split(' ')[0]}</span>
-                `;
-                div.addEventListener('click', () => {
-                    logSearchInput.value = item.nameKr;
-                    selectedExerciseForLog = item;
-                    logAutocompleteList.classList.add('hidden');
-                    
-                    // 미리보기 카드 갱신
-                    previewCard.classList.remove('hidden');
-                    previewName.textContent = item.nameKr;
-                    previewBodyPart.textContent = item.bodyPart;
-                    
-                    previewGif.src = '';
-                    previewLoader.classList.remove('hidden');
-                    previewGif.src = `https://static.exercisedb.dev/media/${item.exerciseId}.gif`;
-                    
-                    previewGif.onload = () => {
-                        previewLoader.classList.add('hidden');
-                    };
-                    previewGif.onerror = () => {
-                        previewGif.src = 'https://github.com/hasaneyldrm/exercises-dataset/raw/main/images/0088-1ZFqTDN.jpg';
-                        previewLoader.classList.add('hidden');
-                    };
-
-                    btnAddLog.disabled = false;
+            // 검색어 매칭
+            if (searchTerms.length > 0) {
+                const nameKrNorm = item.nameKr.toLowerCase().replace(/\s+/g, '');
+                const nameNorm = item.name.toLowerCase().replace(/\s+/g, '');
+                return searchTerms.every(term => {
+                    const termNorm = term.replace(/\s+/g, '');
+                    return nameKrNorm.includes(termNorm) || nameNorm.includes(termNorm);
                 });
-                logAutocompleteList.appendChild(div);
+            }
+            // 검색어는 없고 카테고만 있는 경우
+            return true;
+        });
+
+        if (matches.length === 0) {
+            logAutocompleteList.classList.add('hidden');
+            return;
+        }
+
+        logAutocompleteList.classList.remove('hidden');
+        
+        // 최대 15개 제안 노출 (스크롤 가능)
+        matches.slice(0, 15).forEach(item => {
+            const div = document.createElement('div');
+            div.className = 'autocomplete-item';
+            div.innerHTML = `
+                <div style="display: flex; flex-direction: column; text-align: left;">
+                    <span style="font-weight: 600; color: #fff;">${item.nameKr}</span>
+                    <span style="font-size: 0.75rem; color: var(--text-secondary);">${item.name}</span>
+                </div>
+                <span class="autocomplete-item-part" style="background: rgba(0, 102, 255, 0.15); color: var(--accent); padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; font-weight: bold;">${item.category}</span>
+            `;
+            div.addEventListener('click', () => {
+                logSearchInput.value = item.nameKr;
+                selectedExerciseForLog = item;
+                logAutocompleteList.classList.add('hidden');
+                
+                // 미리보기 카드 갱신
+                previewCard.classList.remove('hidden');
+                previewName.textContent = item.nameKr;
+                previewBodyPart.textContent = item.category;
+                
+                previewGif.src = '';
+                previewLoader.classList.remove('hidden');
+                
+                // GIF 소스 바인딩 (커스텀 이미지 번역 처리 포함)
+                if (item.exerciseId.startsWith('custom_')) {
+                    // 커스텀 운동의 경우 매핑된 이미지
+                    previewGif.src = item.gifUrl || '';
+                } else {
+                    previewGif.src = `https://static.exercisedb.dev/media/${item.exerciseId}.gif`;
+                }
+                
+                previewGif.onload = () => {
+                    previewLoader.classList.add('hidden');
+                };
+                previewGif.onerror = () => {
+                    previewGif.src = 'https://github.com/hasaneyldrm/exercises-dataset/raw/main/images/0088-1ZFqTDN.jpg';
+                    previewLoader.classList.add('hidden');
+                };
+
+                btnAddLog.disabled = false;
             });
+            logAutocompleteList.appendChild(div);
+        });
+    }
+
+    if (logSearchInput) {
+        logSearchInput.addEventListener('input', updateAutocompleteList);
+        
+        // 검색창에 포커스를 주었을 때 카테고리가 켜져 있다면 바로 목록을 보여줌
+        logSearchInput.addEventListener('focus', () => {
+            if (activeCategory || logSearchInput.value.trim()) {
+                updateAutocompleteList();
+            }
         });
 
         // 자동완성 드롭다운 바깥 클릭 시 닫기
         document.addEventListener('click', (e) => {
-            if (e.target !== logSearchInput && e.target !== logAutocompleteList) {
+            if (e.target !== logSearchInput && e.target !== logAutocompleteList && !logAutocompleteList.contains(e.target)) {
                 logAutocompleteList.classList.add('hidden');
             }
         });
     }
 
-    // 4. 일지 기록하기 (등록)
+    // 4. 커스텀 운동 직접 등록 제어
+    const btnToggleCustom = document.getElementById('btn-toggle-custom');
+    const customExerciseForm = document.getElementById('custom-exercise-form');
+    const btnSubmitCustom = document.getElementById('btn-submit-custom');
+    const customExNameInput = document.getElementById('custom-ex-name');
+    const customExCategoryInput = document.getElementById('custom-ex-category');
+
+    if (btnToggleCustom && customExerciseForm) {
+        btnToggleCustom.addEventListener('click', () => {
+            customExerciseForm.classList.toggle('hidden');
+        });
+    }
+
+    if (btnSubmitCustom) {
+        btnSubmitCustom.addEventListener('click', () => {
+            const name = customExNameInput.value.trim();
+            const category = customExCategoryInput.value;
+            
+            if (!name) {
+                alert("운동 이름을 입력해 주세요!");
+                return;
+            }
+            
+            // 중복 검사
+            const isDuplicate = globalExercisePool.some(item => item.nameKr.toLowerCase() === name.toLowerCase());
+            if (isDuplicate) {
+                alert("이미 존재하는 운동 이름입니다!");
+                return;
+            }
+
+            // 스마트 이미지 매핑 규칙
+            let mappedGifId = "0088"; // 기본 스쿼트
+            const nameLower = name.toLowerCase();
+            
+            if (nameLower.includes("로우로우") || nameLower.includes("로우 로우") || nameLower.includes("row row") || (nameLower.includes("로우") && !nameLower.includes("하이"))) {
+                mappedGifId = "0237"; // cable seated row
+            } else if (nameLower.includes("하이로우") || nameLower.includes("하이 로우") || nameLower.includes("high row")) {
+                mappedGifId = "0172"; // cable lat pulldown
+            } else if (nameLower.includes("레그프레스") || nameLower.includes("leg press")) {
+                mappedGifId = "0585"; // sled leg press
+            } else if (nameLower.includes("숄더프레스") || nameLower.includes("shoulder press") || nameLower.includes("오버헤드")) {
+                mappedGifId = "0347"; // dumbbell shoulder press
+            } else if (nameLower.includes("벤치프레스") || nameLower.includes("chest press") || nameLower.includes("체스트 프레스")) {
+                mappedGifId = "0025"; // barbell bench press
+            } else {
+                // 카테고리별 디폴트
+                if (category === "가슴") mappedGifId = "0025";
+                else if (category === "등") mappedGifId = "0172";
+                else if (category === "어깨") mappedGifId = "0347";
+                else if (category === "하체") mappedGifId = "0088";
+                else if (category === "팔") mappedGifId = "0344"; // dumbbell bicep curl
+                else if (category === "복근") mappedGifId = "0001"; // 3/4 sit-up
+            }
+
+            const customId = `custom_${Date.now()}`;
+            const newCustom = {
+                exerciseId: customId,
+                name: name,
+                nameKr: name,
+                category: category,
+                bodyPart: category === "하체" ? "Upper Legs" : category === "등" ? "Back" : category === "어깨" ? "Shoulders" : category === "팔" ? "Upper Arms" : category === "복근" ? "Waist" : "Chest",
+                target: category === "가슴" ? "Pectorals" : category === "등" ? "Lats" : "Abs",
+                equipment: "Machine",
+                instructions: ["직접 등록한 커스텀 운동입니다. 부드럽게 세트를 설정하여 일지를 기입해 보세요."],
+                gifUrl: `https://static.exercisedb.dev/media/${mappedGifId}.gif`
+            };
+
+            customExercises.unshift(newCustom);
+            localStorage.setItem('custom_exercises', JSON.stringify(customExercises));
+            
+            // 메모리 병합 및 즉시 적용
+            globalExercisePool.unshift(newCustom);
+            
+            alert(`'${name}' 운동이 등록되었습니다!`);
+            
+            // 입력창 초기화 및 자동완성에 바로 주입
+            customExNameInput.value = '';
+            customExerciseForm.classList.add('hidden');
+            
+            // 검색어에 세팅
+            logSearchInput.value = name;
+            selectedExerciseForLog = newCustom;
+            
+            // 미리보기 즉시 활성화
+            previewCard.classList.remove('hidden');
+            previewName.textContent = name;
+            previewBodyPart.textContent = category;
+            previewGif.src = newCustom.gifUrl;
+            previewLoader.classList.add('hidden');
+            
+            btnAddLog.disabled = false;
+        });
+    }
+
+    // 5. 일지 기록하기 (등록)
     if (btnAddLog) {
         btnAddLog.addEventListener('click', () => {
             if (!selectedExerciseForLog) return;
 
             const date = logDateInput.value;
-            const weight = parseFloat(document.getElementById('log-weight').value) || 0;
-            const sets = parseInt(document.getElementById('log-sets').value) || 1;
-            const reps = parseInt(document.getElementById('log-reps').value) || 1;
-
+            
+            // 디폴트로 1세트(40kg x 10회)를 기입하여 카드 생성
             const newEntry = {
                 id: Date.now(),
                 date: date,
                 korName: selectedExerciseForLog.nameKr,
                 exerciseId: selectedExerciseForLog.exerciseId,
-                weight: weight,
-                sets: sets,
-                reps: reps
+                sets: [
+                    { setId: 1, weight: 40, reps: 10 }
+                ]
             };
 
             workoutLogs.push(newEntry);
@@ -1210,20 +1391,15 @@ document.addEventListener('DOMContentLoaded', () => {
             previewGif.src = '';
             selectedExerciseForLog = null;
             btnAddLog.disabled = true;
-            
-            // 입력값 리셋
-            document.getElementById('log-weight').value = 0;
-            document.getElementById('log-sets').value = 4;
-            document.getElementById('log-reps').value = 10;
 
             renderLogsTimeline();
         });
     }
 
-    // 5. 일지 타임라인 렌더링 (HTML5 드래그 앤 드롭 및 더블클릭 수정 연동)
+    // 6. 일지 타임라인 렌더링
     const logsTimeline = document.getElementById('logs-timeline');
     const btnClearLogs = document.getElementById('btn-clear-logs');
-    let draggedCardId = null; // 드래그 중인 카드의 ID 보관
+    let draggedCardId = null;
 
     function renderLogsTimeline() {
         if (!logsTimeline) return;
@@ -1240,21 +1416,21 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // 날짜별로 정렬 및 그룹화 (최신 날짜가 맨 위로)
-        const groups = {};
+        // 날짜 내림차순 정렬
+        const groupedByDate = {};
         workoutLogs.forEach(entry => {
-            if (!groups[entry.date]) {
-                groups[entry.date] = [];
+            if (!groupedByDate[entry.date]) {
+                groupedByDate[entry.date] = [];
             }
-            groups[entry.date].push(entry);
+            groupedByDate[entry.date].push(entry);
         });
 
-        const sortedDates = Object.keys(groups).sort((a, b) => new Date(b) - new Date(a));
+        const sortedDates = Object.keys(groupedByDate).sort((a, b) => new Date(b) - new Date(a));
 
         sortedDates.forEach(date => {
             const dateGroup = document.createElement('div');
             dateGroup.className = 'log-day-group';
-            
+
             const header = document.createElement('div');
             header.className = 'log-date-header';
             header.textContent = date;
@@ -1263,34 +1439,50 @@ document.addEventListener('DOMContentLoaded', () => {
             const list = document.createElement('div');
             list.className = 'log-items-list';
 
-            groups[date].forEach(entry => {
+            groupedByDate[date].forEach(entry => {
                 const card = document.createElement('div');
                 card.className = 'log-item-card';
                 card.setAttribute('draggable', 'true');
                 card.setAttribute('data-id', entry.id);
                 card.setAttribute('data-date', date);
                 
+                const gifSrc = entry.exerciseId.startsWith('custom_') 
+                    ? (globalExercisePool.find(ex => ex.exerciseId === entry.exerciseId)?.gifUrl || 'https://github.com/hasaneyldrm/exercises-dataset/raw/main/images/0088-1ZFqTDN.jpg')
+                    : `https://static.exercisedb.dev/media/${entry.exerciseId}.gif`;
+
                 card.innerHTML = `
                     <div class="drag-handle">⋮⋮</div>
                     <div class="log-thumbnail-wrapper">
-                        <img src="https://static.exercisedb.dev/media/${entry.exerciseId}.gif" alt="${entry.korName}" class="log-thumbnail" onerror="this.src='https://github.com/hasaneyldrm/exercises-dataset/raw/main/images/0088-1ZFqTDN.jpg'">
+                        <img src="${gifSrc}" alt="${entry.korName}" class="log-thumbnail" onerror="this.src='https://github.com/hasaneyldrm/exercises-dataset/raw/main/images/0088-1ZFqTDN.jpg'">
                     </div>
-                    <div class="log-info">
-                        <h5>${entry.korName}</h5>
-                        <div class="log-volume-details">
-                            <span class="log-volume-text">
-                                <span class="editable-value" data-id="${entry.id}" data-field="weight" title="더블클릭하여 수정">${entry.weight}</span>kg x 
-                                <span class="editable-value" data-id="${entry.id}" data-field="reps" title="더블클릭하여 수정">${entry.reps}</span>회
-                            </span>
-                            <span class="log-volume-badge editable-value" data-id="${entry.id}" data-field="sets" title="더블클릭하여 수정">${entry.sets}세트</span>
+                    <div class="log-info" style="flex: 1;">
+                        <h5 style="margin: 0; font-size: 0.95rem; font-weight: bold;">${entry.korName}</h5>
+                        
+                        <!-- 세트별 입력 리스트 -->
+                        <div class="log-sets-section">
+                            <div class="log-set-list" data-log-id="${entry.id}">
+                                ${entry.sets.map((set, idx) => `
+                                    <div class="log-set-row" data-set-id="${set.setId}" style="display: flex; align-items: center; gap: 8px; margin-top: 4px;">
+                                        <span class="log-set-num" style="font-size: 0.75rem; color: var(--accent); min-width: 35px;">${idx + 1}세트</span>
+                                        <div class="log-set-input-group" style="display: flex; align-items: center; gap: 2px;">
+                                            <input type="number" class="log-set-input set-weight" data-log-id="${entry.id}" data-set-id="${set.setId}" value="${set.weight}" min="0" step="0.5" style="width: 50px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; color: #fff; text-align: center; padding: 2px 4px; font-size: 0.8rem;">
+                                            <span style="font-size: 0.75rem; color: var(--text-secondary);">kg</span>
+                                        </div>
+                                        <div class="log-set-input-group" style="display: flex; align-items: center; gap: 2px;">
+                                            <input type="number" class="log-set-input set-reps" data-log-id="${entry.id}" data-set-id="${set.setId}" value="${set.reps}" min="1" style="width: 45px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; color: #fff; text-align: center; padding: 2px 4px; font-size: 0.8rem;">
+                                            <span style="font-size: 0.75rem; color: var(--text-secondary);">회</span>
+                                        </div>
+                                        <button class="btn-delete-set" data-log-id="${entry.id}" data-set-id="${set.setId}" style="background: none; border: none; color: #ff4d4d; cursor: pointer; padding: 2px 4px; font-size: 0.8rem; font-weight: bold; margin-left: auto;">✕</button>
+                                    </div>
+                                `).join('')}
+                            </div>
+                            <button class="btn-add-set" data-log-id="${entry.id}" style="width: 100%; margin-top: 6px; background: rgba(255,255,255,0.05); border: 1px dashed rgba(255,255,255,0.15); color: var(--text-secondary); border-radius: 4px; padding: 4px; font-size: 0.75rem; font-weight: 600; cursor: pointer; transition: all 0.2s;">+ 세트 추가</button>
                         </div>
                     </div>
                     <button class="log-delete-btn" data-id="${entry.id}">✕</button>
                 `;
 
-                // ==========================================
-                // HTML5 Drag & Drop 이벤트 리스너 바인딩
-                // ==========================================
+                // HTML5 Drag & Drop 이벤트 바인딩
                 card.addEventListener('dragstart', (e) => {
                     draggedCardId = entry.id;
                     card.classList.add('dragging');
@@ -1301,7 +1493,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 card.addEventListener('dragover', (e) => {
                     e.preventDefault();
                     const targetCard = e.currentTarget;
-                    // 다른 날짜끼리는 순서 이동을 막고 동일 날짜 내 정렬만 지원
                     if (targetCard.dataset.date === date && parseInt(targetCard.dataset.id) !== draggedCardId) {
                         targetCard.classList.add('drag-over');
                     }
@@ -1324,7 +1515,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         const targetIdx = workoutLogs.findIndex(item => item.id === targetId);
                         
                         if (draggedIdx !== -1 && targetIdx !== -1) {
-                            // 배열 요소 스왑 및 위치 조정
                             const [draggedItem] = workoutLogs.splice(draggedIdx, 1);
                             workoutLogs.splice(targetIdx, 0, draggedItem);
                             
@@ -1339,64 +1529,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     document.querySelectorAll('.log-item-card').forEach(c => c.classList.remove('drag-over'));
                 });
 
-                // ==========================================
-                // 볼륨 수정 더블클릭 (Inline Edit) 이벤트
-                // ==========================================
-                const editableElements = card.querySelectorAll('.editable-value');
-                editableElements.forEach(el => {
-                    el.addEventListener('dblclick', (e) => {
-                        e.stopPropagation();
-                        
-                        const field = el.dataset.field;
-                        const logId = parseInt(el.dataset.id);
-                        const originalValue = el.textContent.replace('세트', '');
-                        
-                        const input = document.createElement('input');
-                        input.type = 'number';
-                        input.className = 'inline-edit-input';
-                        input.value = originalValue;
-                        if (field === 'weight') input.step = '0.5';
-                        input.min = field === 'weight' ? '0' : '1';
-
-                        el.replaceWith(input);
-                        input.focus();
-                        input.select();
-
-                        // 수정 완료 처리 함수
-                        const commitChange = () => {
-                            const newValue = parseFloat(input.value);
-                            if (!isNaN(newValue) && newValue >= 0) {
-                                const logIdx = workoutLogs.findIndex(item => item.id === logId);
-                                if (logIdx !== -1) {
-                                    if (field === 'weight') {
-                                        workoutLogs[logIdx].weight = newValue;
-                                    } else if (field === 'reps') {
-                                        workoutLogs[logIdx].reps = Math.max(1, parseInt(newValue));
-                                    } else if (field === 'sets') {
-                                        workoutLogs[logIdx].sets = Math.max(1, parseInt(newValue));
-                                    }
-                                    localStorage.setItem('workout_logs', JSON.stringify(workoutLogs));
-                                }
-                            }
-                            renderLogsTimeline();
-                        };
-
-                        // 엔터키 및 포커스 아웃 이벤트
-                        input.addEventListener('keydown', (e) => {
-                            if (e.key === 'Enter') {
-                                commitChange();
-                            } else if (e.key === 'Escape') {
-                                renderLogsTimeline();
-                            }
-                        });
-
-                        input.addEventListener('blur', () => {
-                            commitChange();
-                        });
-                    });
-                });
-
-                // 개별 삭제 이벤트
+                // 개별 운동 카드 삭제
                 card.querySelector('.log-delete-btn').addEventListener('click', (e) => {
                     const idToDelete = parseInt(e.target.dataset.id);
                     workoutLogs = workoutLogs.filter(item => item.id !== idToDelete);
@@ -1412,7 +1545,69 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 6. 전체 삭제 이벤트
+    // 7. 실시간 세트 데이터 업데이트 및 관리
+    if (logsTimeline) {
+        // 인풋 필드 값 변경 시 실시간 로컬 데이터 갱신 (리렌더링은 호출하지 않아 포커스 보존)
+        logsTimeline.addEventListener('input', (e) => {
+            if (e.target.classList.contains('log-set-input')) {
+                const logId = parseInt(e.target.dataset.logId);
+                const setId = parseInt(e.target.dataset.setId);
+                const value = parseFloat(e.target.value);
+
+                const logIdx = workoutLogs.findIndex(item => item.id === logId);
+                if (logIdx !== -1) {
+                    const setIdx = workoutLogs[logIdx].sets.findIndex(s => s.setId === setId);
+                    if (setIdx !== -1) {
+                        if (e.target.classList.contains('set-weight')) {
+                            workoutLogs[logIdx].sets[setIdx].weight = isNaN(value) ? 0 : value;
+                        } else if (e.target.classList.contains('set-reps')) {
+                            workoutLogs[logIdx].sets[setIdx].reps = isNaN(value) ? 1 : Math.max(1, parseInt(value));
+                        }
+                        localStorage.setItem('workout_logs', JSON.stringify(workoutLogs));
+                    }
+                }
+            }
+        });
+
+        // 세트 추가 / 삭제 버튼 클릭 핸들링 (이벤트 위임)
+        logsTimeline.addEventListener('click', (e) => {
+            // 세트 추가 버튼
+            if (e.target.classList.contains('btn-add-set')) {
+                const logId = parseInt(e.target.dataset.logId);
+                const logIdx = workoutLogs.findIndex(item => item.id === logId);
+                if (logIdx !== -1) {
+                    const sets = workoutLogs[logIdx].sets;
+                    const lastSet = sets[sets.length - 1] || { weight: 40, reps: 10 };
+                    const nextId = sets.length > 0 ? Math.max(...sets.map(s => s.setId)) + 1 : 1;
+                    
+                    // 직전 세트 무게/횟수를 복사하여 새 세트 생성
+                    sets.push({ setId: nextId, weight: lastSet.weight, reps: lastSet.reps });
+                    localStorage.setItem('workout_logs', JSON.stringify(workoutLogs));
+                    renderLogsTimeline();
+                }
+            }
+
+            // 세트 삭제 버튼
+            if (e.target.classList.contains('btn-delete-set')) {
+                const logId = parseInt(e.target.dataset.logId);
+                const setId = parseInt(e.target.dataset.setId);
+                const logIdx = workoutLogs.findIndex(item => item.id === logId);
+                
+                if (logIdx !== -1) {
+                    const sets = workoutLogs[logIdx].sets;
+                    if (sets.length > 1) {
+                        workoutLogs[logIdx].sets = sets.filter(s => s.setId !== setId);
+                        localStorage.setItem('workout_logs', JSON.stringify(workoutLogs));
+                        renderLogsTimeline();
+                    } else {
+                        alert("최소 1세트는 유지되어야 합니다. 카드를 삭제하려면 오른쪽 위의 '✕' 버튼을 눌러주세요.");
+                    }
+                }
+            }
+        });
+    }
+
+    // 전체 삭제 이벤트
     if (btnClearLogs) {
         btnClearLogs.addEventListener('click', () => {
             if (workoutLogs.length === 0) return;
@@ -1424,6 +1619,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 초기 실행
+    // 초기 타임라인 렌더링
     renderLogsTimeline();
 });

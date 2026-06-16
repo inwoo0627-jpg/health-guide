@@ -1243,3 +1243,233 @@ footer {
     box-shadow: 0 0 5px rgba(0, 102, 255, 0.3);
     outline: none;
 }
+
+
+/* ==========================================
+   운동일지 고도화 (카테고리, 커스텀 운동, 세트별 입력) 스타일
+   ========================================== */
+
+/* 부위 선택 필터 버튼 그룹 */
+.log-category-buttons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-top: 8px;
+}
+
+@media (min-width: 768px) {
+    .log-category-buttons {
+        grid-template-columns: repeat(6, 1fr);
+    }
+}
+
+.log-cat-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-secondary);
+    padding: 8px 4px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: center;
+}
+
+.log-cat-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.log-cat-btn.active {
+    background: rgba(0, 102, 255, 0.15);
+    border-color: var(--accent);
+    color: var(--accent);
+    box-shadow: 0 0 8px rgba(0, 102, 255, 0.4);
+}
+
+/* 커스텀 운동 등록 박스 */
+.custom-exercise-box {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.btn-toggle-custom {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    cursor: pointer;
+    padding: 5px 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    text-decoration: underline;
+    transition: color 0.2s;
+}
+
+.btn-toggle-custom:hover {
+    color: var(--accent);
+}
+
+.custom-form {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px dashed rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 12px;
+    margin-top: 8px;
+    animation: slideDown 0.3s ease-out;
+}
+
+.custom-form-row {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+@media (min-width: 480px) {
+    .custom-form-row {
+        flex-direction: row;
+        align-items: center;
+    }
+    .custom-form-row #custom-ex-name {
+        flex: 2;
+    }
+    .custom-form-row #custom-ex-category {
+        flex: 1;
+        min-width: 80px;
+    }
+}
+
+.btn-primary-sm {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-primary-sm:hover {
+    background: #0056cc;
+    box-shadow: 0 0 10px rgba(0, 102, 255, 0.5);
+}
+
+/* 세트별 정보 상세 입력 영역 */
+.log-sets-section {
+    margin-top: 10px;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 8px;
+    padding: 8px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.log-sets-title {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.log-set-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.log-set-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    color: #fff;
+}
+
+.log-set-num {
+    min-width: 45px;
+    font-weight: 600;
+    color: var(--accent);
+}
+
+.log-set-input-group {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.log-set-input {
+    width: 60px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    color: #fff;
+    padding: 4px 6px;
+    font-size: 0.85rem;
+    text-align: center;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.log-set-input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 5px rgba(0, 102, 255, 0.3);
+}
+
+.log-set-unit {
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+}
+
+.btn-delete-set {
+    background: none;
+    border: none;
+    color: #ff4d4d;
+    cursor: pointer;
+    font-size: 0.85rem;
+    padding: 2px 5px;
+    border-radius: 4px;
+    margin-left: auto;
+    transition: background 0.2s;
+}
+
+.btn-delete-set:hover {
+    background: rgba(255, 77, 77, 0.1);
+}
+
+.btn-add-set {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px dashed rgba(255, 255, 255, 0.1);
+    color: var(--text-secondary);
+    width: 100%;
+    padding: 6px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: all 0.2s;
+}
+
+.btn-add-set:hover {
+    background: rgba(0, 102, 255, 0.05);
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
