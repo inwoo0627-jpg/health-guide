@@ -1179,3 +1179,67 @@ footer {
 .log-delete-btn:hover {
     color: #ff3b30;
 }
+
+/* Drag & Drop Styles */
+.log-item-card {
+    position: relative;
+    cursor: grab;
+}
+
+.log-item-card.dragging {
+    opacity: 0.3;
+    border: 1px dashed var(--accent) !important;
+    background: rgba(0, 102, 255, 0.05) !important;
+}
+
+.log-item-card.drag-over {
+    border-top: 2px solid var(--accent) !important;
+    background: rgba(0, 102, 255, 0.02) !important;
+}
+
+.drag-handle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 12px;
+    color: var(--text-secondary);
+    font-size: 1.2rem;
+    cursor: grab;
+    user-select: none;
+    opacity: 0.5;
+    transition: opacity 0.2s ease;
+}
+
+.log-item-card:hover .drag-handle {
+    opacity: 0.9;
+}
+
+/* Inline Edit Styles */
+.editable-value {
+    cursor: pointer;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.3);
+    padding: 1px 4px;
+    border-radius: 3px;
+    transition: all 0.2s ease;
+    display: inline-block;
+}
+
+.editable-value:hover {
+    color: var(--accent);
+    background: rgba(0, 102, 255, 0.1);
+    border-bottom-color: var(--accent);
+}
+
+.inline-edit-input {
+    width: 65px;
+    background: rgba(0, 0, 0, 0.8);
+    border: 1px solid var(--accent);
+    border-radius: 4px;
+    color: #fff;
+    font-family: inherit;
+    font-size: 0.85rem;
+    padding: 1px 4px;
+    text-align: center;
+    box-shadow: 0 0 5px rgba(0, 102, 255, 0.3);
+    outline: none;
+}

@@ -1039,6 +1039,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 로컬 스토리지 로그 리스트 로드
     let workoutLogs = JSON.parse(localStorage.getItem('workout_logs')) || [];
+    
+    // 1,300+ 운동 풀 전역 객체
+    let globalExercisePool = [];
+
+    // exercises_db.json 파일 비동기 로드
+    fetch('exercises_db.json')
+        .then(response => {
+            if (!response.ok) throw new Error("네트워크 응답이 올바르지 않습니다.");
+            return response.json();
+        })
+        .then(data => {
+            globalExercisePool = data;
+            console.log(`[전체 운동 DB 로드 완료] 총 ${globalExercisePool.length}개 운동 탑재 완료.`);
+        })
+        .catch(err => {
+            console.error("운동 데이터베이스 로드 실패. 내장 41개 데이터셋으로 검색을 보완합니다.", err);
+            // Fallback: 내장 DB를 검색용으로 변환
+            globalExercisePool = Object.keys(exerciseDatabase).map(key => {
+                const ex = exerciseDatabase[key];
+                return {
+                    exerciseId: ex.exerciseId,
+                    name: ex.name,
+                    nameKr: key,
+                    bodyPart: ex.bodyPart,
+                    target: ex.target,
+                    equipment: ex.equipment,
+                    instructions: ex.instructions
+                };
+            });
+        });
 
     // 1. 날짜 설정 기본값 (오늘 날짜 YYYY-MM-DD)
     const logDateInput = document.getElementById('log-date');
@@ -1091,12 +1121,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
+            // 1,300+ 전체 운동 풀에서 한글 이름 및 영어 이름 매칭 검색
             const matches = [];
-            Object.keys(exerciseDatabase).forEach(key => {
-                const ex = exerciseDatabase[key];
-                // 한국어 운동명이나 영어 이름 매칭
-                if (key.toLowerCase().includes(val) || ex.name.toLowerCase().includes(val)) {
-                    matches.push({ key: key, ex: ex });
+            globalExercisePool.forEach(item => {
+                if (item.nameKr.toLowerCase().includes(val) || item.name.toLowerCase().includes(val)) {
+                    matches.push(item);
                 }
             });
 
@@ -1110,22 +1139,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 const div = document.createElement('div');
                 div.className = 'autocomplete-item';
                 div.innerHTML = `
-                    <span>${item.key}</span>
-                    <span class="autocomplete-item-part">${item.ex.bodyPart.split(' ')[0]}</span>
+                    <div style="display: flex; flex-direction: column; text-align: left;">
+                        <span style="font-weight: 600; color: #fff;">${item.nameKr}</span>
+                        <span style="font-size: 0.75rem; color: var(--text-secondary);">${item.name}</span>
+                    </div>
+                    <span class="autocomplete-item-part">${item.bodyPart.split(' ')[0]}</span>
                 `;
                 div.addEventListener('click', () => {
-                    logSearchInput.value = item.key;
-                    selectedExerciseForLog = { ...item.ex, key: item.key };
+                    logSearchInput.value = item.nameKr;
+                    selectedExerciseForLog = item;
                     logAutocompleteList.classList.add('hidden');
                     
                     // 미리보기 카드 갱신
                     previewCard.classList.remove('hidden');
-                    previewName.textContent = item.ex.name;
-                    previewBodyPart.textContent = item.ex.bodyPart.split(' ')[0];
+                    previewName.textContent = item.nameKr;
+                    previewBodyPart.textContent = item.bodyPart;
                     
                     previewGif.src = '';
                     previewLoader.classList.remove('hidden');
-                    previewGif.src = `https://static.exercisedb.dev/media/${item.ex.exerciseId}.gif`;
+                    previewGif.src = `https://static.exercisedb.dev/media/${item.exerciseId}.gif`;
                     
                     previewGif.onload = () => {
                         previewLoader.classList.add('hidden');
@@ -1162,7 +1194,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const newEntry = {
                 id: Date.now(),
                 date: date,
-                korName: selectedExerciseForLog.key,
+                korName: selectedExerciseForLog.nameKr,
                 exerciseId: selectedExerciseForLog.exerciseId,
                 weight: weight,
                 sets: sets,
@@ -1188,9 +1220,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 5. 일지 타임라인 렌더링
+    // 5. 일지 타임라인 렌더링 (HTML5 드래그 앤 드롭 및 더블클릭 수정 연동)
     const logsTimeline = document.getElementById('logs-timeline');
     const btnClearLogs = document.getElementById('btn-clear-logs');
+    let draggedCardId = null; // 드래그 중인 카드의 ID 보관
 
     function renderLogsTimeline() {
         if (!logsTimeline) return;
@@ -1216,14 +1249,12 @@ document.addEventListener('DOMContentLoaded', () => {
             groups[entry.date].push(entry);
         });
 
-        // 날짜 정렬
         const sortedDates = Object.keys(groups).sort((a, b) => new Date(b) - new Date(a));
 
         sortedDates.forEach(date => {
             const dateGroup = document.createElement('div');
             dateGroup.className = 'log-day-group';
             
-            // 날짜 헤더 생성
             const header = document.createElement('div');
             header.className = 'log-date-header';
             header.textContent = date;
@@ -1235,19 +1266,135 @@ document.addEventListener('DOMContentLoaded', () => {
             groups[date].forEach(entry => {
                 const card = document.createElement('div');
                 card.className = 'log-item-card';
+                card.setAttribute('draggable', 'true');
+                card.setAttribute('data-id', entry.id);
+                card.setAttribute('data-date', date);
+                
                 card.innerHTML = `
+                    <div class="drag-handle">⋮⋮</div>
                     <div class="log-thumbnail-wrapper">
                         <img src="https://static.exercisedb.dev/media/${entry.exerciseId}.gif" alt="${entry.korName}" class="log-thumbnail" onerror="this.src='https://github.com/hasaneyldrm/exercises-dataset/raw/main/images/0088-1ZFqTDN.jpg'">
                     </div>
                     <div class="log-info">
                         <h5>${entry.korName}</h5>
                         <div class="log-volume-details">
-                            <span class="log-volume-text">${entry.weight}kg x ${entry.reps}회</span>
-                            <span class="log-volume-badge">${entry.sets}세트</span>
+                            <span class="log-volume-text">
+                                <span class="editable-value" data-id="${entry.id}" data-field="weight" title="더블클릭하여 수정">${entry.weight}</span>kg x 
+                                <span class="editable-value" data-id="${entry.id}" data-field="reps" title="더블클릭하여 수정">${entry.reps}</span>회
+                            </span>
+                            <span class="log-volume-badge editable-value" data-id="${entry.id}" data-field="sets" title="더블클릭하여 수정">${entry.sets}세트</span>
                         </div>
                     </div>
                     <button class="log-delete-btn" data-id="${entry.id}">✕</button>
                 `;
+
+                // ==========================================
+                // HTML5 Drag & Drop 이벤트 리스너 바인딩
+                // ==========================================
+                card.addEventListener('dragstart', (e) => {
+                    draggedCardId = entry.id;
+                    card.classList.add('dragging');
+                    e.dataTransfer.effectAllowed = 'move';
+                    e.dataTransfer.setData('text/plain', entry.id);
+                });
+
+                card.addEventListener('dragover', (e) => {
+                    e.preventDefault();
+                    const targetCard = e.currentTarget;
+                    // 다른 날짜끼리는 순서 이동을 막고 동일 날짜 내 정렬만 지원
+                    if (targetCard.dataset.date === date && parseInt(targetCard.dataset.id) !== draggedCardId) {
+                        targetCard.classList.add('drag-over');
+                    }
+                });
+
+                card.addEventListener('dragleave', (e) => {
+                    e.currentTarget.classList.remove('drag-over');
+                });
+
+                card.addEventListener('drop', (e) => {
+                    e.preventDefault();
+                    const targetCard = e.currentTarget;
+                    targetCard.classList.remove('drag-over');
+                    
+                    const draggedId = parseInt(e.dataTransfer.getData('text/plain'));
+                    const targetId = parseInt(targetCard.dataset.id);
+
+                    if (draggedId !== targetId && targetCard.dataset.date === date) {
+                        const draggedIdx = workoutLogs.findIndex(item => item.id === draggedId);
+                        const targetIdx = workoutLogs.findIndex(item => item.id === targetId);
+                        
+                        if (draggedIdx !== -1 && targetIdx !== -1) {
+                            // 배열 요소 스왑 및 위치 조정
+                            const [draggedItem] = workoutLogs.splice(draggedIdx, 1);
+                            workoutLogs.splice(targetIdx, 0, draggedItem);
+                            
+                            localStorage.setItem('workout_logs', JSON.stringify(workoutLogs));
+                            renderLogsTimeline();
+                        }
+                    }
+                });
+
+                card.addEventListener('dragend', () => {
+                    card.classList.remove('dragging');
+                    document.querySelectorAll('.log-item-card').forEach(c => c.classList.remove('drag-over'));
+                });
+
+                // ==========================================
+                // 볼륨 수정 더블클릭 (Inline Edit) 이벤트
+                // ==========================================
+                const editableElements = card.querySelectorAll('.editable-value');
+                editableElements.forEach(el => {
+                    el.addEventListener('dblclick', (e) => {
+                        e.stopPropagation();
+                        
+                        const field = el.dataset.field;
+                        const logId = parseInt(el.dataset.id);
+                        const originalValue = el.textContent.replace('세트', '');
+                        
+                        const input = document.createElement('input');
+                        input.type = 'number';
+                        input.className = 'inline-edit-input';
+                        input.value = originalValue;
+                        if (field === 'weight') input.step = '0.5';
+                        input.min = field === 'weight' ? '0' : '1';
+
+                        el.replaceWith(input);
+                        input.focus();
+                        input.select();
+
+                        // 수정 완료 처리 함수
+                        const commitChange = () => {
+                            const newValue = parseFloat(input.value);
+                            if (!isNaN(newValue) && newValue >= 0) {
+                                const logIdx = workoutLogs.findIndex(item => item.id === logId);
+                                if (logIdx !== -1) {
+                                    if (field === 'weight') {
+                                        workoutLogs[logIdx].weight = newValue;
+                                    } else if (field === 'reps') {
+                                        workoutLogs[logIdx].reps = Math.max(1, parseInt(newValue));
+                                    } else if (field === 'sets') {
+                                        workoutLogs[logIdx].sets = Math.max(1, parseInt(newValue));
+                                    }
+                                    localStorage.setItem('workout_logs', JSON.stringify(workoutLogs));
+                                }
+                            }
+                            renderLogsTimeline();
+                        };
+
+                        // 엔터키 및 포커스 아웃 이벤트
+                        input.addEventListener('keydown', (e) => {
+                            if (e.key === 'Enter') {
+                                commitChange();
+                            } else if (e.key === 'Escape') {
+                                renderLogsTimeline();
+                            }
+                        });
+
+                        input.addEventListener('blur', () => {
+                            commitChange();
+                        });
+                    });
+                });
 
                 // 개별 삭제 이벤트
                 card.querySelector('.log-delete-btn').addEventListener('click', (e) => {
