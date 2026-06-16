@@ -790,3 +790,392 @@ footer {
 .sets-guide-box strong {
     color: #ffffff;
 }
+
+
+/* ==========================================
+   TABS NAVIGATION & WORKOUT LOG STYLES
+   ========================================== */
+
+/* Tab Navigation */
+.tab-nav {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px 0 30px 0;
+    padding: 6px;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 30px;
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+}
+
+.tab-btn {
+    padding: 10px 24px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    background: transparent;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.tab-btn:hover {
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.tab-btn.active {
+    color: #fff;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+    box-shadow: 0 4px 15px rgba(0, 102, 255, 0.3), 0 0 5px var(--accent);
+}
+
+/* Tab Content Visibility */
+.tab-content.hidden {
+    display: none !map; /* override display setting */
+}
+
+/* Workout Log Layout */
+.log-container {
+    display: grid;
+    grid-template-columns: 1.2fr 1.8fr;
+    gap: 30px;
+    align-items: start;
+    margin-top: 20px;
+}
+
+@media (max-width: 900px) {
+    .log-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+.log-form-box, .log-list-box {
+    background: var(--card-bg);
+    border: var(--card-border);
+    border-radius: var(--card-radius);
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(20px);
+}
+
+.box-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #fff;
+    border-left: 4px solid var(--accent);
+    padding-left: 10px;
+}
+
+/* Autocomplete Container */
+.autocomplete-container {
+    position: relative;
+}
+
+.search-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-input-wrapper .form-control {
+    padding-right: 40px;
+}
+
+.search-icon {
+    position: absolute;
+    right: 15px;
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    pointer-events: none;
+}
+
+/* Autocomplete Dropdown List */
+.autocomplete-list {
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 0;
+    width: 100%;
+    max-height: 250px;
+    overflow-y: auto;
+    background: rgba(20, 20, 25, 0.98);
+    border: 1px solid var(--accent);
+    border-radius: 10px;
+    z-index: 999;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 10px rgba(0, 102, 255, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+.autocomplete-item {
+    padding: 12px 15px;
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.autocomplete-item:last-child {
+    border-bottom: none;
+}
+
+.autocomplete-item:hover {
+    color: #fff;
+    background: rgba(0, 102, 255, 0.15);
+    padding-left: 20px;
+}
+
+.autocomplete-item-part {
+    font-size: 0.75rem;
+    background: rgba(255, 255, 255, 0.08);
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: var(--text-secondary);
+}
+
+/* Selected Exercise Preview Card */
+.selected-preview {
+    margin: 20px 0;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px dashed rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+}
+
+.preview-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.preview-header h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+}
+
+.preview-badge {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #fff;
+    background: var(--accent);
+    padding: 3px 8px;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 102, 255, 0.4);
+}
+
+.preview-media {
+    position: relative;
+    width: 100%;
+    height: 150px;
+    background: #000;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.preview-media img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.preview-loader {
+    position: absolute;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+}
+
+/* Numeric Inputs Row */
+.form-row {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+
+/* List Header */
+.list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.btn-danger-text {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #ff3b30;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.btn-danger-text:hover {
+    opacity: 0.8;
+    text-decoration: underline;
+}
+
+/* Workout Logs Timeline */
+.logs-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    max-height: 600px;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
+.empty-log-message {
+    text-align: center;
+    padding: 50px 0;
+    color: var(--text-secondary);
+}
+
+.empty-icon {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 15px;
+    opacity: 0.5;
+}
+
+.empty-log-message p {
+    font-size: 0.95rem;
+    margin-bottom: 5px;
+}
+
+.empty-log-message .sub-text {
+    font-size: 0.85rem;
+    opacity: 0.6;
+}
+
+/* Log Day Group */
+.log-day-group {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding-bottom: 20px;
+}
+
+.log-day-group:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.log-date-header {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.log-date-header::before {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    box-shadow: 0 0 6px var(--accent);
+}
+
+.log-items-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Log Item Card */
+.log-item-card {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.01);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 10px;
+    padding: 10px 15px;
+    transition: all 0.2s ease;
+}
+
+.log-item-card:hover {
+    background: rgba(255, 255, 255, 0.03);
+    border-color: rgba(255, 255, 255, 0.08);
+}
+
+.log-thumbnail-wrapper {
+    width: 60px;
+    height: 60px;
+    background: #000;
+    border-radius: 6px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 15px;
+}
+
+.log-thumbnail {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.log-info {
+    flex: 1;
+}
+
+.log-info h5 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 4px;
+}
+
+.log-volume-details {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.log-volume-text {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.log-volume-badge {
+    font-size: 0.75rem;
+    font-weight: 700;
+    background: rgba(0, 102, 255, 0.1);
+    border: 1px solid rgba(0, 102, 255, 0.3);
+    color: var(--accent);
+    padding: 1px 6px;
+    border-radius: 4px;
+}
+
+.log-delete-btn {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    transition: color 0.2s ease;
+}
+
+.log-delete-btn:hover {
+    color: #ff3b30;
+}

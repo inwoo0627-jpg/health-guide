@@ -24,7 +24,14 @@
             <p class="subtitle">헬스장에서 무엇을 해야 할지 헤매는 당신을 위한 과학적 루틴 설계자</p>
         </header>
 
+                <!-- 탭 네비게이션 -->
+        <nav class="tab-nav">
+            <button class="tab-btn active" data-tab="generator">💪 루틴 생성기</button>
+            <button class="tab-btn" data-tab="log">📝 운동일지</button>
+        </nav>
+
         <main>
+            <div id="section-generator" class="tab-content">
             <!-- STEP 1: 운동 가능한 횟수 선택 -->
             <section class="setup-section" id="step-days">
                 <h2 class="section-title"><span>01</span> 일주일에 운동을 몇 일 하실 수 있나요?</h2>
@@ -136,6 +143,75 @@
                     <!-- JS로 카드 생성 -->
                 </div>
             </section>
+            </div> <!-- End of section-generator -->
+
+            <!-- 새로운 운동일지 섹션 추가 -->
+            <div id="section-log" class="tab-content hidden">
+                <div class="log-container">
+                    <!-- 왼쪽 칼럼: 일지 등록 폼 -->
+                    <div class="log-form-box">
+                        <h3 class="box-title">📝 새 운동 기록</h3>
+                        <div class="form-group">
+                            <label for="log-date">날짜</label>
+                            <input type="date" id="log-date" class="form-control">
+                        </div>
+                        <div class="form-group autocomplete-container">
+                            <label for="log-search-input">운동 종목 검색</label>
+                            <div class="search-input-wrapper">
+                                <input type="text" id="log-search-input" class="form-control" placeholder="예: 벤치, 스쿼트, 덤벨...">
+                                <span class="search-icon">🔍</span>
+                            </div>
+                            <div id="log-autocomplete-list" class="autocomplete-list hidden">
+                                <!-- 자동완성 목록이 동적으로 들어옴 -->
+                            </div>
+                        </div>
+                        
+                        <!-- 선택된 운동 미리보기 카드 -->
+                        <div id="selected-exercise-preview" class="selected-preview hidden">
+                            <div class="preview-header">
+                                <h4 id="preview-exercise-name">운동 이름</h4>
+                                <span id="preview-exercise-bodypart" class="preview-badge">가슴</span>
+                            </div>
+                            <div class="preview-media">
+                                <img id="preview-exercise-gif" src="" alt="운동 미리보기">
+                                <div class="preview-loader" id="preview-gif-loader">로딩 중...</div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-3">
+                                <label for="log-weight">중량 (kg)</label>
+                                <input type="number" id="log-weight" class="form-control" min="0" value="0" step="0.5">
+                            </div>
+                            <div class="form-group col-3">
+                                <label for="log-sets">세트 수</label>
+                                <input type="number" id="log-sets" class="form-control" min="1" value="4">
+                            </div>
+                            <div class="form-group col-3">
+                                <label for="log-reps">반복 횟수</label>
+                                <input type="number" id="log-reps" class="form-control" min="1" value="10">
+                            </div>
+                        </div>
+                        <button id="btn-add-log" class="btn-primary" disabled>일지 기록하기</button>
+                    </div>
+
+                    <!-- 오른쪽 칼럼: 타임라인 목록 -->
+                    <div class="log-list-box">
+                        <div class="list-header">
+                            <h3 class="box-title">🦅 나의 운동 일지</h3>
+                            <button id="btn-clear-logs" class="btn-danger-text">전체 삭제</button>
+                        </div>
+                        <div id="logs-timeline" class="logs-timeline">
+                            <!-- 날짜별 그룹이 동적으로 렌더링됨 -->
+                            <div class="empty-log-message">
+                                <span class="empty-icon">📅</span>
+                                <p>아직 기록된 운동 일지가 없습니다.</p>
+                                <p class="sub-text">왼쪽 폼에서 오늘 한 운동을 기록해 보세요!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- End of section-log -->
         </main>
         
         <footer>

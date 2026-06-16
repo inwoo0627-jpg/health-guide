@@ -1031,4 +1031,252 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+
+
+    // ==========================================
+    // 운동일지 (Workout Log) 기능 개발 로직
+    // ==========================================
+
+    // 로컬 스토리지 로그 리스트 로드
+    let workoutLogs = JSON.parse(localStorage.getItem('workout_logs')) || [];
+
+    // 1. 날짜 설정 기본값 (오늘 날짜 YYYY-MM-DD)
+    const logDateInput = document.getElementById('log-date');
+    if (logDateInput) {
+        const today = new Date();
+        const yyyy = today.getFullYear();
+        const mm = String(today.getMonth() + 1).padStart(2, '0');
+        const dd = String(today.getDate()).padStart(2, '0');
+        logDateInput.value = `${yyyy}-${mm}-${dd}`;
+    }
+
+    // 2. 탭 전환 처리
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    tabButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            tabButtons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const targetTab = btn.dataset.tab;
+            tabContents.forEach(content => {
+                if (content.id === `section-${targetTab}`) {
+                    content.classList.remove('hidden');
+                } else {
+                    content.classList.add('hidden');
+                }
+            });
+        });
+    });
+
+    // 3. 자동완성 검색 기능
+    const logSearchInput = document.getElementById('log-search-input');
+    const logAutocompleteList = document.getElementById('log-autocomplete-list');
+    const previewCard = document.getElementById('selected-exercise-preview');
+    const previewName = document.getElementById('preview-exercise-name');
+    const previewBodyPart = document.getElementById('preview-exercise-bodypart');
+    const previewGif = document.getElementById('preview-exercise-gif');
+    const previewLoader = document.getElementById('preview-gif-loader');
+    const btnAddLog = document.getElementById('btn-add-log');
+    let selectedExerciseForLog = null;
+
+    if (logSearchInput) {
+        logSearchInput.addEventListener('input', (e) => {
+            const val = e.target.value.toLowerCase().trim();
+            logAutocompleteList.innerHTML = '';
+            
+            if (!val) {
+                logAutocompleteList.classList.add('hidden');
+                return;
+            }
+
+            const matches = [];
+            Object.keys(exerciseDatabase).forEach(key => {
+                const ex = exerciseDatabase[key];
+                // 한국어 운동명이나 영어 이름 매칭
+                if (key.toLowerCase().includes(val) || ex.name.toLowerCase().includes(val)) {
+                    matches.push({ key: key, ex: ex });
+                }
+            });
+
+            if (matches.length === 0) {
+                logAutocompleteList.classList.add('hidden');
+                return;
+            }
+
+            logAutocompleteList.classList.remove('hidden');
+            matches.slice(0, 6).forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'autocomplete-item';
+                div.innerHTML = `
+                    <span>${item.key}</span>
+                    <span class="autocomplete-item-part">${item.ex.bodyPart.split(' ')[0]}</span>
+                `;
+                div.addEventListener('click', () => {
+                    logSearchInput.value = item.key;
+                    selectedExerciseForLog = { ...item.ex, key: item.key };
+                    logAutocompleteList.classList.add('hidden');
+                    
+                    // 미리보기 카드 갱신
+                    previewCard.classList.remove('hidden');
+                    previewName.textContent = item.ex.name;
+                    previewBodyPart.textContent = item.ex.bodyPart.split(' ')[0];
+                    
+                    previewGif.src = '';
+                    previewLoader.classList.remove('hidden');
+                    previewGif.src = `https://static.exercisedb.dev/media/${item.ex.exerciseId}.gif`;
+                    
+                    previewGif.onload = () => {
+                        previewLoader.classList.add('hidden');
+                    };
+                    previewGif.onerror = () => {
+                        previewGif.src = 'https://github.com/hasaneyldrm/exercises-dataset/raw/main/images/0088-1ZFqTDN.jpg';
+                        previewLoader.classList.add('hidden');
+                    };
+
+                    btnAddLog.disabled = false;
+                });
+                logAutocompleteList.appendChild(div);
+            });
+        });
+
+        // 자동완성 드롭다운 바깥 클릭 시 닫기
+        document.addEventListener('click', (e) => {
+            if (e.target !== logSearchInput && e.target !== logAutocompleteList) {
+                logAutocompleteList.classList.add('hidden');
+            }
+        });
+    }
+
+    // 4. 일지 기록하기 (등록)
+    if (btnAddLog) {
+        btnAddLog.addEventListener('click', () => {
+            if (!selectedExerciseForLog) return;
+
+            const date = logDateInput.value;
+            const weight = parseFloat(document.getElementById('log-weight').value) || 0;
+            const sets = parseInt(document.getElementById('log-sets').value) || 1;
+            const reps = parseInt(document.getElementById('log-reps').value) || 1;
+
+            const newEntry = {
+                id: Date.now(),
+                date: date,
+                korName: selectedExerciseForLog.key,
+                exerciseId: selectedExerciseForLog.exerciseId,
+                weight: weight,
+                sets: sets,
+                reps: reps
+            };
+
+            workoutLogs.push(newEntry);
+            localStorage.setItem('workout_logs', JSON.stringify(workoutLogs));
+
+            // 등록 후 필드 초기화
+            logSearchInput.value = '';
+            previewCard.classList.add('hidden');
+            previewGif.src = '';
+            selectedExerciseForLog = null;
+            btnAddLog.disabled = true;
+            
+            // 입력값 리셋
+            document.getElementById('log-weight').value = 0;
+            document.getElementById('log-sets').value = 4;
+            document.getElementById('log-reps').value = 10;
+
+            renderLogsTimeline();
+        });
+    }
+
+    // 5. 일지 타임라인 렌더링
+    const logsTimeline = document.getElementById('logs-timeline');
+    const btnClearLogs = document.getElementById('btn-clear-logs');
+
+    function renderLogsTimeline() {
+        if (!logsTimeline) return;
+        logsTimeline.innerHTML = '';
+
+        if (workoutLogs.length === 0) {
+            logsTimeline.innerHTML = `
+                <div class="empty-log-message">
+                    <span class="empty-icon">📅</span>
+                    <p>아직 기록된 운동 일지가 없습니다.</p>
+                    <p class="sub-text">왼쪽 폼에서 오늘 한 운동을 기록해 보세요!</p>
+                </div>
+            `;
+            return;
+        }
+
+        // 날짜별로 정렬 및 그룹화 (최신 날짜가 맨 위로)
+        const groups = {};
+        workoutLogs.forEach(entry => {
+            if (!groups[entry.date]) {
+                groups[entry.date] = [];
+            }
+            groups[entry.date].push(entry);
+        });
+
+        // 날짜 정렬
+        const sortedDates = Object.keys(groups).sort((a, b) => new Date(b) - new Date(a));
+
+        sortedDates.forEach(date => {
+            const dateGroup = document.createElement('div');
+            dateGroup.className = 'log-day-group';
+            
+            // 날짜 헤더 생성
+            const header = document.createElement('div');
+            header.className = 'log-date-header';
+            header.textContent = date;
+            dateGroup.appendChild(header);
+
+            const list = document.createElement('div');
+            list.className = 'log-items-list';
+
+            groups[date].forEach(entry => {
+                const card = document.createElement('div');
+                card.className = 'log-item-card';
+                card.innerHTML = `
+                    <div class="log-thumbnail-wrapper">
+                        <img src="https://static.exercisedb.dev/media/${entry.exerciseId}.gif" alt="${entry.korName}" class="log-thumbnail" onerror="this.src='https://github.com/hasaneyldrm/exercises-dataset/raw/main/images/0088-1ZFqTDN.jpg'">
+                    </div>
+                    <div class="log-info">
+                        <h5>${entry.korName}</h5>
+                        <div class="log-volume-details">
+                            <span class="log-volume-text">${entry.weight}kg x ${entry.reps}회</span>
+                            <span class="log-volume-badge">${entry.sets}세트</span>
+                        </div>
+                    </div>
+                    <button class="log-delete-btn" data-id="${entry.id}">✕</button>
+                `;
+
+                // 개별 삭제 이벤트
+                card.querySelector('.log-delete-btn').addEventListener('click', (e) => {
+                    const idToDelete = parseInt(e.target.dataset.id);
+                    workoutLogs = workoutLogs.filter(item => item.id !== idToDelete);
+                    localStorage.setItem('workout_logs', JSON.stringify(workoutLogs));
+                    renderLogsTimeline();
+                });
+
+                list.appendChild(card);
+            });
+
+            dateGroup.appendChild(list);
+            logsTimeline.appendChild(dateGroup);
+        });
+    }
+
+    // 6. 전체 삭제 이벤트
+    if (btnClearLogs) {
+        btnClearLogs.addEventListener('click', () => {
+            if (workoutLogs.length === 0) return;
+            if (confirm("정말 모든 운동 일지를 삭제하시겠습니까?")) {
+                workoutLogs = [];
+                localStorage.setItem('workout_logs', JSON.stringify(workoutLogs));
+                renderLogsTimeline();
+            }
+        });
+    }
+
+    // 초기 실행
+    renderLogsTimeline();
 });
